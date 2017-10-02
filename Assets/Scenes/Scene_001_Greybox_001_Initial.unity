@@ -1332,11 +1332,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4046458099184002, guid: a5075e5a90f67c2419b3fdac95f7c090, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 12.967384
+      value: 14.81
       objectReference: {fileID: 0}
     - target: {fileID: 4046458099184002, guid: a5075e5a90f67c2419b3fdac95f7c090, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.5445786
+      value: 2.74
       objectReference: {fileID: 0}
     - target: {fileID: 4046458099184002, guid: a5075e5a90f67c2419b3fdac95f7c090, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1895,7 +1895,12 @@ MonoBehaviour:
   fSpeed: 15
   fJumpForce: 11
   fSJump: 2
-  DistOverGround: 0.1
+  m_Force: 2
+  fPullSPeed: 3
+  grappleObj: {fileID: 0}
+  rbProj2D: {fileID: 0}
+  m_fFireRate: 1
+  c1: {fileID: 0}
   IsGrounded: 0
 --- !u!50 &370949753
 Rigidbody2D:
