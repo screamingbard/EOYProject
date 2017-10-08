@@ -87,12 +87,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1061346930955688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cba9ec0da192bd4ba109d7b52815cbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 33981922324e1d64fafb5e630d2c81f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   v2Point: {x: 0, y: 0}
   fHookSpeed: 5
-  fNodeDist: 3
+  fNodeDist: 1
   goNodePrefab: {fileID: 1993822058545882, guid: 49310b5c53917984090d6779e2311c0d,
     type: 2}
   goPlayer: {fileID: 0}
