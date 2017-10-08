@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour {
         {
             rb2D.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * fSpeed, rb2D.velocity.y);
 
-            c1.transform.position.Set(transform.position.x, -5, -10);
+            c1.transform.position.Set(transform.position.x, transform.position.y - 5, -10);
 
             if (Input.GetAxisRaw("Horizontal") < 0 && !IsLeft)
             {
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour {
     }
     void LateUpdate()
     {
-        Vector3 offset = new Vector3(0, -transform.position.y - 5, -10);
+        Vector3 offset = new Vector3(0, 0, -10);
         c1.transform.position = transform.position + offset;
     }
     //Checks if the player is Colliding with a wall tag object

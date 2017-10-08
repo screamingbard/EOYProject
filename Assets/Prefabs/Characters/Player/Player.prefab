@@ -22,7 +22,8 @@ GameObject:
   - component: {fileID: 50251522023436984}
   - component: {fileID: 61181541927248928}
   - component: {fileID: 114082535039531340}
-  - component: {fileID: 114773309446079572}
+  - component: {fileID: 114643117090336474}
+  - component: {fileID: 114061599592734278}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -66,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1520589773950472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.29, y: -4.55, z: 0}
+  m_LocalPosition: {x: -76.56, y: 5.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4719286364994948}
@@ -92,7 +93,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61181541927248928
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -118,6 +119,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114061599592734278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520589773950472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22dd71883ca5dc144bc964941f6275a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hook: {fileID: 1061346930955688, guid: 4978934347f22cd40b012254cfde163a, type: 2}
+  ropeActive: 0
 --- !u!114 &114082535039531340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,20 +140,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1520589773950472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50cb9d5c20d503f4381088d0d74b63cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 8babe55b8c5b17947ab3b4377fbd0d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fSpeed: 8
-  fJumpForce: 5
+  fJumpForce: 4
   fSJump: 2
   m_Force: 2
   fPullSPeed: 3
-  grappleObj: {fileID: 1061346930955688, guid: 4978934347f22cd40b012254cfde163a, type: 2}
-  rbProj2D: {fileID: 50681790321200228, guid: 4978934347f22cd40b012254cfde163a, type: 2}
+  grappleObj: {fileID: 1993822058545882, guid: 49310b5c53917984090d6779e2311c0d, type: 2}
+  rbProj2D: {fileID: 50251522023436984}
   m_fFireRate: 1
   c1: {fileID: 0}
   IsGrounded: 0
---- !u!114 &114773309446079572
+--- !u!114 &114643117090336474
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -147,11 +161,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1520589773950472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daec66ee625000947b18cbe6877435cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 882395b80f10de943ac65aba67b710e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hook: {fileID: 1061346930955688, guid: 4978934347f22cd40b012254cfde163a, type: 2}
-  ropeActive: 0
+  m_stVisionConeTag: VisionCone
+  m_stDeathTrapTag: DeathZone
+  m_tfRespawnPoint: {fileID: 0}
+  m_goPlayer: {fileID: 1520589773950472}
 --- !u!212 &212992498628646840
 SpriteRenderer:
   m_ObjectHideFlags: 1
