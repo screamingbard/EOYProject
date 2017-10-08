@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fRadius: 8
-  m_fAngle: 108
+  m_fAngle: 31
   m_lmPlayerMask:
     serializedVersion: 2
     m_Bits: 256
