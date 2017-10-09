@@ -93,86 +93,49 @@ public class VisionCone : MonoBehaviour {
     {
         //number of Raycast2Ds based on the angle of the vision cone and the mesh resolution
         int m_iStepCount = Mathf.RoundToInt(m_fAngle * meshResolution); 
-
         //angle inbetween each Raycast2D
         float m_fStepAngleSize = m_fAngle / m_iStepCount;
-
         //list of vectors to direct each Raycast2D
         List<Vector3> m_lv3ViewPoints = new List<Vector3>();
-
         //looping through the number of steps or Raycast2Ds
         for (int i = 0; i <= m_iStepCount; i++){
-
             //angle used within this loop
             float m_fThisAngle = (transform.eulerAngles.z * -1) - m_fAngle/2 + m_fStepAngleSize * i;
             Debug.DrawLine(transform.position, transform.position + m_v3LookTarget(m_fThisAngle, true) * m_fRadius, Color.red);
-
             //use the ViewCast function to return a ViewCastInfo struct which contains information about an individual Raycast2D
             ViewCastInfo newViewCast = ViewCast(m_fThisAngle);
-
-            //
             m_lv3ViewPoints.Add(newViewCast.point);
         }
-        //
         int m_iVertexCount = m_lv3ViewPoints.Count + 1;
-
-        //
         Vector3[] m_v3Vertices = new Vector3[m_iVertexCount];
-
-        //
         int[] m_iTriangles = new int[(m_iVertexCount - 2) * 3];
 
-        //
         m_v3Vertices[0] = Vector3.zero;
-
-        //
         for (int i = 0; i < m_iVertexCount - 1; i++)
-        //
         {
-            //
             m_v3Vertices[i + 1] = transform.InverseTransformPoint(m_lv3ViewPoints[i]);
-
-            //
+            
             if (i < m_iVertexCount - 2)
             {
-                //
                 m_iTriangles[i * 3] = 0;
-
-                //
                 m_iTriangles[i * 3 + 1] = i + 1;
-
-                //
                 m_iTriangles[i * 3 + 2] = i + 2;
             }
         }
-        //
+
         viewMesh.Clear();
-
-        //
         viewMesh.vertices = m_v3Vertices;
-
-        //
         viewMesh.triangles = m_iTriangles;
-
-        //
         viewMesh.RecalculateNormals();
     }
 
     ViewCastInfo ViewCast(float globalAngle)
-    //
     {
-        //
         Vector3 dir = m_v3LookTarget(globalAngle, true);
-
-        //
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, Mathf.Infinity, m_lmObstacleMask );
-
-        //
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, m_fRadius, m_lmObstacleMask );
         if (hit){
-            //
             return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
         } else {
-            //
             return new ViewCastInfo(false, transform.position + dir * m_fRadius, m_fRadius, globalAngle);
         }
     }
