@@ -157,9 +157,6 @@ public class PlayerController : MonoBehaviour {
     }
     void LateUpdate()
     {
-        //Forces the cameras y axis to be locked
-        Vector3 offset = new Vector3(0, -transform.position.y - 5, -10);
-        c1.transform.position = transform.position + offset;
         //Makes sure that the grapple has been removed
         if (IsGrappling == false)
         {
