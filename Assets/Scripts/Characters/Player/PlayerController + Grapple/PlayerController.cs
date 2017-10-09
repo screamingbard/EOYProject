@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float fSpeed = 15.0f;
-    public float fJumpForce = 11.0f;
+    private float fJumpForce = 11.0f;
     public float fSJump = 2.0f;
     public float m_Force = 2.0f;
     public float fPullSPeed = 3.0f;
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
     //checks if on the ground
     private bool IsGrounded = false;
     //Remove before release/Add Cheatcode
-    [Tooltip("Only enable if you are debugging, creates a much alrger jump")]
+    [Tooltip("Only enable if you are debugging, creates a much larger jump")]
     public bool bCheatJump = false;
 
     //Grappling shooting for raycast
@@ -33,12 +33,16 @@ public class PlayerController : MonoBehaviour {
     private Vector3 mDir;
     bool IsGrappling = false;
 
+    //Reeling in
+    public float fReeling = 0.5f;
+
     //Grappling Swinging
     DistanceJoint2D dj2dJoint;
     RaycastHit2D rc2dRaycast;
     //Set to private later
     [Tooltip("Maximum distance for the player to slide back on the grapple, defaults to 10.0f")]
     public float fHoldDistance = 10.0f;
+    [Tooltip("The layer that the player attatches to, in this case the layer of the grapple")]
     public LayerMask lmLayerMask;
 
     Rigidbody2D rb2D = null;
@@ -62,7 +66,6 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-
         //Checks if the player is a certain distance over the ground
         hit = Physics2D.Raycast(transform.position, -Vector2.up, DistOverGround);
         if (hit == false)
@@ -70,9 +73,40 @@ public class PlayerController : MonoBehaviour {
             IsGrounded = false;
         }
 
+        //Checks if the player is grounded
+        if (IsGrounded)
+        {
+            //Jumping
+            if (bCheatJump)
+            {
+                if (Input.GetAxisRaw("Jump") == 1)
+                {
+                    rb2D.AddForce(transform.up * (rb2D.mass * fJumpForce), ForceMode2D.Impulse);
+                    IsGrounded = false;
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        StopShoot();
+                        IsGrappling = false;
+                    }
+                }
+            }
+            //Small jump
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetAxisRaw("Jump") == 1)
+            {
+                rb2D.AddForce(transform.up * (rb2D.mass * fSJump), ForceMode2D.Impulse);
+                IsGrounded = false;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                StopShoot();
+                IsGrappling = false;
+            }
+        }
+
         //Moves the player
         //Allow for velocity to change, for jumping
-        rb2D.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * fSpeed, rb2D.velocity.y);
+        //Uses Physics
+        rb2D.velocity += Vector2.right * Input.GetAxis("Horizontal") * fSpeed * Time.deltaTime;
 
         //Rotates the player to the Right when the player is left
         if (Input.GetAxisRaw("Horizontal") < 0 && !IsLeft)
@@ -90,25 +124,6 @@ public class PlayerController : MonoBehaviour {
             CurretnDir = (int)Input.GetAxisRaw("Horizontal");
         }
 
-        //Checks if the player is grounded
-        if (IsGrounded)
-        {
-            //Jumping
-            if (bCheatJump)
-            {
-                if (Input.GetAxisRaw("Jump") == 1)
-                {
-                    rb2D.AddForce(transform.up * (rb2D.mass * fJumpForce), ForceMode2D.Impulse);
-                    IsGrounded = false;
-                }
-            }
-            //Small jump
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetAxisRaw("Jump") == 1)
-            {
-                rb2D.AddForce(transform.up * fSJump, ForceMode2D.Impulse);
-                IsGrounded = false;
-            }
-        }
         //Places down the pivot point for the grapple
         if (Input.GetMouseButtonDown(0))
         {
@@ -118,24 +133,26 @@ public class PlayerController : MonoBehaviour {
             IsGrappling = true;
         }
         //Renders the line if the mouse is held down
-        if (Input.GetMouseButton(0))
+        if (IsGrappling)
         {
             lrLineRenderer.SetPosition(0, transform.position);
 
         }
+
+        //if (IsGrappling)
+        //{
+        //    if (Input.GetMouseButton(1))
+        //    {
+        //        rc2dRaycast.distance -= fReeling;
+        //    }
+        //}
+        
         //destroys the grapple if the mouse button is released
         if (Input.GetMouseButtonUp(0))
         {
             StopShoot();
             IsGrappling = false;
         }
-        //Debugging to see how the line renders
-        //**Remove this***
-        if (cBall != null)
-        {
-            Debug.DrawLine(transform.position, cBall.transform.position, Color.red);
-        }
-
 
     }
     void LateUpdate()
@@ -144,20 +161,24 @@ public class PlayerController : MonoBehaviour {
         Vector3 offset = new Vector3(0, -transform.position.y - 5, -10);
         c1.transform.position = transform.position + offset;
         //Makes sure that the grapple has been removed
-        //if (IsGrappling == false)
-        //{
-        //    lrLineRenderer.enabled = false;
-        //    StopShoot();
-        //}
+        if (IsGrappling == false)
+        {
+            lrLineRenderer.enabled = false;
+            StopShoot();
+        }
+        else if (IsGrappling == false && IsGrounded)
+        {
+            lrLineRenderer.enabled = false;
+            StopShoot();
+        }
     }
     //Checks if the player is Colliding with a wall tag object
     void OnCollisionEnter2D(Collision2D collision2D)
     {
         //Only allows the player to be grounded when colliding with another gameobject
-        if (collision2D.gameObject.tag == "Wall" && IsGrappling == false)
+        if (collision2D.gameObject.tag == "Wall")
             IsGrounded = true;
-
-        if (collision2D.gameObject.tag != "Wall")
+        else
             IsGrounded = false;
     }
     //Shoots out the grapple
