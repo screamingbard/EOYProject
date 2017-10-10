@@ -16,12 +16,20 @@ public class PlayerRespawn : MonoBehaviour {
     public GameObject m_goPlayer;
     //The grapple
     public GameObject m_goGrappleRefrence;
+    //The time before you can move
+    public float m_fSetMovementTimer = 0.1f;
+    //The time before you can move
+    [HideInInspector]
+    public float m_fMovementTimer;
 
     public void Respawn(){
         //Play death animation
 
         //Set the players velocity to zero
         m_goPlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        //start the timer to disallow movement for a split second
+        m_fMovementTimer = m_fSetMovementTimer;
 
         //If it is connected to terain or in motion
         if (m_goGrappleRefrence != null){
