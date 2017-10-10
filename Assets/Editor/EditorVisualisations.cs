@@ -21,14 +21,6 @@ public class EditorVisualisations : Editor{
         Vector3 viewAngleB = m_vcVisualiser.m_v3LookTarget(m_vcVisualiser.m_fAngle / 2, false);
         Handles.DrawLine(m_vcVisualiser.transform.position, m_vcVisualiser.transform.position + viewAngleA * m_vcVisualiser.m_fRadius);
         Handles.DrawLine(m_vcVisualiser.transform.position, m_vcVisualiser.transform.position + viewAngleB * m_vcVisualiser.m_fRadius);
-
-        //set the colour of the lines between visible player and enemy to red
-        Handles.color = Color.red;
-        //draw a line to the player from an enemy if that enemy can see the player
-        if (m_vcVisualiser.m_bPlayerVisible)
-        {
-            Handles.DrawLine(m_vcVisualiser.transform.position, m_vcVisualiser.m_tfPlayer.position);
-        }
     }
 
 }
