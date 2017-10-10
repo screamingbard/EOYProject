@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //Checks if the player is a certain distance over the ground
         hit = Physics2D.Raycast(transform.position, -Vector2.up, DistOverGround);
