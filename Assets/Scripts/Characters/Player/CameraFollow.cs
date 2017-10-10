@@ -22,6 +22,11 @@ public class CameraFollow : MonoBehaviour {
         Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset;
 
         transform.position = (Vector3) focusPosition + Vector3.forward * -10;
+
+        if (transform.position.y < -5)
+        {
+            transform.position = new Vector3(transform.position.x, -5, transform.position.z);
+        }
     }
 
     void OnDrawGizmos()
