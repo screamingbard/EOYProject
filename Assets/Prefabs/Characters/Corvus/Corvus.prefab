@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4272986710086416}
   - component: {fileID: 33215948270854608}
   - component: {fileID: 23902569336414572}
+  - component: {fileID: 114331509973492814}
   m_Layer: 0
   m_Name: VisionCone
-  m_TagString: Untagged
+  m_TagString: VisionCone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +37,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4411655975118376}
-  - component: {fileID: 114659216043163716}
   m_Layer: 0
   m_Name: Corvus
   m_TagString: Untagged
@@ -66,21 +66,21 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1019372252990012}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.6873411, w: 0.7263348}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4411655975118376}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 86.84}
 --- !u!4 &4411655975118376
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1078425104005378}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -43.810287, y: 9.510729, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -65.48, y: 7.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4877743005946050}
@@ -140,29 +140,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1019372252990012}
   m_Mesh: {fileID: 0}
---- !u!114 &114659216043163716
+--- !u!114 &114331509973492814
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078425104005378}
+  m_GameObject: {fileID: 1019372252990012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f12d6a4bd99ae7847a2ea39e1f6922fe, type: 3}
+  m_Script: {fileID: 11500000, guid: a506a710ec695394ab0556fa649c1ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fRadius: 8
-  m_fAngle: 31
+  m_fRadius: 20.7
+  m_fAngle: 27
   m_lmPlayerMask:
     serializedVersion: 2
     m_Bits: 256
   m_lmObstacleMask:
     serializedVersion: 2
-    m_Bits: 512
-  meshResolution: 1
-  m_tfPlayer: {fileID: 4272986710086416}
-  m_bPlayerVisible: 0
-  viewMeshFilter: {fileID: 33215948270854608}
+    m_Bits: 0
+  m_fMeshResolution: 1
+  m_fDeathTimer: 2
+  m_tfPlayer: {fileID: 0}
+  m_mfViewMeshFilter: {fileID: 33215948270854608}
+  m_mViewMesh: {fileID: 0}
 --- !u!212 &212050788052339434
 SpriteRenderer:
   m_ObjectHideFlags: 1
