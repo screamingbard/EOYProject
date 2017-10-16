@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class HeadMovement : MonoBehaviour
 {
-    //
+    //The location of the first look position target
     public Transform m_tfInitialRotation;
 
     //
     public Transform m_tfSecondRotation;
 
     //
-    [Range (1, 60)]
+    [Range (0.01f, 60)]
     public float m_fRotationSpeed;
 
     //
