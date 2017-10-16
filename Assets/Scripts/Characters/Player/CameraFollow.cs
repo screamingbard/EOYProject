@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
 
+    //What the camera is following
     public Transform target;
+
+    //the size of the bounding box
     public Vector2 focusAreaSize;
 
+    //the height of the camera relative to the centre of the bounding box
     public float verticalOffset;
 
+    //
     FocusArea focusArea;
 
     void Start()
@@ -81,5 +86,10 @@ public class CameraFollow : MonoBehaviour {
             centre = new Vector2((left + right) / 2, (top + bottom) / 2);
             velocity = new Vector2(shiftX, shiftY);
         }
+    }
+
+    public void ResetCamera()
+    {
+        focusArea = new FocusArea(target.GetComponent<Collider2D>().bounds, focusAreaSize);
     }
 }

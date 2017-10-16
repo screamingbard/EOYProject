@@ -41,6 +41,9 @@ public class PlayerRespawn : MonoBehaviour {
         m_goPlayer.transform.SetPositionAndRotation(m_tfRespawnPoint.position, m_tfRespawnPoint.rotation);
 
         //Play the respawn animation
+
+        //Reset the camera position
+        Camera.main.GetComponent<CameraFollow>().ResetCamera();
     }
     
     void OnCollisionEnter2D(Collision2D a_col2DCollider){
