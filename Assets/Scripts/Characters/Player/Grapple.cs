@@ -2,24 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grapple : MonoBehaviour {
+[RequireComponent(typeof(Rigidbody2D))]
+public class Grapple : MonoBehaviour
+{
+    public float projectileSpeed = 10.0f;
 
-    public GameObject m_goPlayer;
-    public float projectileSpeed = 5.0f;
-    private float Speed;
-    private float stop = 0.0f;
+    [HideInInspector]
     public Vector2 CollideLocation;
 
-    Rigidbody2D rb;
+    private Vector3 Dir = new Vector3(0, 0, 0);
+
+    [HideInInspector]
+    public GameObject tempobj;
+
+    [HideInInspector]
+    public bool GrapConnected = false;
+
+    [HideInInspector]
+    public bool holdGrapple = false;
+
+    [HideInInspector]
+    public float CurrentDist = 0.0f;
+
     Renderer mat;
 
-    Color m_cColor;
-    void Awake ()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        mat = GetComponent<Renderer>();
+    Rigidbody2D rb;
 
-        Speed = projectileSpeed;
+    Vector2 StoreMouse;
+
+    Color m_cColor;
+    void Awake()
+    {;
+        mat = GetComponent<Renderer>();
+        rb = GetComponent<Rigidbody2D>();
 
         //Debugging
         m_cColor.r = 0;
@@ -28,15 +43,34 @@ public class Grapple : MonoBehaviour {
         m_cColor.a = 255;
         mat.material.color = m_cColor;
 
-    }
-	
-	// Update is called once per frame
-	void FixedUpdate ()
-    {
+        StoreMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-    }
-    void OncollisionEnter2D(Collision2D collision2d)
-    {
         
+    }
+
+    void Start()
+    {
+        Dir = StoreMouse - (Vector2)tempobj.transform.position;
+        Dir.Normalize();
+        rb.freezeRotation = true;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.position += Dir * projectileSpeed * Time.deltaTime;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision2d)
+    {
+        if (collision2d.gameObject.tag == "Wall")
+        {
+            projectileSpeed = 0;
+            GrapConnected = true;
+            CurrentDist = (transform.position - tempobj.transform.position).magnitude;
+            holdGrapple = false;
+        }
+
     }
 }
