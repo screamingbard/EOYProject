@@ -34,7 +34,7 @@ public class PlayerRespawn : MonoBehaviour {
         //If it is connected to terain or in motion
         if (m_goGrappleRefrence != null){
             //Remove the grapple
-            m_goGrappleRefrence.SetActive(false);
+            m_goPlayer.GetComponent<PlayerController>().StopShoot();
         }
 
         //Set the players position to the respawn points
