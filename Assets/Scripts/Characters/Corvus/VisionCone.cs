@@ -51,7 +51,7 @@ public class VisionCone : MonoBehaviour {
         m_mfViewMeshFilter.mesh = m_mViewMesh;
     }
 
-    void Update()
+    void LateUpdate()
     {
         //
         FindPlayer();  
@@ -65,15 +65,15 @@ public class VisionCone : MonoBehaviour {
     {
 
         //collider to check if the player is within the radius of an enemies vision
-        var m_cPlayerWithinView = Physics2D.OverlapCircle(transform.position, m_fRadius, m_lmObstacleMask);
+        bool m_bPlayerWithinView = Physics2D.OverlapCircle(transform.position, m_fRadius, m_lmPlayerMask);
 
         //get the players tranform if the player is within the view radius of an enemy
-        if (m_cPlayerWithinView != null)
+        if (m_bPlayerWithinView == true)
         {
             //get the direction of the vector between the player and enemy
-            Vector3 m_v3DirectionToPlayer = (m_tfPlayer.position - transform.position);
+            Vector3 m_v3DirectionToPlayer = (m_tfPlayer.position - transform.position).normalized;
 
-            //
+            //get the angle bewtween the forward of the vision cone and the vector to the player
             float m_fAngleBetween = (Vector3.Angle(m_v3DirectionToPlayer, transform.up));
 
             //check for the player being within the cone of vision rather than just the radius
@@ -81,28 +81,20 @@ public class VisionCone : MonoBehaviour {
             {
                 //get the distance between the enemy and the player
                 float m_fDistanceToPlayer = Vector3.Distance(transform.position, m_tfPlayer.position);
-
-                //if the player is within the radius of the vision cone
-                if (m_fDistanceToPlayer < m_fRadius)
-                {
-                    //check for whether an obstacle is obstructing the enemies view of the player
-                    if (Physics2D.Raycast(transform.position, m_v3DirectionToPlayer, m_fDistanceToPlayer, m_lmPlayerMask))
-                    {
-                        if (m_fUseDeathTimer <= 0)
-                        {
-                            //if the enemy has direct line of sight to the player kill the player
-                            m_tfPlayer.GetComponent<PlayerRespawn>().Respawn();
-                            m_fUseDeathTimer = m_fDeathTimer;
-                        }
-                        else
-                        {
-                            m_fUseDeathTimer -= Time.deltaTime;
-                        }
-                    }
-                    else
-                    {
-                        m_fUseDeathTimer = m_fDeathTimer;
-                    }
+                
+               //check for whether an obstacle is obstructing the enemies view of the player
+               if (!Physics2D.Raycast(transform.position, m_v3DirectionToPlayer, m_fDistanceToPlayer, m_lmObstacleMask))
+               {
+                   if (m_fUseDeathTimer <= 0)
+                   {
+                       //if the enemy has direct line of sight to the player kill the player
+                       m_tfPlayer.GetComponent<PlayerRespawn>().Respawn();
+                       m_fUseDeathTimer = m_fDeathTimer;
+                   }
+                   else
+                   {
+                       m_fUseDeathTimer -= Time.deltaTime;
+                   }
                 }
                 else
                 {
