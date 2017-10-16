@@ -21,7 +21,7 @@ TagManager:
   - Obstacle
   - NoCollide
   - Grapple
-  - 
+  - Invisible
   - 
   - 
   - 
@@ -51,7 +51,7 @@ TagManager:
   - name: Background_01
     uniqueID: 299217885
     locked: 0
-  - name: LevelLayer
+  - name: Midground
     uniqueID: 2607070379
     locked: 0
   - name: Foreground
