@@ -98,7 +98,6 @@ public class VisionCone : MonoBehaviour {
                         {
                             m_fUseDeathTimer -= Time.deltaTime;
                         }
-                        Debug.Log("SEEN");
                     }
                     else
                     {

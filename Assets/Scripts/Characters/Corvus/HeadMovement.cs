@@ -57,7 +57,6 @@ public class HeadMovement : MonoBehaviour
         }
         float angle = (Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg) - 90;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-        Debug.Log(q);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * m_fRotationSpeed);
     }
 
