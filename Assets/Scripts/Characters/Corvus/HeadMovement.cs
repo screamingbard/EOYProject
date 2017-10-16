@@ -54,7 +54,6 @@ public class HeadMovement : MonoBehaviour
         {
             //Count up the cooldown timer
             m_fTimerBetweenRotations += Time.deltaTime;
-            Debug.Log(m_fTimerBetweenRotations);
         }
         float angle = (Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg) - 90;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
