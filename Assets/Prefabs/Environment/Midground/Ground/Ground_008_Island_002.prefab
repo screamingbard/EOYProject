@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4083290505033530}
   - component: {fileID: 212701401796595564}
-  - component: {fileID: 60318573967679106}
+  - component: {fileID: 60109315684453680}
   m_Layer: 0
   m_Name: Ground_008_Island_002
   m_TagString: Untagged
@@ -35,13 +35,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1629711814567788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -373.03595, y: 11.687623, z: 0}
+  m_LocalPosition: {x: -28.4, y: -27.62558, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60318573967679106
+--- !u!60 &60109315684453680
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

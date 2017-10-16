@@ -264,7 +264,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
     //Stops the shooting of the Grapple
-    void StopShoot()
+    public void StopShoot()
     {
         if (grappleObj != null)
             Destroy(cBall);
