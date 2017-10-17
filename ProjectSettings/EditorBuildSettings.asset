@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene_001_Greybox_001_Initial.unity
     guid: d2b1e97adbca3ba4e9baa830de3035d2
+  - enabled: 1
+    path: Assets/Scenes/Scene_003_MainMenu_001_Initial.unity
+    guid: 270df7e184c97114390e349b81a20518
