@@ -100,8 +100,7 @@ public class ShootOBJ : MonoBehaviour {
 
             IsGrappling = false;
 
-            goPlayer.GetComponent<Player>().velocity.y = 0;
-            goPlayer.GetComponent<Player>().velocity.x = rbPlayer.velocity.x;
+            goPlayer.GetComponent<Player>().velocity = rbPlayer.velocity;
         }
 
     }
