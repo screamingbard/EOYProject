@@ -10,25 +10,18 @@ public class FollowArrow : MonoBehaviour {
     float rotAngle = 0;
 
     Vector3 JoystickStore = new Vector3();
-
-    // Use this for initialization
-    void Start ()
-    {
-		
-	}
+    Vector3 defaultshoot = new Vector3(0, 1, 0);
 	
 	// Update is called once per frame
 	void Update ()
-    {
-        //store = Quaternion.Euler(0, 0, Mathf.Atan2(XCI.GetAxis(XboxAxis.RightStickY), XCI.GetAxis(XboxAxis.RightStickX)) * Mathf.Rad2Deg);
-        //rotAngle = store.z;
-        // Quaternion.Angle
-        
+    {   
         JoystickStore.x = XCI.GetAxis(XboxAxis.RightStickX);
         JoystickStore.y = XCI.GetAxis(XboxAxis.RightStickY);
 
-        transform.position = Parent.transform.position + JoystickStore;
-
-        //transform.RotateAround(Parent.transform.position, Vector3.forward, rotAngle);
-	}
+        //Shoots the grapple upwards if no direction is given
+        if (JoystickStore.x == 0 && JoystickStore.y == 0)
+            transform.position = Parent.transform.position +  defaultshoot;
+        else
+            transform.position = Parent.transform.position + JoystickStore;
+    }
 }
