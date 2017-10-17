@@ -89,7 +89,7 @@ public class ShootOBJ : MonoBehaviour {
             goPlayer.GetComponent<Controller2D>().enabled = true;
             goPlayer.GetComponent<Player>().enabled = true;
             goPlayer.GetComponent<PlayerController>().enabled = false;
-            rbPlayer.bodyType = RigidbodyType2D.Static;
+            rbPlayer.velocity = rbPlayer.velocity / 2;
             bstart = 0;
         }
 
@@ -146,7 +146,8 @@ public class ShootOBJ : MonoBehaviour {
 
     public void DrawLine()
     {
-        
+        if (lrLineRenderer == null)
+            return;
         //Sets the position of the player and the pivot point for the line to draw
         lrLineRenderer.SetPosition(0, goPlayer.transform.position);
         lrLineRenderer.SetPosition(1, cBall.transform.position);
