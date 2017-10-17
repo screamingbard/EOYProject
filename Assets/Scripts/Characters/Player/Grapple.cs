@@ -26,6 +26,9 @@ public class Grapple : MonoBehaviour
 
     public string CollisionTag;
 
+    [HideInInspector]
+    public GameObject followobj;
+
     Renderer mat;
 
     Rigidbody2D rb;
@@ -45,14 +48,15 @@ public class Grapple : MonoBehaviour
         m_cColor.a = 255;
         mat.material.color = m_cColor;
 
-        StoreMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //StoreMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         
     }
 
     void Start()
     {
-        Dir = StoreMouse - (Vector2)tempobj.transform.position;
+        //Dir = StoreMouse - (Vector2)tempobj.transform.position;
+        Dir = followobj.transform.position - tempobj.transform.position;
         Dir.Normalize();
         rb.freezeRotation = true;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;

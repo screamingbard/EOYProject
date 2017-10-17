@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using XboxCtrlrInput;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -88,7 +89,8 @@ public class PlayerController : MonoBehaviour {
             //Jumping
             if (bCheatJump)
             {
-                if (Input.GetAxisRaw("Jump") == 1)
+                //***CHANGE CODE***
+                if (XCI.GetAxisRaw(XboxAxis.LeftTrigger) == 1)
                 {
                     rb2D.AddForce(transform.up * (rb2D.mass * fJumpForce), ForceMode2D.Impulse);
                     IsGrounded = false;
@@ -100,7 +102,8 @@ public class PlayerController : MonoBehaviour {
                 }
             }
             //Small jump
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetAxisRaw("Jump") == 1)
+            //***CHANGE CODE***
+            if (XCI.GetAxisRaw(XboxAxis.LeftTrigger) == 1)
             {
                 rb2D.AddForce(transform.up * (rb2D.mass * fSJump), ForceMode2D.Impulse);
                 IsGrounded = false;
@@ -115,7 +118,8 @@ public class PlayerController : MonoBehaviour {
         //Moves the player
         //Allow for velocity to change, for jumping
         //Uses Physics
-        rb2D.velocity += Vector2.right * Input.GetAxis("Horizontal") * fSpeed * Time.deltaTime;
+        //***CHANGE CODE
+        rb2D.velocity += Vector2.right * XCI.GetAxis(XboxAxis.LeftStickX) * fSpeed * Time.deltaTime;
         Vector2 v2StoreVelocity = rb2D.velocity;
         //Sets a maximum and minimum speed to make sure the player does not speed up infinatly
         if (v2StoreVelocity.x > MaxSpeed)
@@ -130,7 +134,7 @@ public class PlayerController : MonoBehaviour {
         }
         
         //Slowing down
-        if(Input.GetAxis("Horizontal") == 0 && IsGrounded)
+        if(XCI.GetAxis(XboxAxis.LeftStickX) == 0 && IsGrounded)
         {
             rb2D.velocity -= Vector2.right * fSpeed * Time.deltaTime * fSpeed;
             Vector2 storeVel = rb2D.velocity;
@@ -146,25 +150,27 @@ public class PlayerController : MonoBehaviour {
             if (IsGrounded)
             {
                 //Rotates the player to the Right when the player is left
-                if (Input.GetAxisRaw("Horizontal") < 0 && !IsLeft)
+                //***CHANGE CODE***
+                if (XCI.GetAxis(XboxAxis.LeftStickX) < 0 && !IsLeft)
                 {
                     //transform.Rotate(0, 180, 0);
                     IsLeft = true;
-                    CurretnDir = (int)Input.GetAxisRaw("Horizontal");
+                    CurretnDir = (int)XCI.GetAxisRaw(XboxAxis.LeftStickX);
                 }
 
                 //Rotates the player to thr left when the player is right
-                if (Input.GetAxisRaw("Horizontal") > 0 && IsLeft)
+                //***CHANGE CODE***
+                if (XCI.GetAxis(XboxAxis.LeftStickX) > 0 && IsLeft)
                 {
                     //transform.Rotate(0, 180, 0);
                     IsLeft = false;
-                    CurretnDir = (int)Input.GetAxisRaw("Horizontal");
+                    CurretnDir = (int)XCI.GetAxisRaw(XboxAxis.LeftStickX);
                 }
             }
 
         }
-        
-        if (Input.GetMouseButton(0))
+        //***CHANGE CODE***
+        if (XCI.GetButton(XboxButton.RightBumper))
         {
             Aiming.GetComponent<ShootOBJ>().DrawLine();
 
@@ -187,15 +193,11 @@ public class PlayerController : MonoBehaviour {
         }
         
     }
-    void LateUpdate()
-    {
-
-    }
     //Checks if the player is Colliding with a wall tag object
     void OnCollisionEnter2D(Collision2D collision2D)
     {
         //Only allows the player to be grounded when colliding with another gameobject
-        if (collision2D.gameObject.tag == "Wall" || collision2D.gameObject.tag == "Wall" && IsGrappling)
+        if (collision2D.gameObject.tag == "Wall" || collision2D.gameObject.tag == "Wall" && IsGrappling || collision2D.gameObject.layer == 9 || collision2D.gameObject.layer == 9 && IsGrappling)
             IsGrounded = true;
         else
             IsGrounded = false;
