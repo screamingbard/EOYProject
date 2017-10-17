@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using XInputDotNetPure;
+using XboxCtrlrInput;
 using UnityEngine;
 
 public class ShootOBJ : MonoBehaviour {
@@ -33,6 +33,10 @@ public class ShootOBJ : MonoBehaviour {
     public Vector2 StorePos;
 
     int bstart = 0;
+    int grapCount = 0;
+
+    public Transform rotObject;
+    Quaternion storeAngle;
 
     // Use this for initialization
     void Awake() {
@@ -40,7 +44,7 @@ public class ShootOBJ : MonoBehaviour {
         dj2dJoint = goPlayer.GetComponent<DistanceJoint2D>();
 
         lrLineRenderer.enabled = false;
-
+        
         StorePos = Input.mousePosition;
     }
 
@@ -50,10 +54,10 @@ public class ShootOBJ : MonoBehaviour {
 
         StorePos = (Input.mousePosition - transform.position);
 
-        transform.LookAt(StorePos);
+        transform.LookAt(rotObject);
 
         //Places down the pivot point for the grapple
-        if (Input.GetMouseButtonDown(0))
+        if (XCI.GetButtonDown(XboxButton.RightBumper))
         {
             mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -66,35 +70,45 @@ public class ShootOBJ : MonoBehaviour {
 
         if (IsGrappling)
         {
-            DrawLine();
+            if (lrLineRenderer.enabled == true)
+                DrawLine();
         }
-
-        if(IsGrappling && cBall.GetComponent<Grapple>().GrapConnected == true)
+        if (cBall != null)
         {
-            goPlayer.GetComponent<Controller2D>().enabled = false;
-            goPlayer.GetComponent<Player>().enabled = false;
-            goPlayer.GetComponent<PlayerController>().enabled = true;
-            rbPlayer.bodyType = RigidbodyType2D.Dynamic;
-            if(bstart < 1)
+            if (IsGrappling && cBall.GetComponent<Grapple>().GrapConnected == true)
             {
-                rbPlayer.velocity = goPlayer.GetComponent<Player>().velocity;
-                bstart++;
+                goPlayer.GetComponent<Controller2D>().enabled = false;
+                goPlayer.GetComponent<Player>().enabled = false;
+                goPlayer.GetComponent<PlayerController>().enabled = true;
+                rbPlayer.bodyType = RigidbodyType2D.Dynamic;
+                if (bstart < 1)
+                {
+                    rbPlayer.velocity = goPlayer.GetComponent<Player>().velocity;
+                    bstart++;
+                }
+                grapCount++;
+
+                rbPlayer.freezeRotation = true;
             }
-
-            rbPlayer.freezeRotation = true;
+            else
+            {
+                if (goPlayer.GetComponent<PlayerController>().IsGrounded)
+                {
+                    ScriptNormSet();
+                    grapCount = 0;
+                }
+            }
         }
-
         else
         {
-            goPlayer.GetComponent<Controller2D>().enabled = true;
-            goPlayer.GetComponent<Player>().enabled = true;
-            goPlayer.GetComponent<PlayerController>().enabled = false;
-            rbPlayer.velocity = rbPlayer.velocity / 2;
-            bstart = 0;
+            if (goPlayer.GetComponent<PlayerController>().IsGrounded)
+            {
+                ScriptNormSet();
+                grapCount = 0;
+            }
         }
-
         //destroys the grapple if the mouse button is released
-        if (Input.GetMouseButtonUp(0))
+        if (XCI.GetButtonUp(XboxButton.RightBumper))
         {
             StopShoot();
 
@@ -112,18 +126,28 @@ public class ShootOBJ : MonoBehaviour {
 
         mDir.Normalize();
 
-        Quaternion projLoc = Quaternion.Euler(0, 0, Mathf.Atan2(mDir.y, mDir.x) * Mathf.Rad2Deg);
+        //Quaternion projLoc = Quaternion.Euler(0, 0, Mathf.Atan2(mDir.y, mDir.x) * Mathf.Rad2Deg);
     
         //Creates a new grapple object if there is none
         if (cBall == null)
         {
-            cBall = Instantiate(grappleObj, transform.position, projLoc);
+            cBall = Instantiate(grappleObj, transform.position, Quaternion.identity);
             cBall.GetComponent<Grapple>().tempobj = gameObject;
+            cBall.GetComponent<Grapple>().followobj = rotObject.gameObject;
         }
             Shoot1();
         
     }
 
+    void ScriptNormSet()
+    {
+        goPlayer.GetComponent<Controller2D>().enabled = true;
+        goPlayer.GetComponent<Player>().enabled = true;
+        goPlayer.GetComponent<PlayerController>().enabled = false;
+        //rbPlayer.bodyType = RigidbodyType2D.Static;
+        rbPlayer.velocity = rbPlayer.velocity / 2;
+        bstart = 0;
+    }
     public void Shoot1()
     {
         rc2dRaycast = Physics2D.Raycast(transform.position, mDir, fHoldDistance, lmLayerMask);
@@ -146,8 +170,6 @@ public class ShootOBJ : MonoBehaviour {
 
     public void DrawLine()
     {
-        if (lrLineRenderer == null)
-            return;
         //Sets the position of the player and the pivot point for the line to draw
         lrLineRenderer.SetPosition(0, goPlayer.transform.position);
         lrLineRenderer.SetPosition(1, cBall.transform.position);
