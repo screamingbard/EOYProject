@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 61385786239287244}
   - component: {fileID: 114286032663558684}
   - component: {fileID: 114555552725559692}
+  - component: {fileID: 114149955416766438}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -85,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1520589773950472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -286, y: 6.96, z: 0}
+  m_LocalPosition: {x: -279.53, y: 8.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4719286364994948}
@@ -184,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484067c84608e42439b40d858e9716cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fSpeed: 15
+  fSpeed: 30
   fSJump: 2
   m_Force: 2
   fPullSPeed: 3
@@ -194,7 +195,7 @@ MonoBehaviour:
   m_fFireRate: 1
   IsGrounded: 0
   bCheatJump: 0
-  MaxSpeed: 10
+  MaxSpeed: 30
   lrLineRenderer: {fileID: 0}
   IsGrappling: 0
   fHoldDistance: 10
@@ -203,6 +204,25 @@ MonoBehaviour:
     m_Bits: 512
   ballDir: {x: 0, y: 0}
   rb2D: {fileID: 50889495656927214}
+--- !u!114 &114149955416766438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520589773950472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3301d38fe5f1df240aa6f387de100fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_stVisionConeTag: VisionCone
+  m_stDeathTrapTag: DeathZone
+  m_stNewRespawn: RespawnPoint
+  m_tfRespawnPoint: {fileID: 0}
+  m_goPlayer: {fileID: 1520589773950472}
+  m_goGrappleRefrence: {fileID: 0}
+  m_fSetMovementTimer: 0.1
+  m_fMovementTimer: 0
 --- !u!114 &114286032663558684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,8 +252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae73b6cb91a31447b90b6efeb36b43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 4
-  timeToJump: 0.4
+  jumpHeight: 1.5
+  timeToJump: 0.5
+  gravity: -9.18
   velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &114966699740367938
 MonoBehaviour:
@@ -312,5 +333,5 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 286.0847
+  m_Distance: 279.65173
   m_MaxDistanceOnly: 1
