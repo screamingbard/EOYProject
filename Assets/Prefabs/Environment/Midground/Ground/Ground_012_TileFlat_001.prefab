@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4799911279679308}
   - component: {fileID: 212431405156887790}
   - component: {fileID: 60944988786799888}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground_012_TileFlat_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

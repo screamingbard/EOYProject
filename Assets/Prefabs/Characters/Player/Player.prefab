@@ -11,6 +11,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1520589773950472}
   m_IsPrefabParent: 1
+--- !u!1 &1456935871509886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4790818685021536}
+  - component: {fileID: 114094279020552254}
+  m_Layer: 8
+  m_Name: Aiming
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1520589773950472
 GameObject:
   m_ObjectHideFlags: 0
@@ -19,10 +35,13 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4746847284355548}
-  - component: {fileID: 50251522023436984}
-  - component: {fileID: 61181541927248928}
-  - component: {fileID: 232743309992251016}
-  - component: {fileID: 114297221759339230}
+  - component: {fileID: 114966699740367938}
+  - component: {fileID: 50889495656927214}
+  - component: {fileID: 232403165564465522}
+  - component: {fileID: 114096337986979014}
+  - component: {fileID: 61385786239287244}
+  - component: {fileID: 114286032663558684}
+  - component: {fileID: 114555552725559692}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -66,14 +85,28 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1520589773950472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -152.86, y: 6.13, z: 0}
+  m_LocalPosition: {x: -286, y: 6.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4719286364994948}
+  - {fileID: 4790818685021536}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50251522023436984
+--- !u!4 &4790818685021536
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1456935871509886}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4746847284355548}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50889495656927214
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -92,8 +125,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!61 &61181541927248928
+  m_Constraints: 0
+--- !u!61 &61385786239287244
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -118,7 +151,59 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114297221759339230
+--- !u!114 &114094279020552254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1456935871509886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61038af44cfab09479da69fb644e44d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lrLineRenderer: {fileID: 0}
+  goPlayer: {fileID: 1520589773950472}
+  IsGrappling: 0
+  fHoldDistance: 10
+  lmLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  ballDir: {x: 0, y: 0}
+  grappleObj: {fileID: 1357400428479774, guid: f08da37d629a0b3489186dcac477a672, type: 2}
+  rbPlayer: {fileID: 50889495656927214}
+  StorePos: {x: 0, y: 0}
+--- !u!114 &114096337986979014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520589773950472}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484067c84608e42439b40d858e9716cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fSpeed: 15
+  fSJump: 2
+  m_Force: 2
+  fPullSPeed: 3
+  grappleObj: {fileID: 1357400428479774, guid: f08da37d629a0b3489186dcac477a672, type: 2}
+  rbProj2D: {fileID: 50270843787831198, guid: f08da37d629a0b3489186dcac477a672, type: 2}
+  Aiming: {fileID: 1456935871509886}
+  m_fFireRate: 1
+  IsGrounded: 0
+  bCheatJump: 0
+  MaxSpeed: 10
+  lrLineRenderer: {fileID: 0}
+  IsGrappling: 0
+  fHoldDistance: 10
+  lmLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  ballDir: {x: 0, y: 0}
+  rb2D: {fileID: 50889495656927214}
+--- !u!114 &114286032663558684
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -126,24 +211,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 1520589773950472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484067c84608e42439b40d858e9716cc, type: 3}
+  m_Script: {fileID: 11500000, guid: ff9fa69c1f559fd408116d99a5c208cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fSpeed: 30
-  fSJump: 2
-  m_Force: 2
-  fPullSPeed: 3
-  grappleObj: {fileID: 1993822058545882, guid: 49310b5c53917984090d6779e2311c0d, type: 2}
-  rbProj2D: {fileID: 50098850711609892, guid: 49310b5c53917984090d6779e2311c0d, type: 2}
-  m_fFireRate: 1
-  IsGrounded: 0
-  bCheatJump: 0
-  MaxSpeed: 13
-  lrLineRenderer: {fileID: 0}
-  fHoldDistance: 15
-  lmLayerMask:
+  collisionMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 512
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  maxClimbAngle: 80
+  maxDescendAngle: 75
+--- !u!114 &114555552725559692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520589773950472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae73b6cb91a31447b90b6efeb36b43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpHeight: 4
+  timeToJump: 0.4
+  velocity: {x: 0, y: 0, z: 0}
+--- !u!114 &114966699740367938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520589773950472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3301d38fe5f1df240aa6f387de100fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_stVisionConeTag: VisionCone
+  m_stDeathTrapTag: DeathZone
+  m_stNewRespawn: RespawnPoint
+  m_tfRespawnPoint: {fileID: 0}
+  m_goPlayer: {fileID: 1520589773950472}
+  m_goGrappleRefrence: {fileID: 0}
+  m_fSetMovementTimer: 0.1
+  m_fMovementTimer: 0
 --- !u!212 &212992498628646840
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -186,7 +296,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!232 &232743309992251016
+--- !u!232 &232403165564465522
 DistanceJoint2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -200,7 +310,7 @@ DistanceJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -1355.9481, y: 96.72947}
+  m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1206.4946
+  m_Distance: 286.0847
   m_MaxDistanceOnly: 1

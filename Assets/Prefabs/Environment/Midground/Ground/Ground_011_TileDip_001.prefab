@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4485968431688348}
   - component: {fileID: 212673615571419624}
   - component: {fileID: 60813961784072400}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground_011_TileDip_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

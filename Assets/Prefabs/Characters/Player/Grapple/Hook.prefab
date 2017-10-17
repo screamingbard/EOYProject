@@ -20,11 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4378320686862296}
   - component: {fileID: 120140131958572686}
-  - component: {fileID: 50681790321200228}
-  - component: {fileID: 233592637760599924}
   - component: {fileID: 58368419440028414}
   - component: {fileID: 114869417075828990}
-  m_Layer: 0
+  - component: {fileID: 50846324284454130}
+  - component: {fileID: 212378811115596098}
+  m_Layer: 11
   m_Name: Hook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,14 +44,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50681790321200228
+--- !u!50 &50846324284454130
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1061346930955688}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -62,8 +62,8 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 7
 --- !u!58 &58368419440028414
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -87,18 +87,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1061346930955688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33981922324e1d64fafb5e630d2c81f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a69c0332c834ff48999b237f4b15313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  v2Point: {x: 0, y: 0}
-  fHookSpeed: 5
-  fNodeDist: 1
-  goNodePrefab: {fileID: 1993822058545882, guid: 49310b5c53917984090d6779e2311c0d,
-    type: 2}
-  goPlayer: {fileID: 0}
-  bConnected: 0
-  lr: {fileID: 120140131958572686}
-  lgoRopeNodes: []
+  projectileSpeed: 15
+  CollideLocation: {x: 0, y: 0}
+  tempobj: {fileID: 1351328159129094, guid: 2b28b9d22e9ed20478d59c65ec713e1b, type: 2}
+  GrapConnected: 0
+  holdGrapple: 1
+  CurrentDist: 0
+  CollisionTag: Wall
 --- !u!120 &120140131958572686
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -185,26 +183,45 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!233 &233592637760599924
-HingeJoint2D:
+--- !u!212 &212378811115596098
+SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1061346930955688}
   m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -23.29, y: -4.55}
-  m_UseMotor: 0
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: e9fd055a8bae28045a33102774b1964f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.03, y: 1.03}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

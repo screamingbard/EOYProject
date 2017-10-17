@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4722873606881600}
   - component: {fileID: 212698530936580892}
   - component: {fileID: 60160492525306600}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground_015_TileLeft_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
