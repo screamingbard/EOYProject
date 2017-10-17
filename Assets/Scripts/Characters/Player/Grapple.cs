@@ -24,6 +24,8 @@ public class Grapple : MonoBehaviour
     [HideInInspector]
     public float CurrentDist = 0.0f;
 
+    public string CollisionTag;
+
     Renderer mat;
 
     Rigidbody2D rb;
@@ -32,7 +34,7 @@ public class Grapple : MonoBehaviour
 
     Color m_cColor;
     void Awake()
-    {;
+    {
         mat = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -64,7 +66,7 @@ public class Grapple : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision2d)
     {
-        if (collision2d.gameObject.tag == "Wall")
+        if (collision2d.gameObject.tag == CollisionTag)
         {
             projectileSpeed = 0;
             GrapConnected = true;
