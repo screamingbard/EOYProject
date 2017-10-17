@@ -22,6 +22,15 @@ public class PlayerRespawn : MonoBehaviour {
     [HideInInspector]
     public float m_fMovementTimer;
 
+    void Update()
+    {
+        //If when the player collides with a deathcollider while a static rigid body call the respawn method
+        if (m_goPlayer.GetComponent<Controller2D>().collisions.transform.tag == m_stDeathTrapTag)
+        {
+            Respawn();
+        }
+    }
+
     public void Respawn(){
         //Play death animation
 
@@ -56,12 +65,11 @@ public class PlayerRespawn : MonoBehaviour {
         else if (a_col2DCollider.gameObject.tag == m_stVisionConeTag){
             //Play the killed by corvus animation
 
-            //Call the respawn function
+            //Call the respawn method
             Respawn();
         }
     }
     void OnTriggerEnter2D(Collider2D a_trTrigger2D){
-		
         //If the player enters the trigger zone of a new respawn point
         if (a_trTrigger2D.gameObject.tag == m_stNewRespawn)
         {
