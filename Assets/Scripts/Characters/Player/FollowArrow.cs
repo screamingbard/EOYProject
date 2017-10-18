@@ -17,7 +17,9 @@ public class FollowArrow : MonoBehaviour {
         JoystickStore.y = XCI.GetAxis(XboxAxis.RightStickY);
 
         //Shoots the grapple in the last given direction if no direction is given
-        if(JoystickStore.x != 0 || JoystickStore.y != 0)
+        if (JoystickStore.x != 0 || JoystickStore.y != 0)
             transform.position = Parent.transform.position + JoystickStore;
+        //else if(JoystickStore.x == 0 && JoystickStore.y == 0)
+        //    transform.position = Parent.transform.position + Vector3.up;
     }
 }
