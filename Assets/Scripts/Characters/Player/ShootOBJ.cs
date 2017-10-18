@@ -39,6 +39,9 @@ public class ShootOBJ : MonoBehaviour {
     public Transform rotObject;
     Quaternion storeAngle;
 
+    //float timer = 0;
+    //bool IsTiming = false;
+
     // Use this for initialization
     void Awake() {
 
@@ -170,6 +173,8 @@ public class ShootOBJ : MonoBehaviour {
 
     public void DrawLine()
     {
+        if (lrLineRenderer == null)
+            return;
         //Sets the position of the player and the pivot point for the line to draw
         lrLineRenderer.SetPosition(0, goPlayer.transform.position);
         lrLineRenderer.SetPosition(1, cBall.transform.position);
@@ -178,7 +183,7 @@ public class ShootOBJ : MonoBehaviour {
     //Stops the shooting of the Grapple
     public void StopShoot()
     {
-        if (grappleObj != null)
+        if (cBall != null)
             Destroy(cBall);
 
         dj2dJoint.enabled = false;
