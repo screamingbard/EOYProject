@@ -27,6 +27,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1481536924759686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4215537788422314}
+  - component: {fileID: 114002481221434666}
+  m_Layer: 8
+  m_Name: FollowGameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1520589773950472
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,6 +82,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4215537788422314
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481536924759686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4746847284355548}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4719286364994948
 Transform:
   m_ObjectHideFlags: 1
@@ -86,11 +115,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1520589773950472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -279.53, y: 8.25, z: 0}
+  m_LocalPosition: {x: -285.73, y: 6.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4719286364994948}
   - {fileID: 4790818685021536}
+  - {fileID: 4215537788422314}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -126,7 +156,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61385786239287244
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -152,6 +182,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114002481221434666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481536924759686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06e865875210064aadba7682d2a894e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 1520589773950472}
+  store: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114094279020552254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,6 +217,7 @@ MonoBehaviour:
   grappleObj: {fileID: 1357400428479774, guid: f08da37d629a0b3489186dcac477a672, type: 2}
   rbPlayer: {fileID: 50889495656927214}
   StorePos: {x: 0, y: 0}
+  rotObject: {fileID: 4215537788422314}
 --- !u!114 &114096337986979014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -239,7 +283,7 @@ MonoBehaviour:
     m_Bits: 512
   horizontalRayCount: 4
   verticalRayCount: 4
-  maxClimbAngle: 80
+  maxClimbAngle: 120
   maxDescendAngle: 75
 --- !u!114 &114555552725559692
 MonoBehaviour:
@@ -253,8 +297,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 1.5
-  timeToJump: 0.5
-  gravity: -9.18
+  timeToJump: 0.4
+  moveSpeed: 14.38
   velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &114966699740367938
 MonoBehaviour:
@@ -272,7 +316,8 @@ MonoBehaviour:
   m_stNewRespawn: RespawnPoint
   m_tfRespawnPoint: {fileID: 0}
   m_goPlayer: {fileID: 1520589773950472}
-  m_goGrappleRefrence: {fileID: 0}
+  m_goGrappleRefrence: {fileID: 1357400428479774, guid: f08da37d629a0b3489186dcac477a672,
+    type: 2}
   m_fSetMovementTimer: 0.1
   m_fMovementTimer: 0
 --- !u!212 &212992498628646840
@@ -333,5 +378,5 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 279.65173
+  m_Distance: 285.80624
   m_MaxDistanceOnly: 1

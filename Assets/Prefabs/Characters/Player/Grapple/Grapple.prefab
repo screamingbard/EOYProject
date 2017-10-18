@@ -129,10 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a69c0332c834ff48999b237f4b15313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 125
+  projectileSpeed: 60.39
   CollideLocation: {x: 0, y: 0}
   tempobj: {fileID: 1351328159129094, guid: 2b28b9d22e9ed20478d59c65ec713e1b, type: 2}
   GrapConnected: 0
   holdGrapple: 1
   CurrentDist: 0
   CollisionTag: Wall
+  followobj: {fileID: 0}
