@@ -20,8 +20,9 @@ public class FollowArrow : MonoBehaviour {
 
         //Shoots the grapple upwards if no direction is given
         if (JoystickStore.x == 0 && JoystickStore.y == 0)
-            transform.position = Parent.transform.position +  defaultshoot;
+            Parent.GetComponentInChildren<ShootOBJ>().StopShoot();
         else
             transform.position = Parent.transform.position + JoystickStore;
+        //transform.position = Parent.transform.position +  defaultshoot;
     }
 }

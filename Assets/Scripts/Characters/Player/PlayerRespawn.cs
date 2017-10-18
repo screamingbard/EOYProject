@@ -22,14 +22,7 @@ public class PlayerRespawn : MonoBehaviour {
     [HideInInspector]
     public float m_fMovementTimer;
 
-    void Update()
-    {
-        //If when the player collides with a deathcollider while a static rigid body call the respawn method
-        if (m_goPlayer.GetComponent<Controller2D>().collisions.transform.tag == m_stDeathTrapTag)
-        {
-            Respawn();
-        }
-    }
+    public GameObject storeCam;
 
     public void Respawn(){
         //Play death animation
@@ -43,7 +36,7 @@ public class PlayerRespawn : MonoBehaviour {
         //If it is connected to terain or in motion
         if (m_goGrappleRefrence != null){
             //Remove the grapple
-            m_goPlayer.GetComponent<ShootOBJ>().StopShoot();
+            m_goPlayer.GetComponentInChildren<ShootOBJ>().StopShoot();
         }
 
         //Set the players position to the respawn points
@@ -52,7 +45,8 @@ public class PlayerRespawn : MonoBehaviour {
         //Play the respawn animation
 
         //Reset the camera position
-        Camera.main.GetComponent<CameraFollow>().ResetCamera();
+        //Camera.main.GetComponent<CameraFollow>().ResetCamera();
+        storeCam.GetComponent<CameraFollow>().ResetCamera();
     }
     
     void OnCollisionEnter2D(Collision2D a_col2DCollider){

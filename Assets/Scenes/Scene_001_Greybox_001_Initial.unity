@@ -1192,6 +1192,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4977980253640826, guid: 61bc517c7c0e8c14d87204ac3b5cf3c4,
     type: 2}
   m_PrefabInternal: {fileID: 86235786}
+--- !u!1 &88696143 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1959809699486512, guid: 981b24df87a08fd4d95b9e8a0ab3db00,
+    type: 2}
+  m_PrefabInternal: {fileID: 487792636}
 --- !u!1001 &96756087
 Prefab:
   m_ObjectHideFlags: 0
@@ -11109,6 +11114,22 @@ Prefab:
       propertyPath: m_tfTarget
       value: 
       objectReference: {fileID: 1963079021}
+    - target: {fileID: 1166614250738224, guid: 981b24df87a08fd4d95b9e8a0ab3db00, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1959809699486512, guid: 981b24df87a08fd4d95b9e8a0ab3db00, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714141380293960, guid: 981b24df87a08fd4d95b9e8a0ab3db00, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672960777699542, guid: 981b24df87a08fd4d95b9e8a0ab3db00, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 981b24df87a08fd4d95b9e8a0ab3db00, type: 2}
   m_IsPrefabParent: 0
@@ -26624,6 +26645,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114094279020552254, guid: 65a059675c9aabe43abe572b9005bb43,
+        type: 2}
+      propertyPath: lrLineRenderer
+      value: 
+      objectReference: {fileID: 1563397061}
+    - target: {fileID: 114096337986979014, guid: 65a059675c9aabe43abe572b9005bb43,
+        type: 2}
+      propertyPath: lrLineRenderer
+      value: 
+      objectReference: {fileID: 1563397061}
     - target: {fileID: 114149955416766438, guid: 65a059675c9aabe43abe572b9005bb43,
         type: 2}
       propertyPath: m_tfRespawnPoint
@@ -26634,11 +26665,6 @@ Prefab:
       propertyPath: m_goGrappleRefrence
       value: 
       objectReference: {fileID: 1563397060}
-    - target: {fileID: 114094279020552254, guid: 65a059675c9aabe43abe572b9005bb43,
-        type: 2}
-      propertyPath: lrLineRenderer
-      value: 
-      objectReference: {fileID: 1563397061}
     - target: {fileID: 114966699740367938, guid: 65a059675c9aabe43abe572b9005bb43,
         type: 2}
       propertyPath: m_tfRespawnPoint
@@ -26646,40 +26672,14 @@ Prefab:
       objectReference: {fileID: 1587877975}
     - target: {fileID: 114966699740367938, guid: 65a059675c9aabe43abe572b9005bb43,
         type: 2}
-      propertyPath: m_goGrappleRefrence
+      propertyPath: storeCam
       value: 
-      objectReference: {fileID: 1357400428479774, guid: f08da37d629a0b3489186dcac477a672,
+      objectReference: {fileID: 88696143}
+    - target: {fileID: 114149955416766438, guid: 65a059675c9aabe43abe572b9005bb43,
         type: 2}
-    - target: {fileID: 114096337986979014, guid: 65a059675c9aabe43abe572b9005bb43,
-        type: 2}
-      propertyPath: lrLineRenderer
+      propertyPath: storeCam
       value: 
-      objectReference: {fileID: 1563397061}
-    - target: {fileID: 114555552725559692, guid: 65a059675c9aabe43abe572b9005bb43,
-        type: 2}
-      propertyPath: timeToJump
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 50889495656927214, guid: 65a059675c9aabe43abe572b9005bb43,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114555552725559692, guid: 65a059675c9aabe43abe572b9005bb43,
-        type: 2}
-      propertyPath: Aiming
-      value: 
-      objectReference: {fileID: 1753937075}
-    - target: {fileID: 114286032663558684, guid: 65a059675c9aabe43abe572b9005bb43,
-        type: 2}
-      propertyPath: maxClimbAngle
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 114555552725559692, guid: 65a059675c9aabe43abe572b9005bb43,
-        type: 2}
-      propertyPath: moveSpeed
-      value: 10
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 88696143}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65a059675c9aabe43abe572b9005bb43, type: 2}
   m_IsPrefabParent: 0
@@ -29510,11 +29510,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33dce5ecaa44dd846b01834f4ae0da03, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1753937075 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1456935871509886, guid: 65a059675c9aabe43abe572b9005bb43,
-    type: 2}
-  m_PrefabInternal: {fileID: 1463814071}
 --- !u!1001 &1758344324
 Prefab:
   m_ObjectHideFlags: 0

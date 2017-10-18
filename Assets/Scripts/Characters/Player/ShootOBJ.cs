@@ -11,6 +11,7 @@ public class ShootOBJ : MonoBehaviour {
     private Vector2 mPos;
 
     private Vector3 mDir;
+    [HideInInspector]
     public bool IsGrappling = false;
 
     //Grappling Swinging
@@ -59,7 +60,6 @@ public class ShootOBJ : MonoBehaviour {
         //Places down the pivot point for the grapple
         if (XCI.GetButtonDown(XboxButton.RightBumper))
         {
-            mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             Shoot();
 
