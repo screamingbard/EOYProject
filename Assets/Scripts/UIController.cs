@@ -31,4 +31,12 @@ public class UIController : MonoBehaviour {
     {
         SceneManager.LoadScene(m_iSceneIndex);
     }
+
+    void Update()
+    {
+        if (m_esEventSysRef.alreadySelecting == false)
+        {
+            m_esEventSysRef.SetSelectedGameObject(m_buRstartButton.gameObject);
+        }
+    }
 }
