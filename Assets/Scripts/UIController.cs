@@ -11,14 +11,14 @@ public class UIController : MonoBehaviour {
     public int m_iSceneIndex = 0;
 
     //
-    public Button restartButton;
+    public Button m_buRstartButton;
 
     //
-    public EventSystem EventSysRef;
+    public EventSystem m_esEventSysRef;
 
     void Awake()
     {
-        EventSysRef.SetSelectedGameObject(restartButton.gameObject);
+        m_esEventSysRef.SetSelectedGameObject(m_buRstartButton.gameObject);
     }
     public void Quit()
     //On call will close the game
