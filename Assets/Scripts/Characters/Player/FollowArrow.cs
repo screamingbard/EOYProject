@@ -12,9 +12,12 @@ public class FollowArrow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update ()
-    {   
-        JoystickStore.x = XCI.GetAxis(XboxAxis.RightStickX);
-        JoystickStore.y = XCI.GetAxis(XboxAxis.RightStickY);
+    {
+        //JoystickStore.x = XCI.GetAxis(XboxAxis.RightStickX);
+        //JoystickStore.y = XCI.GetAxis(XboxAxis.RightStickY);
+
+        JoystickStore.x = XCI.GetAxis(XboxAxis.LeftStickX);
+        JoystickStore.y = XCI.GetAxis(XboxAxis.LeftStickY);
 
         //Shoots the grapple in the last given direction if no direction is given
         if (JoystickStore.x != 0 || JoystickStore.y != 0)

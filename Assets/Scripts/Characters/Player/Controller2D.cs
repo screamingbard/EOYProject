@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class Controller2D : MonoBehaviour
 {
-    //Player Movement using raycasts adn collisions
+    //Player Movement using raycasts and collisions
     public LayerMask collisionMask;
+    public LayerMask deathTrap;
 
     const float skinwidth = 0.015f;
     public int horizontalRayCount = 4;
@@ -154,6 +155,41 @@ public class Controller2D : MonoBehaviour
         }
     }
 
+   public void HorizontalDeathCollision(ref Vector3 velocity)
+    {
+        float directionX = Mathf.Sign(velocity.x);
+        float rayLength = Mathf.Abs(velocity.x) + skinwidth;
+
+        for (int i = 0; i < horizontalRayCount; i++)
+        {
+            Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+            rayOrigin += Vector2.up * (horizontalRaySpacing * i);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, deathTrap);
+
+            if (hit)
+            {
+                collisions.IsDying = true;
+            }
+        }
+    }
+
+    public void VerticalDeathCollision(ref Vector3 velocity)
+    {
+        float directionY = Mathf.Sign(velocity.y);
+        float rayLength = Mathf.Abs(velocity.y) + skinwidth;
+
+        for (int i = 0; i < verticalRayCount; i++)
+        {
+            Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
+            rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, deathTrap);
+
+            if (hit)
+            {
+                collisions.IsDying = true;
+            }
+        }
+    }
     void ClimbSlope(ref Vector3 velocity, float slopeAngle)
     {
         float moveDistance = Mathf.Abs(velocity.x);
@@ -221,6 +257,10 @@ public class Controller2D : MonoBehaviour
         verticalRaySpacing = bounds.size.x / (verticalRayCount - 1);
     }
 
+    void Isgrappling()
+    {
+        
+    }
 
     struct RaycastOrigins
     {
@@ -233,19 +273,23 @@ public class Controller2D : MonoBehaviour
         public bool above, below;
         public bool left, right;
 
+        public bool IsDying;
+
         public bool climbingSlope;
         public bool descendingSlope;
         public float slopeAngle, slopeAngleOld;
         public Vector3 velocityOld;
 
         public Transform transform;
-
+        
         public void Reset()
         {
             above = below = false;
             left = right = false;
             climbingSlope = false;
             descendingSlope = false;
+
+            IsDying = false;
 
             slopeAngleOld = slopeAngle;
             slopeAngle = 0;

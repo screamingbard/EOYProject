@@ -14,6 +14,8 @@ public class ShootOBJ : MonoBehaviour {
     [HideInInspector]
     public bool IsGrappling = false;
 
+    public float fMaxDist = 10.0f;
+
     //Grappling Swinging
     DistanceJoint2D dj2dJoint;
     RaycastHit2D rc2dRaycast;
@@ -76,6 +78,8 @@ public class ShootOBJ : MonoBehaviour {
             if (lrLineRenderer.enabled == true)
                 DrawLine();
         }
+
+        //***Makes sure that if the player is in the air all scripts are disabled!!
         if (cBall != null)
         {
             if (IsGrappling && cBall.GetComponent<Grapple>().GrapConnected == true)
@@ -120,6 +124,14 @@ public class ShootOBJ : MonoBehaviour {
             goPlayer.GetComponent<Player>().velocity = rbPlayer.velocity;
         }
 
+    }
+
+    void LateUpdate()
+    {
+        if (dj2dJoint.distance > fMaxDist)
+        {
+            StopShoot();
+        }
     }
     //Shoots out the grapple
     public void Shoot()
@@ -175,6 +187,9 @@ public class ShootOBJ : MonoBehaviour {
     {
         if (lrLineRenderer == null)
             return;
+        if (cBall == null)
+            return;
+
         //Sets the position of the player and the pivot point for the line to draw
         lrLineRenderer.SetPosition(0, goPlayer.transform.position);
         lrLineRenderer.SetPosition(1, cBall.transform.position);

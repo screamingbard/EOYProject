@@ -16,6 +16,9 @@ public class Player : MonoBehaviour {
     float acceleratinTimeGrounded = 0.1f;
     public float moveSpeed = 6;
 
+    //[HideInInspector]
+    public bool isDead = false;
+
     float jumpVelocity;
     float gravity;
     [HideInInspector]
@@ -49,5 +52,10 @@ public class Player : MonoBehaviour {
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref XSmoothing, (controller.collisions.below) ? acceleratinTimeGrounded : accelerationTimeAirbourne);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        controller.HorizontalDeathCollision(ref velocity);
+        controller.VerticalDeathCollision(ref velocity);
+        //DEBUGGING
+        isDead = controller.collisions.IsDying;
     }
 }

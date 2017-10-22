@@ -38,19 +38,8 @@ public class Grapple : MonoBehaviour
     Color m_cColor;
     void Awake()
     {
-        mat = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody2D>();
-
-        //Debugging
-        m_cColor.r = 0;
-        m_cColor.g = 0;
-        m_cColor.b = 255;
-        m_cColor.a = 255;
-        mat.material.color = m_cColor;
-
         //StoreMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        
     }
 
     void Start()
