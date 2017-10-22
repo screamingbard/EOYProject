@@ -11,7 +11,7 @@ public class VisionCone : MonoBehaviour {
     //Width of the enemy vision
     [Range(0, 360)]
     public float m_fAngle = 27;
-
+    
     //Layer mask specific to the player
     public LayerMask m_lmPlayerMask;
 
@@ -26,6 +26,12 @@ public class VisionCone : MonoBehaviour {
     [Tooltip("Time in seconds the player must be seen before they are killed")]
     public float m_fDeathTimer;
 
+    //Time modifyer for cooldown on enemy alert
+    public float m_fAlertCooldown = 2;
+
+    //The radius of the overlay vision cone
+    float m_fOverlayRadius;
+
     //Time the player has before they're killed within a vision cone
     float m_fUseDeathTimer;
 
@@ -37,8 +43,16 @@ public class VisionCone : MonoBehaviour {
 
     //A mesh variable used for the vision cone ingame visualisation
     [HideInInspector]
-    public Mesh m_mViewMesh;                   
+    public Mesh m_mViewMesh;
 
+    //A mesh filter variable used for the vision cone ingame visualisation
+    public MeshFilter m_mfOverlayViewMeshFilter;
+
+    //A mesh variable used for the vision cone ingame visualisation
+    [HideInInspector]
+    public Mesh m_mOverlayViewMesh;
+
+   
     void Start()
     {
         //Set the death timer of the vision cone
@@ -52,6 +66,15 @@ public class VisionCone : MonoBehaviour {
         
         //Set the mesh of the mesh filter to the view mesh
         m_mfViewMeshFilter.mesh = m_mViewMesh;
+
+        //Initialise the view mesh
+        m_mOverlayViewMesh = new Mesh();
+
+        //Name the view mesh, view mesh
+        m_mOverlayViewMesh.name = "Overlay View Mesh";
+
+        //Set the mesh of the mesh filter to the view mesh
+        m_mfOverlayViewMeshFilter.mesh = m_mOverlayViewMesh;
     }
 
     void LateUpdate()
@@ -61,6 +84,12 @@ public class VisionCone : MonoBehaviour {
        
         //Call the draw vision cone method
         DrawVisionCone();
+
+        //Thing the thing
+        m_fOverlayRadius = m_fRadius * m_fUseDeathTimer / m_fDeathTimer;
+
+        //Call the draw overlay method
+        DrawOverlayVisionCone();
     }
 
     void FindPlayer()
@@ -88,35 +117,47 @@ public class VisionCone : MonoBehaviour {
                //Check for whether an obstacle is obstructing the enemies view of the player
                if (!Physics2D.Raycast(transform.position, m_v3DirectionToPlayer, m_fDistanceToPlayer, m_lmObstacleMask))
                {
-                   if (m_fUseDeathTimer <= 0)
+                   if (m_fUseDeathTimer >= m_fDeathTimer)
                    {
                        //If the enemy has direct line of sight to the player kill the player
                        m_tfPlayer.GetComponent<PlayerRespawn>().Respawn();
                         //Reset the death timer
-                       m_fUseDeathTimer = m_fDeathTimer;
+                        if (m_fUseDeathTimer <= 0)
+                            m_fUseDeathTimer = 0;
+                        else
+                            m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
                    }
                    else
                     {
                         //Reset the death timer
-                        m_fUseDeathTimer -= Time.deltaTime;
+                        m_fUseDeathTimer += Time.deltaTime;
                    }
                 }
                 else
                 {
                     //Reset the death timer
-                    m_fUseDeathTimer = m_fDeathTimer;
+                    if (m_fUseDeathTimer <= 0)
+                        m_fUseDeathTimer = 0;
+                    else
+                        m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
                 }
             }
             else
             {
                 //Reset the death timer
-                m_fUseDeathTimer = m_fDeathTimer;
+                if (m_fUseDeathTimer <= 0)
+                    m_fUseDeathTimer = 0;
+                else
+                    m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
             }
         }
         else
         {
             //Reset the death timer
-            m_fUseDeathTimer = m_fDeathTimer;
+            if (m_fUseDeathTimer <= 0)
+                m_fUseDeathTimer = 0;
+            else
+                m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
         }
     }
 
@@ -239,5 +280,83 @@ public class VisionCone : MonoBehaviour {
             m_fVCIAngle = a_fAngle;
         }
     }
-    
+
+    void DrawOverlayVisionCone()
+    //Draws the cone of vision detection Overlay in game
+    {
+        //Number of Raycast2Ds based on the angle of the vision cone and the mesh resolution
+        int m_iStepCount = Mathf.RoundToInt(m_fAngle * m_fMeshResolution);
+        //Angle inbetween each Raycast2D
+        float m_fStepAngleSize = m_fAngle / m_iStepCount;
+        //List of vectors to direct each Raycast2D
+        List<Vector3> m_lv3ViewPoints = new List<Vector3>();
+        //Looping through the number of steps or Raycast2Ds
+        for (int i = 0; i <= m_iStepCount; i++)
+        {
+            //Angle used within this loop
+            float m_fThisAngle = (transform.eulerAngles.z * -1) - m_fAngle / 2 + m_fStepAngleSize * i;
+            //Use the ViewCast method to return a ViewCastInfo struct which contains information about an individual Raycast2D
+            ViewCastInfo newViewCast = OverlayViewCast(m_fThisAngle);
+            //Add a raycast to the list
+            m_lv3ViewPoints.Add(newViewCast.m_v3Point);
+        }
+        //The number of vertecies
+        int m_iVertexCount = m_lv3ViewPoints.Count + 1;
+
+        //An array of Verticies
+        Vector3[] m_v3Vertices = new Vector3[m_iVertexCount];
+
+        //An array of triangles
+        int[] m_iTriangles = new int[(m_iVertexCount - 2) * 3];
+
+        //Set the zeroeth vertex in the array to (0, 0, 0)
+        m_v3Vertices[0] = Vector3.zero;
+        for (int i = 0; i < m_iVertexCount - 1; i++)
+        //Go through the verticies array and set them
+        {
+            m_v3Vertices[i + 1] = transform.InverseTransformPoint(m_lv3ViewPoints[i]);
+
+            //If the iteration count is less than the vertex count minus two
+            if (i < m_iVertexCount - 2)
+            {
+                //Set the triangles to their relavent numbers
+                m_iTriangles[i * 3] = 0;
+                m_iTriangles[i * 3 + 1] = i + 1;
+                m_iTriangles[i * 3 + 2] = i + 2;
+            }
+        }
+
+        //Clear the Overlay view mesh
+        m_mOverlayViewMesh.Clear();
+
+        //Set the vertecies of the Overlay view mesh
+        m_mOverlayViewMesh.vertices = m_v3Vertices;
+
+        //Set the triangles of the Overlay view mesh
+        m_mOverlayViewMesh.triangles = m_iTriangles;
+
+        //Recalculate the normals of the Overlay view mesh
+        m_mOverlayViewMesh.RecalculateNormals();
+    }
+
+    ViewCastInfo OverlayViewCast(float a_fGlobalAngle)
+    {
+        //The look direction of the vision cone relative to global
+        Vector3 m_v3Direction = m_v3LookTarget(a_fGlobalAngle, true);
+        //A test for if the rays hit something
+        RaycastHit2D m_v3Hit = Physics2D.Raycast(transform.position, m_v3Direction, m_fOverlayRadius, m_lmObstacleMask);
+        //If the rays did hit
+        if (m_v3Hit)
+        {
+            //Returns a new view cast info struct with relavent information
+            return new ViewCastInfo(true, m_v3Hit.point, m_v3Hit.distance, a_fGlobalAngle);
+        }
+        //Otherwise
+        else
+        {
+            //Returns a new view cast info struct with different relavent information
+            return new ViewCastInfo(false, transform.position + m_v3Direction * m_fOverlayRadius, m_fOverlayRadius, a_fGlobalAngle);
+        }
+    }
+
 }
