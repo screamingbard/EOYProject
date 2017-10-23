@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnParticle : MonoBehaviour {
+public class PlaySound : MonoBehaviour {
 
     //
     public string m_sPlayerTag;
 
     //
-    public ParticleSystem m_psParticleSystem;
+    public AudioClip m_acAudioClip;
 
     //
     public bool m_bPlayMoreThanOnce;
-    
-    //
-    public float m_fTimeBetweenSpawns;
 
     //
-    float m_fTimerBetweenSpawns;
+    public float m_fTimeBetweenSounds;
+
+    //
+    float m_fTimerBetweenSounds;
 
     //
     bool m_bPlayMoreThanOncePrivate = true;
@@ -25,7 +25,7 @@ public class SpawnParticle : MonoBehaviour {
     void start()
     {
         //
-        m_fTimerBetweenSpawns = m_fTimeBetweenSpawns;
+        m_fTimerBetweenSounds = m_fTimeBetweenSounds;
     }
 
     void Update()
@@ -33,13 +33,13 @@ public class SpawnParticle : MonoBehaviour {
 
         if (m_bPlayMoreThanOncePrivate)
         {
-            if (m_fTimerBetweenSpawns >= m_fTimeBetweenSpawns)
+            if (m_fTimerBetweenSounds >= m_fTimeBetweenSounds)
             {
-                m_fTimerBetweenSpawns = 0;
+                m_fTimerBetweenSounds = 0;
             }
             else
             {
-                m_fTimerBetweenSpawns += Time.deltaTime;
+                m_fTimerBetweenSounds += Time.deltaTime;
             }
         }
     }
@@ -51,10 +51,10 @@ public class SpawnParticle : MonoBehaviour {
             //If true will play the animation
             if (m_bPlayMoreThanOncePrivate)
             {
-                if (m_fTimerBetweenSpawns >= m_fTimeBetweenSpawns)
+                if (m_fTimerBetweenSounds >= m_fTimeBetweenSounds)
                 {
-                    m_fTimerBetweenSpawns = 0;
-                    m_psParticleSystem.Play();
+                    m_fTimerBetweenSounds = 0;
+                    AudioSource.PlayClipAtPoint(m_acAudioClip, transform.position);
                     m_bPlayMoreThanOncePrivate = m_bPlayMoreThanOnce;
                 }
             }
