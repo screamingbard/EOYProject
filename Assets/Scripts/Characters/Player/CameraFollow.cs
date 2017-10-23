@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using XboxCtrlrInput;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
@@ -10,19 +11,52 @@ public class CameraFollow : MonoBehaviour {
     //The size of the bounding box
     public Vector2 m_v2FocusAreaSize;
 
+    Vector2 playerInput;
+
     //The height of the camera relative to the centre of the bounding box
     public float m_fVerticalOffset;
+
+    //
+    public float m_fLookAheadDistanceX;
+
+    //
+    public float m_fLookSmoothTimeX;
+
+    //
+    public float m_fVerticalSmoothTime;
+
 
     //The minimum height the camera will follow the character
     public float m_fMinimumCameraHeight = -5;
 
     //
+    float m_fCurrentLookAheadX;
+
+    //
+    float m_fTargetLookAheadX;
+
+    //
+    float m_fLookAheadDirectionX;
+
+    //
+    float m_fSmoothLookVelocityX;
+
+    //
+    float m_fSmoothVelocityY;
+    //
     FocusArea m_faFocusArea;
 
+    //
+    bool m_bLookAheadStopped;
     void Start()
     {
         //Generate the bounding box
         m_faFocusArea = new FocusArea(m_tfTarget.GetComponent<Collider2D>().bounds, m_v2FocusAreaSize);
+    }
+    void Update()
+    {
+        playerInput.x = XCI.GetAxis(XboxAxis.LeftStickX);
+        playerInput.y = XCI.GetAxis(XboxAxis.LeftStickY);
     }
     void LateUpdate()
     {
@@ -31,6 +65,30 @@ public class CameraFollow : MonoBehaviour {
 
         //The position of the bounding box around the player
         Vector2 focusPosition = m_faFocusArea.m_v2Centre + Vector2.up * m_fVerticalOffset;
+
+        if (m_faFocusArea.m_v2Velocity.x != 0)
+        {
+            m_fLookAheadDirectionX = Mathf.Sign(m_faFocusArea.m_v2Velocity.x);
+            if (Mathf.Sign(playerInput.x) == Mathf.Sign(m_faFocusArea.m_v2Velocity.x) && playerInput.x != 0)
+            {
+                m_bLookAheadStopped = false;
+                m_fTargetLookAheadX = m_fLookAheadDirectionX * m_fLookAheadDistanceX;
+            }
+            else
+            {
+                if (!m_bLookAheadStopped)
+                {
+                    m_bLookAheadStopped = true;
+                    m_fTargetLookAheadX = m_fCurrentLookAheadX + (m_fLookAheadDirectionX * m_fLookAheadDistanceX - m_fCurrentLookAheadX) / 4;
+                }
+            }
+        }
+        
+        m_fCurrentLookAheadX = Mathf.SmoothDamp(m_fCurrentLookAheadX, m_fTargetLookAheadX, ref m_fSmoothLookVelocityX, m_fLookSmoothTimeX);
+
+        focusPosition.y = Mathf.SmoothDamp(transform.position.y, focusPosition.y, ref m_fSmoothVelocityY, m_fVerticalSmoothTime);
+
+        focusPosition += Vector2.right * m_fCurrentLookAheadX;
 
         //The position of the camera
         transform.position = (Vector3) focusPosition + Vector3.forward * -10;
