@@ -25,6 +25,9 @@ public class Player : MonoBehaviour {
     public Vector3 velocity;
     float XSmoothing;
 
+    public float playerdirection;
+    bool isturned = false;
+
     Controller2D controller;
 
     void Start()
@@ -43,7 +46,7 @@ public class Player : MonoBehaviour {
 
         Vector2 input = new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX), XCI.GetAxisRaw(XboxAxis.LeftStickY));//Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (XCI.GetButton(XboxButton.LeftBumper) && controller.collisions.below)
+        if (XCI.GetButton(XboxButton.LeftBumper) && controller.collisions.below || XCI.GetButton(XboxButton.A) && controller.collisions.below)
         {
             velocity.y = jumpVelocity;
         }
@@ -51,7 +54,32 @@ public class Player : MonoBehaviour {
         float targetVelocityX = input.x * moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref XSmoothing, (controller.collisions.below) ? acceleratinTimeGrounded : accelerationTimeAirbourne);
         velocity.y += gravity * Time.deltaTime;
+
+        if (velocity.x > 30)
+            velocity.x = 30.0f;
+        if (velocity.y > 30)
+            velocity.y = 30.0f;
+
+        if (velocity.x < -30)
+            velocity.x = -30.0f;
+        if (velocity.y < -30)
+            velocity.y = -30.0f;
+
         controller.Move(velocity * Time.deltaTime);
+
+        //playerdirection = Mathf.Sign(velocity.x);
+
+        //if (XCI.GetAxisRaw(XboxAxis.LeftStickX) > 0 && !isturned)
+        //{
+        //    transform.Rotate(0, 180, 0);
+        //    isturned = true;
+        //}
+
+        //if (XCI.GetAxisRaw(XboxAxis.LeftStickX) < 0 && !isturned)
+        //{
+        //    transform.Rotate(0, 180, 0);
+        //    isturned = false;
+        //}
 
         controller.HorizontalDeathCollision(ref velocity);
         controller.VerticalDeathCollision(ref velocity);

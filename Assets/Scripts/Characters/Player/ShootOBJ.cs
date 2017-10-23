@@ -31,6 +31,11 @@ public class ShootOBJ : MonoBehaviour {
     public GameObject grappleObj;
     private GameObject cBall = null;
 
+    public float grapImpulse = 1.0f;
+    public float GrapCooldown = 0.5f;
+    float cd = 0;
+    public bool cooldowncheck = false;
+
     public Rigidbody2D rbPlayer;
     [HideInInspector]
     public Vector2 StorePos;
@@ -40,6 +45,8 @@ public class ShootOBJ : MonoBehaviour {
 
     public Transform rotObject;
     Quaternion storeAngle;
+
+    bool initialHit = true;
 
     //float timer = 0;
     //bool IsTiming = false;
@@ -62,15 +69,37 @@ public class ShootOBJ : MonoBehaviour {
 
         transform.LookAt(rotObject);
 
+
+
         //Places down the pivot point for the grapple
-        if (XCI.GetButtonDown(XboxButton.RightBumper))
+        if (cooldowncheck == false) {
+            if (XCI.GetButtonDown(XboxButton.RightBumper))
+            {
+
+                Shoot();
+
+                grappleObj.GetComponent<Grapple>().holdGrapple = true;
+
+                IsGrappling = true;
+
+                if (cBall.GetComponent<Grapple>().GrapConnected && initialHit)
+                {
+                    goPlayer.GetComponent<Player>().velocity += mDir * grapImpulse;
+                    fHoldDistance -= 1;
+                    initialHit = false;
+                }
+                cooldowncheck = true;
+            }
+        }
+        //else
+        if(cooldowncheck)
         {
-
-            Shoot();
-
-            grappleObj.GetComponent<Grapple>().holdGrapple = true;
-
-            IsGrappling = true;
+            cd += Time.deltaTime;
+            if(cd >= GrapCooldown)
+            {
+                cooldowncheck = false;
+                cd = 0;
+            }
         }
 
         if (IsGrappling)
@@ -122,6 +151,10 @@ public class ShootOBJ : MonoBehaviour {
             IsGrappling = false;
 
             goPlayer.GetComponent<Player>().velocity = rbPlayer.velocity;
+
+            initialHit = true;
+
+            cooldowncheck = true;
         }
 
     }
