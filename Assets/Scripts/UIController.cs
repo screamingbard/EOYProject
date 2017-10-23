@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using XboxCtrlrInput;
 
 public class UIController : MonoBehaviour {
 
@@ -38,5 +39,27 @@ public class UIController : MonoBehaviour {
         {
             m_esEventSysRef.SetSelectedGameObject(m_buRstartButton.gameObject);
         }
+
+        if (XCI.GetButton(XboxButton.Start))
+        {
+            if (Time.timeScale == 1)
+            {
+                Pause();
+            }
+            else
+            {
+                Unpause();
+            }
+        }
+    }
+
+    void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    void Unpause()
+    {
+        Time.timeScale = 1;
     }
 }
