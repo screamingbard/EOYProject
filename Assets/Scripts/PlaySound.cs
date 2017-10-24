@@ -44,7 +44,7 @@ public class PlaySound : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter(Collider2D a_colCollider)
+    void OnTriggerEnter2D(Collider2D a_colCollider)
     {
         if (a_colCollider.gameObject.tag == m_sPlayerTag)
         {
