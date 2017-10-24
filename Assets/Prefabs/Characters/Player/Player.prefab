@@ -190,11 +190,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1481536924759686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b06e865875210064aadba7682d2a894e, type: 3}
+  m_Script: {fileID: 11500000, guid: e4fe333fab57a6e4f9853e83e2b870c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Parent: {fileID: 1520589773950472}
   store: {x: 0, y: 0, z: 0, w: 0}
+  Riggedcontrols: 0
 --- !u!114 &114094279020552254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,12 +210,16 @@ MonoBehaviour:
   lrLineRenderer: {fileID: 0}
   goPlayer: {fileID: 1520589773950472}
   IsGrappling: 0
+  fMaxDist: 10
   fHoldDistance: 10
   lmLayerMask:
     serializedVersion: 2
     m_Bits: 2048
   ballDir: {x: 0, y: 0}
   grappleObj: {fileID: 1357400428479774, guid: f08da37d629a0b3489186dcac477a672, type: 2}
+  grapImpulse: 1
+  GrapCooldown: 0.5
+  cooldowncheck: 0
   rbPlayer: {fileID: 50889495656927214}
   StorePos: {x: 0, y: 0}
   rotObject: {fileID: 4215537788422314}
@@ -267,6 +272,7 @@ MonoBehaviour:
   m_goGrappleRefrence: {fileID: 0}
   m_fSetMovementTimer: 0.1
   m_fMovementTimer: 0
+  storeCam: {fileID: 0}
 --- !u!114 &114286032663558684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -281,6 +287,9 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
+  deathTrap:
+    serializedVersion: 2
+    m_Bits: 0
   horizontalRayCount: 4
   verticalRayCount: 4
   maxClimbAngle: 120
@@ -299,7 +308,9 @@ MonoBehaviour:
   jumpHeight: 1.5
   timeToJump: 0.4
   moveSpeed: 14.38
+  isDead: 0
   velocity: {x: 0, y: 0, z: 0}
+  playerdirection: 0
 --- !u!114 &114966699740367938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,6 +331,7 @@ MonoBehaviour:
     type: 2}
   m_fSetMovementTimer: 0.1
   m_fMovementTimer: 0
+  storeCam: {fileID: 0}
 --- !u!212 &212992498628646840
 SpriteRenderer:
   m_ObjectHideFlags: 1
