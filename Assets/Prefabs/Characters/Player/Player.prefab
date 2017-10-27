@@ -103,7 +103,7 @@ Transform:
   m_GameObject: {fileID: 1827566685523298}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4746847284355548}
   m_RootOrder: 0
@@ -115,7 +115,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1520589773950472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -285.73, y: 6.6, z: 0}
+  m_LocalPosition: {x: -276.76, y: 7.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4719286364994948}
@@ -169,7 +169,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.28, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -180,7 +180,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.68, y: 1.67}
   m_EdgeRadius: 0
 --- !u!114 &114002481221434666
 MonoBehaviour:
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1481536924759686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4fe333fab57a6e4f9853e83e2b870c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 2eac8c82a7de2894890e9fbf4235b495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Parent: {fileID: 1520589773950472}
@@ -210,7 +210,7 @@ MonoBehaviour:
   lrLineRenderer: {fileID: 0}
   goPlayer: {fileID: 1520589773950472}
   IsGrappling: 0
-  fMaxDist: 10
+  fMaxDist: 35
   fHoldDistance: 10
   lmLayerMask:
     serializedVersion: 2
@@ -218,7 +218,7 @@ MonoBehaviour:
   ballDir: {x: 0, y: 0}
   grappleObj: {fileID: 1357400428479774, guid: f08da37d629a0b3489186dcac477a672, type: 2}
   grapImpulse: 1
-  GrapCooldown: 0.5
+  GrapCooldown: 0.1
   cooldowncheck: 0
   rbPlayer: {fileID: 50889495656927214}
   StorePos: {x: 0, y: 0}
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fSpeed: 30
-  fSJump: 2
-  m_Force: 2
+  fSJump: 0
+  m_Force: 5
   fPullSPeed: 3
   grappleObj: {fileID: 1357400428479774, guid: f08da37d629a0b3489186dcac477a672, type: 2}
   rbProj2D: {fileID: 50270843787831198, guid: f08da37d629a0b3489186dcac477a672, type: 2}
@@ -305,9 +305,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae73b6cb91a31447b90b6efeb36b43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 1.5
-  timeToJump: 0.4
-  moveSpeed: 14.38
+  jumpHeight: 5
+  timeToJump: 0.7
+  moveSpeed: 13
   isDead: 0
   velocity: {x: 0, y: 0, z: 0}
   playerdirection: 0
@@ -364,12 +364,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1d4e4c6c6884e0e4f8c53cbbde31a38f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 54db48849a373014781626d5320a5ae5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 7.21, y: 2.59}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -390,5 +390,5 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 285.80624
+  m_Distance: 276.85312
   m_MaxDistanceOnly: 1
