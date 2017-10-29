@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 33743600798628582}
   - component: {fileID: 23477696495245752}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DetectionOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 114974387163558758}
   m_Layer: 0
   m_Name: Cameras
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1959809699486512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -286.8294, y: 10.183343, z: -10}
+  m_LocalPosition: {x: 122.46001, y: -12.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4814955342626886}
@@ -131,7 +131,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1166614250738224}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -3.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4727655329954130}
@@ -285,8 +285,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_tfTarget: {fileID: 0}
-  m_v2FocusAreaSize: {x: 10, y: 5}
+  m_v2FocusAreaSize: {x: 15, y: 10}
   m_fVerticalOffset: 5
+  m_fLookAheadDistanceX: 24
+  m_fLookSmoothTimeX: 0.85
+  m_fVerticalSmoothTime: 0
   m_fMinimumCameraHeight: -5
 --- !u!124 &124147804082761696
 Behaviour:
