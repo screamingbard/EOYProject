@@ -21,11 +21,19 @@ public class PlayerRespawn : MonoBehaviour {
     //The time before you can move
     [HideInInspector]
     public float m_fMovementTimer;
+    //The Particles that play where the player respawns when they respawn
+    public ParticleSystem m_psSpawnParticles;
+    //The Particles that play where the player dies when they die
+    public ParticleSystem m_psDeathParticles;
 
     public GameObject storeCam;
 
     public void Respawn(){
         //Play death animation
+
+        //Play the death particles
+        if (m_psDeathParticles != null)
+            m_psDeathParticles.Play();
 
         //Set the players velocity to zero
         m_goPlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -43,6 +51,11 @@ public class PlayerRespawn : MonoBehaviour {
         m_goPlayer.transform.SetPositionAndRotation(m_tfRespawnPoint.position, m_tfRespawnPoint.rotation);
 
         //Play the respawn animation
+
+
+        //Play the respawn particles
+        if (m_psSpawnParticles != null)
+            m_psSpawnParticles.Play();
 
         //Reset the camera position
         //Camera.main.GetComponent<CameraFollow>().ResetCamera();
