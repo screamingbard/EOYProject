@@ -17,6 +17,26 @@ public class UIController : MonoBehaviour {
     //
     public EventSystem m_esEventSysRef;
 
+    //
+    public float m_fMenuXMax;
+
+    //
+    public float m_fMenuYMax;
+
+    //
+    public GameObject m_goPauseMenu;
+
+    Vector2 m_vMenuPosition;
+
+
+    bool m_bMenuActive;
+
+
+    bool m_bCanInteract = true;
+
+
+    float m_fTimer;
+
     void Awake()
     {
         m_esEventSysRef.SetSelectedGameObject(m_buRstartButton.gameObject);
@@ -51,15 +71,64 @@ public class UIController : MonoBehaviour {
                 Unpause();
             }
         }
+
+        if (m_bMenuActive)
+        {
+            if (m_bCanInteract)
+            {
+
+                if (XboxAxis.LeftStickX < 0)
+                {
+                    m_bCanInteract = false;
+                    //Change selected menu item
+                    m_vMenuPosition.x--;
+                }
+                else if (XboxAxis.LeftStickX > 0)
+                {
+                    m_bCanInteract = false;
+                    //Change selected menu item
+                    m_vMenuPosition.x++;
+                }
+                else if (XboxAxis.LeftStickY < 0)
+                {
+                    m_bCanInteract = false;
+                    //Change selected menu item
+                    if (m_vMenuPosition.y <= 0)
+                        m_vMenuPosition.y = m_fMenuYMax;
+                    else
+                        m_vMenuPosition.y--;
+                }
+                else if (XboxAxis.LeftStickY > 0)
+                {
+                    m_bCanInteract = false;
+                    //Change selected menu item
+                    m_vMenuPosition.y++;
+                }
+            }
+            else
+            {
+                if (m_fTimer <= 0)
+                {
+                    m_bCanInteract = true;
+                    m_fTimer = 1;
+                }
+                else
+                {
+                    m_fTimer -= Time.unscaledDeltaTime;
+                }
+            }
+        }
     }
 
     void Pause()
     {
         Time.timeScale = 0;
+        m_goPauseMenu.SetActive(true);
     }
 
     void Unpause()
     {
         Time.timeScale = 1;
+        m_goPauseMenu.SetActive(false);
     }
 }
