@@ -12,10 +12,10 @@ public class UIController : MonoBehaviour {
     public int m_iSceneIndex = 0;
 
     //
-    public Button m_buRstartButton;
+    // public Button m_buRstartButton;
 
     //
-    public EventSystem m_esEventSysRef;
+    // public EventSystem m_esEventSysRef;
 
     //
     public float m_fMenuXMax;
@@ -36,11 +36,7 @@ public class UIController : MonoBehaviour {
 
 
     float m_fTimer;
-
-    void Awake()
-    {
-        m_esEventSysRef.SetSelectedGameObject(m_buRstartButton.gameObject);
-    }
+    
     public void Quit()
     //On call will close the game
     {
@@ -55,12 +51,7 @@ public class UIController : MonoBehaviour {
 
     void Update()
     {
-        if (m_esEventSysRef.alreadySelecting == false)
-        {
-            m_esEventSysRef.SetSelectedGameObject(m_buRstartButton.gameObject);
-        }
-
-        if (XCI.GetButton(XboxButton.Start))
+        if (XCI.GetButtonDown(XboxButton.Start))
         {
             if (Time.timeScale == 1)
             {
@@ -77,19 +68,19 @@ public class UIController : MonoBehaviour {
             if (m_bCanInteract)
             {
 
-                if (XboxAxis.LeftStickX < 0)
+                if (XCI.GetAxisRaw(XboxAxis.LeftStickX) < 0)
                 {
                     m_bCanInteract = false;
                     //Change selected menu item
                     m_vMenuPosition.x--;
                 }
-                else if (XboxAxis.LeftStickX > 0)
+                else if (XCI.GetAxisRaw(XboxAxis.LeftStickX) > 0)
                 {
                     m_bCanInteract = false;
                     //Change selected menu item
                     m_vMenuPosition.x++;
                 }
-                else if (XboxAxis.LeftStickY < 0)
+                else if (XCI.GetAxisRaw(XboxAxis.LeftStickY) < 0)
                 {
                     m_bCanInteract = false;
                     //Change selected menu item
@@ -98,7 +89,7 @@ public class UIController : MonoBehaviour {
                     else
                         m_vMenuPosition.y--;
                 }
-                else if (XboxAxis.LeftStickY > 0)
+                else if (XCI.GetAxisRaw(XboxAxis.LeftStickY) > 0)
                 {
                     m_bCanInteract = false;
                     //Change selected menu item
