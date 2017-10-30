@@ -47,6 +47,13 @@ public class ShootOBJ : MonoBehaviour {
     Quaternion storeAngle;
 
     bool initialHit = true;
+    bool justReleased = false;
+    uint countReleased = 0;
+
+    [HideInInspector]
+    public bool IsShooting = false;
+
+    Vector3 storeballloc = new Vector3();
 
     //float timer = 0;
     //bool IsTiming = false;
@@ -73,8 +80,10 @@ public class ShootOBJ : MonoBehaviour {
 
         //Places down the pivot point for the grapple
         if (cooldowncheck == false) {
-            if (XCI.GetButtonDown(XboxButton.RightBumper))
+            if (IsShooting)
             {
+
+                justReleased = false;
 
                 Shoot();
 
@@ -89,6 +98,8 @@ public class ShootOBJ : MonoBehaviour {
                     initialHit = false;
                 }
                 cooldowncheck = true;
+
+                countReleased = 0;
             }
         }
         //else
@@ -102,6 +113,26 @@ public class ShootOBJ : MonoBehaviour {
             }
         }
 
+        //------------------
+        //Safety Checks
+        //------------------
+        if (cBall != null)
+        {
+            if (cBall.GetComponent<Grapple>().GrapConnected == true)
+            {
+                Vector3 dir = goPlayer.transform.position - cBall.transform.position;
+                float fDist = dir.magnitude;
+                if(fDist > grappleObj.GetComponent<Grapple>().CurrentDist)
+                {
+                    dir.Normalize();
+                    goPlayer.transform.position = cBall.transform.position + (dir * cBall.GetComponent<Grapple>().CurrentDist);
+                }
+                else
+                {
+
+                }
+            }
+        }
         if (IsGrappling)
         {
             if (lrLineRenderer.enabled == true)
@@ -113,10 +144,11 @@ public class ShootOBJ : MonoBehaviour {
         {
             if (IsGrappling && cBall.GetComponent<Grapple>().GrapConnected == true)
             {
-                goPlayer.GetComponent<Controller2D>().enabled = false;
-                goPlayer.GetComponent<Player>().enabled = false;
-                goPlayer.GetComponent<PlayerController>().enabled = true;
+                //goPlayer.GetComponent<Controller2D>().enabled = false;
+                //goPlayer.GetComponent<Player>().enabled = false;
+                //goPlayer.GetComponent<PlayerController>().enabled = true;
                 rbPlayer.bodyType = RigidbodyType2D.Dynamic;
+
                 if (bstart < 1)
                 {
                     rbPlayer.velocity = goPlayer.GetComponent<Player>().velocity;
@@ -143,20 +175,38 @@ public class ShootOBJ : MonoBehaviour {
                 grapCount = 0;
             }
         }
+
+        if (cBall != null)
+            storeballloc = cBall.transform.position;
+
         //destroys the grapple if the mouse button is released
-        if (XCI.GetButtonUp(XboxButton.RightBumper))
+        if (!IsShooting)
         {
-            StopShoot();
+            Vector3 playerDOM = (storeballloc - goPlayer.transform.position);
+            float curSpeed = playerDOM.magnitude;
+            if (countReleased == 0)
+            {
+                StopShoot();
 
-            IsGrappling = false;
+                IsGrappling = false;
 
-            goPlayer.GetComponent<Player>().velocity = rbPlayer.velocity;
+                goPlayer.GetComponent<Player>().velocity.y = 0;
+                goPlayer.GetComponent<Player>().velocity.z = 0;
+                playerDOM.z = 0;
+                playerDOM.y = 0;
+                //goPlayer.GetComponent<Player>().velocity = rbPlayer.velocity;
 
-            initialHit = true;
+                playerDOM.Normalize();
+                //goPlayer.GetComponent<Player>().velocity += -playerDOM * curSpeed;
 
-            cooldowncheck = true;
+                initialHit = true;
+
+                cooldowncheck = true;
+            }
+            countReleased++;
+            
+            //goPlayer.GetComponent<Player>().velocity = rbPlayer.velocity;
         }
-
     }
 
     void LateUpdate()
@@ -189,11 +239,10 @@ public class ShootOBJ : MonoBehaviour {
 
     void ScriptNormSet()
     {
-        goPlayer.GetComponent<Controller2D>().enabled = true;
-        goPlayer.GetComponent<Player>().enabled = true;
-        goPlayer.GetComponent<PlayerController>().enabled = false;
-        //rbPlayer.bodyType = RigidbodyType2D.Static;
-        rbPlayer.velocity = rbPlayer.velocity / 2;
+        //goPlayer.GetComponent<Controller2D>().enabled = true;
+        //goPlayer.GetComponent<Player>().enabled = true;
+        //goPlayer.GetComponent<PlayerController>().enabled = false;
+        rbPlayer.velocity = goPlayer.GetComponent<Player>().velocity;
         bstart = 0;
     }
     public void Shoot1()
@@ -234,6 +283,7 @@ public class ShootOBJ : MonoBehaviour {
         if (cBall != null)
             Destroy(cBall);
 
+        justReleased = true;
         dj2dJoint.enabled = false;
         lrLineRenderer.enabled = false;
     }

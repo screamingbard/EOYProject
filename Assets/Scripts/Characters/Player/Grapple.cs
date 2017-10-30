@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using XboxCtrlrInput;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -40,6 +41,7 @@ public class Grapple : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         //StoreMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
     }
 
     void Start()
@@ -54,6 +56,7 @@ public class Grapple : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(CurrentDist);
         transform.position += Dir * projectileSpeed * Time.deltaTime;
     }
 
@@ -65,6 +68,7 @@ public class Grapple : MonoBehaviour
             GrapConnected = true;
             CurrentDist = (transform.position - tempobj.transform.position).magnitude;
             holdGrapple = false;
+            
         }
 
     }

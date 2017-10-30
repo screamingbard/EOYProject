@@ -15,6 +15,7 @@ public class Player : MonoBehaviour {
     float accelerationTimeAirbourne = 0.2f;
     float acceleratinTimeGrounded = 0.1f;
     public float moveSpeed = 6;
+    float defaultSpeed;
 
     //[HideInInspector]
     public bool isDead = false;
@@ -25,8 +26,18 @@ public class Player : MonoBehaviour {
     public Vector3 velocity;
     float XSmoothing;
 
+    public float drag;
     public float playerdirection;
-    bool isturned = false;
+    bool isturned;
+
+    [HideInInspector]
+    public Vector2 input;
+    [HideInInspector]
+    public bool CanJump = false;
+
+    public float fPlayerMaxSpeed = 30.0f;
+
+    float targetVelocityX = 0;
 
     Controller2D controller;
 
@@ -35,35 +46,55 @@ public class Player : MonoBehaviour {
         controller = GetComponent<Controller2D>();
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJump, 2);
         jumpVelocity = Mathf.Abs(gravity) * timeToJump;
+
+        CanJump = false;
+
+        defaultSpeed = moveSpeed;
     }
 
     void Update()
     {
+        Debug.Log(velocity.x + " ," + velocity.y);
+
         if (controller.collisions.above || controller.collisions.below)
         {
             velocity.y = 0;
         }
 
-        Vector2 input = new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX), XCI.GetAxisRaw(XboxAxis.LeftStickY));//Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-        if (XCI.GetButton(XboxButton.LeftBumper) && controller.collisions.below || XCI.GetButton(XboxButton.A) && controller.collisions.below)
+        if (CanJump == true && controller.collisions.below)
         {
             velocity.y = jumpVelocity;
         }
 
-        float targetVelocityX = input.x * moveSpeed;
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref XSmoothing, (controller.collisions.below) ? acceleratinTimeGrounded : accelerationTimeAirbourne);
+        
         velocity.y += gravity * Time.deltaTime;
 
-        if (velocity.x > 30)
-            velocity.x = 30.0f;
-        if (velocity.y > 30)
-            velocity.y = 30.0f;
+        if (controller.collisions.below && gameObject.GetComponentInChildren<ShootOBJ>().grappleObj.GetComponent<Grapple>().GrapConnected == false)
+        {
+            targetVelocityX = input.x * moveSpeed;
 
-        if (velocity.x < -30)
-            velocity.x = -30.0f;
-        if (velocity.y < -30)
-            velocity.y = -30.0f;
+            moveSpeed = defaultSpeed;
+
+            if (velocity.x > fPlayerMaxSpeed)
+                velocity.x = fPlayerMaxSpeed;
+            if (velocity.y > fPlayerMaxSpeed)
+                velocity.y = fPlayerMaxSpeed;
+
+            if (velocity.x < -fPlayerMaxSpeed)
+                velocity.x = -fPlayerMaxSpeed;
+            if (velocity.y < -fPlayerMaxSpeed)
+                velocity.y = -fPlayerMaxSpeed;
+        }
+        else if(gameObject.GetComponentInChildren<ShootOBJ>().grappleObj.GetComponent<Grapple>().GrapConnected == true)
+        {
+            targetVelocityX += input.x * moveSpeed * Time.deltaTime;
+        }
+        else
+        {
+            targetVelocityX = input.x * moveSpeed;
+        }
+
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref XSmoothing, (controller.collisions.below) ? acceleratinTimeGrounded : accelerationTimeAirbourne);
 
         controller.Move(velocity * Time.deltaTime);
 
@@ -85,5 +116,11 @@ public class Player : MonoBehaviour {
         controller.VerticalDeathCollision(ref velocity);
         //DEBUGGING
         isDead = controller.collisions.IsDying;
+    }
+    float calcmaxspeed()
+    {
+        float storeNum = Mathf.Pow(fPlayerMaxSpeed, 2) / 2;
+        float res = Mathf.Sqrt(storeNum);
+        return res;
     }
 }
