@@ -52,6 +52,8 @@ public class VisionCone : MonoBehaviour {
     [HideInInspector]
     public Mesh m_mOverlayViewMesh;
 
+    //The alert object that appears when the death timer starts counting
+    public GameObject m_goAlertSignal;
    
     void Start()
     {
@@ -78,6 +80,18 @@ public class VisionCone : MonoBehaviour {
 
         //Set the mesh of the mesh filter to the view mesh
         m_mfOverlayViewMeshFilter.mesh = m_mOverlayViewMesh;
+    }
+
+    void Update()
+    {
+        if (m_goAlertSignal != null)
+        {
+            //Do an alert thing when the death timer starts counting
+            if (m_fUseDeathTimer > 0)
+                m_goAlertSignal.SetActive(true);
+            else
+                m_goAlertSignal.SetActive(false);
+        }
     }
 
     void LateUpdate()
