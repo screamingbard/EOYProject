@@ -41,6 +41,8 @@ public class Player : MonoBehaviour {
 
     Controller2D controller;
 
+    ShootOBJ shootOBJ;
+
     void Start()
     {
         controller = GetComponent<Controller2D>();
@@ -50,11 +52,13 @@ public class Player : MonoBehaviour {
         CanJump = false;
 
         defaultSpeed = moveSpeed;
+
+        shootOBJ = GetComponentInChildren<ShootOBJ>();
     }
 
     void Update()
     {
-        Debug.Log(velocity.x + " ," + velocity.y);
+        //Debug.Log(velocity.x + " ," + velocity.y);
 
         if (controller.collisions.above || controller.collisions.below)
         {
@@ -68,13 +72,42 @@ public class Player : MonoBehaviour {
 
         
         velocity.y += gravity * Time.deltaTime;
+        if (velocity.y < -50)
+            velocity.y = -50;
 
-        if (controller.collisions.below && gameObject.GetComponentInChildren<ShootOBJ>().grappleObj.GetComponent<Grapple>().GrapConnected == false)
+        bool bGrappling = shootOBJ.cBall && shootOBJ.cBall.GetComponent<Grapple>().GrapConnected == true;
+
+        if (controller.collisions.below && !bGrappling)
         {
             targetVelocityX = input.x * moveSpeed;
 
             moveSpeed = defaultSpeed;
+        }
+        else if(bGrappling)
+        {
+            targetVelocityX += input.x * moveSpeed * Time.deltaTime * 10.0f;
+        }
+        else
+        {
+            targetVelocityX = input.x * moveSpeed;
+        }
 
+        if(bGrappling && !gameObject.GetComponent<PlayerInput>().isMoving)
+        {
+            if(Mathf.Sign(targetVelocityX) < 0)
+            {
+                targetVelocityX += moveSpeed * Time.deltaTime * 5.0f;
+            }
+            else
+            {
+                targetVelocityX -= moveSpeed * Time.deltaTime * 5.0f;
+            }
+        }
+
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref XSmoothing, (controller.collisions.below) ? acceleratinTimeGrounded : accelerationTimeAirbourne);
+
+        if (!bGrappling)
+        {
             if (velocity.x > fPlayerMaxSpeed)
                 velocity.x = fPlayerMaxSpeed;
             if (velocity.y > fPlayerMaxSpeed)
@@ -85,16 +118,6 @@ public class Player : MonoBehaviour {
             if (velocity.y < -fPlayerMaxSpeed)
                 velocity.y = -fPlayerMaxSpeed;
         }
-        else if(gameObject.GetComponentInChildren<ShootOBJ>().grappleObj.GetComponent<Grapple>().GrapConnected == true)
-        {
-            targetVelocityX += input.x * moveSpeed * Time.deltaTime;
-        }
-        else
-        {
-            targetVelocityX = input.x * moveSpeed;
-        }
-
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref XSmoothing, (controller.collisions.below) ? acceleratinTimeGrounded : accelerationTimeAirbourne);
 
         controller.Move(velocity * Time.deltaTime);
 

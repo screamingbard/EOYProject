@@ -29,7 +29,8 @@ public class ShootOBJ : MonoBehaviour {
     public Vector2 ballDir;
 
     public GameObject grappleObj;
-    private GameObject cBall = null;
+    [HideInInspector]
+    public GameObject cBall = null;
 
     public float grapImpulse = 1.0f;
     public float GrapCooldown = 0.5f;
@@ -47,7 +48,6 @@ public class ShootOBJ : MonoBehaviour {
     Quaternion storeAngle;
 
     bool initialHit = true;
-    bool justReleased = false;
     uint countReleased = 0;
 
     [HideInInspector]
@@ -64,16 +64,11 @@ public class ShootOBJ : MonoBehaviour {
         dj2dJoint = goPlayer.GetComponent<DistanceJoint2D>();
 
         lrLineRenderer.enabled = false;
-        
-        StorePos = Input.mousePosition;
-    }
+        }
 
     // Update is called once per frame
     void Update()
     {
-
-        StorePos = (Input.mousePosition - transform.position);
-
         transform.LookAt(rotObject);
 
 
@@ -82,9 +77,6 @@ public class ShootOBJ : MonoBehaviour {
         if (cooldowncheck == false) {
             if (IsShooting)
             {
-
-                justReleased = false;
-
                 Shoot();
 
                 grappleObj.GetComponent<Grapple>().holdGrapple = true;
@@ -127,10 +119,6 @@ public class ShootOBJ : MonoBehaviour {
                     dir.Normalize();
                     goPlayer.transform.position = cBall.transform.position + (dir * cBall.GetComponent<Grapple>().CurrentDist);
                 }
-                else
-                {
-
-                }
             }
         }
         if (IsGrappling)
@@ -144,9 +132,6 @@ public class ShootOBJ : MonoBehaviour {
         {
             if (IsGrappling && cBall.GetComponent<Grapple>().GrapConnected == true)
             {
-                //goPlayer.GetComponent<Controller2D>().enabled = false;
-                //goPlayer.GetComponent<Player>().enabled = false;
-                //goPlayer.GetComponent<PlayerController>().enabled = true;
                 rbPlayer.bodyType = RigidbodyType2D.Dynamic;
 
                 if (bstart < 1)
@@ -182,8 +167,8 @@ public class ShootOBJ : MonoBehaviour {
         //destroys the grapple if the mouse button is released
         if (!IsShooting)
         {
-            Vector3 playerDOM = (storeballloc - goPlayer.transform.position);
-            float curSpeed = playerDOM.magnitude;
+            //Vector3 playerDOM = (storeballloc - goPlayer.transform.position);
+            //float curSpeed = playerDOM.magnitude;
             if (countReleased == 0)
             {
                 StopShoot();
@@ -192,20 +177,16 @@ public class ShootOBJ : MonoBehaviour {
 
                 goPlayer.GetComponent<Player>().velocity.y = 0;
                 goPlayer.GetComponent<Player>().velocity.z = 0;
-                playerDOM.z = 0;
-                playerDOM.y = 0;
-                //goPlayer.GetComponent<Player>().velocity = rbPlayer.velocity;
+                //playerDOM.z = 0;
+                //playerDOM.y = 0;
 
-                playerDOM.Normalize();
-                //goPlayer.GetComponent<Player>().velocity += -playerDOM * curSpeed;
+                //playerDOM.Normalize();
 
                 initialHit = true;
 
                 cooldowncheck = true;
             }
             countReleased++;
-            
-            //goPlayer.GetComponent<Player>().velocity = rbPlayer.velocity;
         }
     }
 
@@ -223,8 +204,6 @@ public class ShootOBJ : MonoBehaviour {
         mDir = mPos - (Vector2)goPlayer.transform.position;
 
         mDir.Normalize();
-
-        //Quaternion projLoc = Quaternion.Euler(0, 0, Mathf.Atan2(mDir.y, mDir.x) * Mathf.Rad2Deg);
     
         //Creates a new grapple object if there is none
         if (cBall == null)
@@ -239,9 +218,6 @@ public class ShootOBJ : MonoBehaviour {
 
     void ScriptNormSet()
     {
-        //goPlayer.GetComponent<Controller2D>().enabled = true;
-        //goPlayer.GetComponent<Player>().enabled = true;
-        //goPlayer.GetComponent<PlayerController>().enabled = false;
         rbPlayer.velocity = goPlayer.GetComponent<Player>().velocity;
         bstart = 0;
     }
@@ -283,7 +259,6 @@ public class ShootOBJ : MonoBehaviour {
         if (cBall != null)
             Destroy(cBall);
 
-        justReleased = true;
         dj2dJoint.enabled = false;
         lrLineRenderer.enabled = false;
     }

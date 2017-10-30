@@ -84,5 +84,10 @@ public class PlayerController : MonoBehaviour {
             IsGrounded = true;
         else
             IsGrounded = false;
+
+        if((collision2D.gameObject.layer == 9 && gameObject.GetComponentInChildren<ShootOBJ>().cBall) && gameObject.GetComponentInChildren<ShootOBJ>().cBall.GetComponent<Grapple>().GrapConnected)
+        {
+            gameObject.GetComponent<Player>().velocity.x = -gameObject.GetComponent<Player>().velocity.x/2;
+        }
     }
 }

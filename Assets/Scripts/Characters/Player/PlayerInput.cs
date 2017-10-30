@@ -7,6 +7,8 @@ public class PlayerInput : MonoBehaviour {
 
     bool KeyboardInput = true;
 
+    public bool isMoving = false;
+
     GameObject goPlayer;
 
 	// Use this for initialization
@@ -41,6 +43,15 @@ public class PlayerInput : MonoBehaviour {
             //Shooting
             goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.x = Input.GetAxis("Horizontal");
             goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.y = Input.GetAxis("Vertical");
+
+            if (goPlayer.GetComponent<Player>().input.x != 0 || goPlayer.GetComponent<Player>().input.y != 0)
+            {
+                isMoving = true;
+            }
+            else
+            {
+                isMoving = false;
+            }
 
             if (Input.GetKey(KeyCode.Space))
             {
