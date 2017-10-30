@@ -36,7 +36,7 @@ public class VisionCone : MonoBehaviour {
     float m_fUseDeathTimer;
 
     //The transform of the player
-    public Transform m_tfPlayer;
+    Transform m_tfPlayer;
 
     //A mesh filter variable used for the vision cone ingame visualisation
     public MeshFilter m_mfViewMeshFilter;
@@ -55,6 +55,9 @@ public class VisionCone : MonoBehaviour {
    
     void Start()
     {
+        //Get the players transforms
+        m_tfPlayer = GameObject.FindWithTag("Player").transform;
+
         //Set the death timer of the vision cone
         m_fUseDeathTimer = m_fDeathTimer;
 
