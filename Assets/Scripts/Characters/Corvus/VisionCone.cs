@@ -54,6 +54,12 @@ public class VisionCone : MonoBehaviour {
 
     //The alert object that appears when the death timer starts counting
     public GameObject m_goAlertSignal;
+
+    //The animation that will play once the player has been seen;
+    public Animation m_aAlertAnimation;
+
+    //A boolean to restrict the animation to play only when the player is initially spotted
+    bool m_bCanPlayAnimation;
    
     void Start()
     {
@@ -88,9 +94,22 @@ public class VisionCone : MonoBehaviour {
         {
             //Do an alert thing when the death timer starts counting
             if (m_fUseDeathTimer > 0)
+            {
                 m_goAlertSignal.SetActive(true);
+                if (m_aAlertAnimation != null)
+                {
+                    if (m_bCanPlayAnimation)
+                    {
+                        m_aAlertAnimation.Play();
+                        m_bCanPlayAnimation = false;
+                    }
+                }
+            }
             else
+            {
                 m_goAlertSignal.SetActive(false);
+                m_bCanPlayAnimation = true;
+            }
         }
     }
 
