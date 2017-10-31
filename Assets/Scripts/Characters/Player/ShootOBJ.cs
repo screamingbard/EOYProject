@@ -86,7 +86,7 @@ public class ShootOBJ : MonoBehaviour {
                 if (cBall.GetComponent<Grapple>().GrapConnected && initialHit)
                 {
                     goPlayer.GetComponent<Player>().velocity += mDir * grapImpulse;
-                    fHoldDistance -= 1;
+                    fHoldDistance -= 1 * Time.deltaTime;
                     initialHit = false;
                 }
                 cooldowncheck = true;
@@ -114,10 +114,16 @@ public class ShootOBJ : MonoBehaviour {
             {
                 Vector3 dir = goPlayer.transform.position - cBall.transform.position;
                 float fDist = dir.magnitude;
-                if(fDist > grappleObj.GetComponent<Grapple>().CurrentDist)
+                if( fDist > cBall.GetComponent<Grapple>().CurrentDist && !gameObject.GetComponentInParent<Controller2D>().collisions.left ||
+                    fDist > cBall.GetComponent<Grapple>().CurrentDist && !gameObject.GetComponentInParent<Controller2D>().collisions.right)
                 {
                     dir.Normalize();
                     goPlayer.transform.position = cBall.transform.position + (dir * cBall.GetComponent<Grapple>().CurrentDist);
+                }
+                else
+                {
+                    dir = goPlayer.transform.position - cBall.transform.position;
+                    fDist = dir.magnitude;
                 }
             }
         }
@@ -134,22 +140,22 @@ public class ShootOBJ : MonoBehaviour {
             {
                 rbPlayer.bodyType = RigidbodyType2D.Dynamic;
 
-                if (bstart < 1)
-                {
+               // if (bstart < 1)
+               // {
                     rbPlayer.velocity = goPlayer.GetComponent<Player>().velocity;
-                    bstart++;
-                }
-                grapCount++;
+                    //bstart++;
+                //}
+               // grapCount++;
 
                 rbPlayer.freezeRotation = true;
             }
             else
             {
-                if (goPlayer.GetComponent<PlayerController>().IsGrounded)
-                {
+                //if (goPlayer.GetComponent<PlayerController>().IsGrounded)
+                //{
                     ScriptNormSet();
-                    grapCount = 0;
-                }
+                    //grapCount = 0;
+                //}
             }
         }
         else
@@ -219,7 +225,7 @@ public class ShootOBJ : MonoBehaviour {
     void ScriptNormSet()
     {
         rbPlayer.velocity = goPlayer.GetComponent<Player>().velocity;
-        bstart = 0;
+        //bstart = 0;
     }
     public void Shoot1()
     {
@@ -257,9 +263,12 @@ public class ShootOBJ : MonoBehaviour {
     public void StopShoot()
     {
         if (cBall != null)
+        {
+            cBall.GetComponent<Grapple>().GrapConnected = false;
             Destroy(cBall);
-
+        }
         dj2dJoint.enabled = false;
         lrLineRenderer.enabled = false;
+        
     }
 }

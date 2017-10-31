@@ -31,6 +31,13 @@ public class PlayerController : MonoBehaviour {
 
     public Rigidbody2D rb2D = null;
     RaycastHit2D hit;
+
+    //----------------------------------
+    //Collisions to make player bounce
+    //----------------------------------
+    float bouncecd = 0.0f;
+    public float MaxBounceCD = 1;
+
     // Use this for initialization
     void Awake () {
         //Gets Players RigidBody
@@ -85,9 +92,18 @@ public class PlayerController : MonoBehaviour {
         else
             IsGrounded = false;
 
-        if((collision2D.gameObject.layer == 9 && gameObject.GetComponentInChildren<ShootOBJ>().cBall) && gameObject.GetComponentInChildren<ShootOBJ>().cBall.GetComponent<Grapple>().GrapConnected)
+        if((collision2D.gameObject.layer == 9 && gameObject.GetComponentInChildren<ShootOBJ>().cBall) && gameObject.GetComponentInChildren<ShootOBJ>().cBall.GetComponent<Grapple>().GrapConnected == true && gameObject.GetComponent<Controller2D>().collisions.right ||
+            (collision2D.gameObject.layer == 9 && gameObject.GetComponentInChildren<ShootOBJ>().cBall) && gameObject.GetComponentInChildren<ShootOBJ>().cBall.GetComponent<Grapple>().GrapConnected == true && gameObject.GetComponent<Controller2D>().collisions.right)
         {
-            gameObject.GetComponent<Player>().velocity.x = -gameObject.GetComponent<Player>().velocity.x/2;
+            gameObject.GetComponent<Player>().velocity.x = -gameObject.GetComponent<Player>().velocity.x;
+            gameObject.GetComponent<PlayerInput>().canInput = false;
+
+            if(bouncecd >= MaxBounceCD)
+            {
+                bouncecd = 0.0f;
+                gameObject.GetComponent<PlayerInput>().canInput = true;
+            }
+            bouncecd += Time.deltaTime;
         }
     }
 }

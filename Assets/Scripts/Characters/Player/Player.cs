@@ -63,6 +63,7 @@ public class Player : MonoBehaviour {
         if (controller.collisions.above || controller.collisions.below)
         {
             velocity.y = 0;
+            gameObject.GetComponent<PlayerInput>().canInput = true;
         }
 
         if (CanJump == true && controller.collisions.below)
@@ -81,7 +82,7 @@ public class Player : MonoBehaviour {
         {
             targetVelocityX = input.x * moveSpeed;
 
-            moveSpeed = defaultSpeed;
+            //moveSpeed = defaultSpeed;
         }
         else if(bGrappling)
         {
@@ -91,6 +92,7 @@ public class Player : MonoBehaviour {
         {
             targetVelocityX = input.x * moveSpeed;
         }
+
 
         if(bGrappling && !gameObject.GetComponent<PlayerInput>().isMoving)
         {
@@ -103,20 +105,38 @@ public class Player : MonoBehaviour {
                 targetVelocityX -= moveSpeed * Time.deltaTime * 5.0f;
             }
         }
+        //tst
+        //if (bGrappling && gameObject.GetComponent<PlayerInput>().isMoving && controller.collisions.below)
+        //{
+
+        //}
 
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref XSmoothing, (controller.collisions.below) ? acceleratinTimeGrounded : accelerationTimeAirbourne);
 
+        Debug.Log(velocity.x);
         if (!bGrappling)
         {
-            if (velocity.x > fPlayerMaxSpeed)
-                velocity.x = fPlayerMaxSpeed;
-            if (velocity.y > fPlayerMaxSpeed)
-                velocity.y = fPlayerMaxSpeed;
+            if (velocity.x > 100)
+                velocity.x = 100;
+            if (velocity.y > 100)
+                velocity.y = 100;
 
+            if (velocity.x < -100)
+                velocity.x = -100;
+            if (velocity.y < -100)
+                velocity.y = -100;
+        }
+
+        if (gameObject.GetComponent<PlayerInput>().justReleased)
+        {
+            if (velocity.x > fPlayerMaxSpeed)
+            {
+                velocity.x = calcSpeedOutOfJump();
+            }
             if (velocity.x < -fPlayerMaxSpeed)
-                velocity.x = -fPlayerMaxSpeed;
-            if (velocity.y < -fPlayerMaxSpeed)
-                velocity.y = -fPlayerMaxSpeed;
+            {
+                velocity.x = -calcSpeedOutOfJump();
+            }
         }
 
         controller.Move(velocity * Time.deltaTime);
@@ -146,4 +166,14 @@ public class Player : MonoBehaviour {
         float res = Mathf.Sqrt(storeNum);
         return res;
     }
+
+    float calcSpeedOutOfJump()
+    {
+        float speed = 0;
+        speed = -(velocity.x / velocity.y) * 12;
+
+
+        return speed;
+    }
 }
+

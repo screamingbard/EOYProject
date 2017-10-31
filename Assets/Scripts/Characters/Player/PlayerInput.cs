@@ -9,6 +9,13 @@ public class PlayerInput : MonoBehaviour {
 
     public bool isMoving = false;
 
+    public bool canInput = true;
+
+    //Checks if the key was recently pressed
+    int hasPressed = 0;
+    //Checks if the button was just released
+    public bool justReleased = false;
+
     GameObject goPlayer;
 
 	// Use this for initialization
@@ -33,13 +40,13 @@ public class PlayerInput : MonoBehaviour {
         //-------------------------------
         if (KeyboardInput == true)
         {
-            //PlayerMovement
-            goPlayer.GetComponent<Player>().input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+                //PlayerMovement
+                goPlayer.GetComponent<Player>().input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-            if(Input.GetKeyDown(KeyCode.W))
-                goPlayer.GetComponent<Player>().CanJump = true;
-            if (Input.GetKeyUp(KeyCode.W))
-                goPlayer.GetComponent<Player>().CanJump = false;
+                if (Input.GetKeyDown(KeyCode.W))
+                    goPlayer.GetComponent<Player>().CanJump = true;
+                if (Input.GetKeyUp(KeyCode.W))
+                    goPlayer.GetComponent<Player>().CanJump = false;
             //Shooting
             goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.x = Input.GetAxis("Horizontal");
             goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.y = Input.GetAxis("Vertical");
@@ -53,7 +60,12 @@ public class PlayerInput : MonoBehaviour {
                 isMoving = false;
             }
 
-            if (Input.GetKey(KeyCode.Space))
+            if (!canInput)
+            {
+                goPlayer.GetComponent<Player>().input.x = 0;
+                goPlayer.GetComponent<Player>().input.y = 0;
+            }
+                if (Input.GetKey(KeyCode.Space))
             {
                 goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting = true;
             }
@@ -68,25 +80,40 @@ public class PlayerInput : MonoBehaviour {
         //-------------------------------
         if (KeyboardInput == false)
         {
-            //PlayerMovement
-            goPlayer.GetComponent<Player>().input = new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX), XCI.GetAxisRaw(XboxAxis.LeftStickY));
+                //PlayerMovement
+                goPlayer.GetComponent<Player>().input = new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX), XCI.GetAxisRaw(XboxAxis.LeftStickY));
 
-            if (XCI.GetButton(XboxButton.RightBumper) || XCI.GetButton(XboxButton.A))
-                goPlayer.GetComponent<Player>().CanJump = true;
-            if (XCI.GetButtonUp(XboxButton.RightBumper) || XCI.GetButtonUp(XboxButton.A))
-                goPlayer.GetComponent<Player>().CanJump = false;
-
+                if (XCI.GetButton(XboxButton.RightBumper) || XCI.GetButton(XboxButton.A))
+                    goPlayer.GetComponent<Player>().CanJump = true;
+                if (XCI.GetButtonUp(XboxButton.RightBumper) || XCI.GetButtonUp(XboxButton.A))
+                    goPlayer.GetComponent<Player>().CanJump = false;
             //Shooting
             goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.x = XCI.GetAxis(XboxAxis.LeftStickX);
             goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.y = XCI.GetAxis(XboxAxis.LeftStickY);
 
+            if (!canInput)
+            {
+                goPlayer.GetComponent<Player>().input.x = 0;
+                goPlayer.GetComponent<Player>().input.y = 0;
+            }
+
             if (XCI.GetAxis(XboxAxis.RightTrigger) > 0)
             {
                 goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting = true;
+                hasPressed = 0;
             }
             else
             {
                 goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting = false;
+                hasPressed++;
+            }
+            if(hasPressed == 1)
+            {
+                justReleased = true;
+            }
+            else
+            {
+                justReleased = false;
             }
         }
 
