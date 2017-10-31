@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4799911279679308}
   - component: {fileID: 212431405156887790}
-  - component: {fileID: 68315790693394282}
+  - component: {fileID: 60857929192806710}
   m_Layer: 9
   m_Name: Ground_012_TileFlat_001
   m_TagString: Untagged
@@ -35,14 +35,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355434338488670}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -130.44, y: -31.11, z: 0}
+  m_LocalPosition: {x: -249.5, y: -20.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &68315790693394282
-EdgeCollider2D:
+--- !u!60 &60857929192806710
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,19 +54,25 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 15.125, y: 44.429688}
+    newSize: {x: 19.359999, y: 56.87}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -6.1612244, y: -22.797958}
-  - {x: -6.2201996, y: 22.42975}
-  - {x: -4.223648, y: 22.586193}
-  - {x: -1.3038788, y: 22.626675}
-  - {x: -0.13868713, y: 22.305622}
-  - {x: 1.4550781, y: 22.56242}
-  - {x: 3.5297241, y: 22.552883}
-  - {x: 4.2124634, y: 22.643803}
-  - {x: 5.736847, y: 22.227116}
-  - {x: 6.132843, y: 22.198235}
-  - {x: 6.2265625, y: -22.731522}
+    m_Paths:
+    - - {x: -4.5427704, y: 19.092659}
+      - {x: 0.035476685, y: 19.352951}
+      - {x: 3.2166443, y: 20.242369}
+      - {x: 5.250641, y: 21.769854}
+      - {x: 7.4846954, y: 22.192585}
+      - {x: 7.5778656, y: -22.21456}
+      - {x: -7.5352936, y: -22.2106}
+      - {x: -7.415451, y: 19.729828}
 --- !u!212 &212431405156887790
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -99,12 +105,12 @@ SpriteRenderer:
   m_SortingLayerID: -1687896917
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5ee0dc2d359eadf43ae65b137560924e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3338094be1d7d8345be20641490c8e12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 15.940001, y: 58.370003}
+  m_Size: {x: 19.359999, y: 56.87}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

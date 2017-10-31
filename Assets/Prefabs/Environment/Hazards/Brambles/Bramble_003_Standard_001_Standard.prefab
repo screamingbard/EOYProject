@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4113101454412450}
   - component: {fileID: 212855808974261792}
-  - component: {fileID: 58525884209094216}
+  - component: {fileID: 60931446118312216}
   m_Layer: 9
   m_Name: Bramble_003_Standard_001_Standard
   m_TagString: DeathZone
@@ -35,14 +35,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1480952513910664}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -31.01, y: -7.61, z: 0}
+  m_LocalPosition: {x: -470.07086, y: -326.63647, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58525884209094216
-CircleCollider2D:
+--- !u!60 &60931446118312216
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,8 +54,49 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.75
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.84375, y: 5.9375}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.0586243, y: -2.512146}
+      - {x: 0.6098633, y: -2.4329834}
+      - {x: 0.12762451, y: -2.8396912}
+      - {x: -0.47097778, y: -2.8522644}
+      - {x: -0.765625, y: -2.6764832}
+      - {x: -1.679657, y: -2.3890686}
+      - {x: -2.2368164, y: -1.9646912}
+      - {x: -2.0647583, y: -1.3920593}
+      - {x: -2.701355, y: -0.88497925}
+      - {x: -2.7666626, y: -0.47555542}
+      - {x: -2.607727, y: -0.0687561}
+      - {x: -2.5569458, y: 0.8480835}
+      - {x: -2.23526, y: 1.1101685}
+      - {x: -2.5595398, y: 1.4983215}
+      - {x: -2.5285034, y: 2.059784}
+      - {x: -1.5175171, y: 2.7229614}
+      - {x: -0.79382324, y: 2.6445007}
+      - {x: -0.45947266, y: 2.717987}
+      - {x: 0.033569336, y: 2.6811829}
+      - {x: 0.50808716, y: 2.6963806}
+      - {x: 0.8430176, y: 2.4562683}
+      - {x: 1.1005554, y: 2.4654236}
+      - {x: 1.4347534, y: 2.715088}
+      - {x: 1.7144165, y: 2.0374756}
+      - {x: 2.162323, y: 2.1107483}
+      - {x: 2.5236206, y: 2.027832}
+      - {x: 2.7008057, y: 1.8471375}
+      - {x: 2.7400208, y: 1.3468323}
+      - {x: 2.4430237, y: 1.0613708}
+      - {x: 2.5936584, y: 0.42474365}
+      - {x: 2.674652, y: -0.72613525}
+      - {x: 1.973877, y: -2.4940796}
 --- !u!212 &212855808974261792
 SpriteRenderer:
   m_ObjectHideFlags: 1

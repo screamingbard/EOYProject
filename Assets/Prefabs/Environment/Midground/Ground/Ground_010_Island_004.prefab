@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4133649511382498}
   - component: {fileID: 212426007002628980}
-  - component: {fileID: 68303901313285958}
+  - component: {fileID: 60304325928967082}
   m_Layer: 9
   m_Name: Ground_010_Island_004
   m_TagString: Untagged
@@ -35,14 +35,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1542148658360718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -213.21407, y: -59.69114, z: 0}
+  m_LocalPosition: {x: -30.1, y: -59.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &68303901313285958
-EdgeCollider2D:
+--- !u!60 &60304325928967082
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,18 +54,33 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 29.320312, y: 40.929688}
+    newSize: {x: 36.319996, y: 52.39}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -8.294403, y: -20.315643}
-  - {x: -12.010513, y: -3.2725677}
-  - {x: -10.837769, y: 15.820995}
-  - {x: -13.641022, y: 20.127636}
-  - {x: 0.36862183, y: 16.80812}
-  - {x: 3.753006, y: 10.911495}
-  - {x: 7.1894073, y: 7.97723}
-  - {x: 7.4854584, y: 2.1644897}
-  - {x: 12.673645, y: -3.8837242}
-  - {x: 13.877335, y: -20.160568}
+    m_Paths:
+    - - {x: 14.309402, y: -20.422512}
+      - {x: 14.30545, y: -11.329334}
+      - {x: 12.65082, y: -3.3493118}
+      - {x: 10.5943165, y: -0.2324791}
+      - {x: 8.071192, y: 1.7757301}
+      - {x: 7.54014, y: 6.9603004}
+      - {x: 0.79346466, y: 16.626041}
+      - {x: -1.7556896, y: 17.279495}
+      - {x: -7.2996616, y: 18.225437}
+      - {x: -9.219725, y: 19.222954}
+      - {x: -13.592951, y: 20.4534}
+      - {x: -11.793936, y: 17.79065}
+      - {x: -10.099291, y: 16.449665}
+      - {x: -11.443422, y: 9.562294}
+      - {x: -11.721491, y: -0.31983948}
+      - {x: -7.5948086, y: -20.449825}
 --- !u!212 &212426007002628980
 SpriteRenderer:
   m_ObjectHideFlags: 1
