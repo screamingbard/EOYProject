@@ -2111,6 +2111,8 @@ MonoBehaviour:
   input: {x: 0, y: 0}
   CanJump: 0
   fPlayerMaxSpeed: 30
+  inAirModifier: 20
+  MaxInAirSpeed: 100
 --- !u!114 &114284654214742612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2148,10 +2150,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1023684816556058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52fc714cc8a8c4c46b0c9ff510c17d02, type: 3}
+  m_Script: {fileID: 11500000, guid: d643b9fedad91fd4698f9ad56d7cbc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  riggedcontrolsXbox: 0
   isMoving: 0
+  canInput: 1
+  justReleased: 0
 --- !u!114 &114494823523412868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2160,12 +2165,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1016132785178536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8343c8819e90081429cfafb1af13ac85, type: 3}
+  m_Script: {fileID: 11500000, guid: 2eac8c82a7de2894890e9fbf4235b495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Parent: {fileID: 1023684816556058}
+  Parent: {fileID: 0}
   store: {x: 0, y: 0, z: 0, w: 0}
-  Riggedcontrols: 0
   JoystickStore: {x: 0, y: 0, z: 0}
 --- !u!114 &114598958064861760
 MonoBehaviour:
@@ -2229,6 +2233,7 @@ MonoBehaviour:
   lrLineRenderer: {fileID: 0}
   IsGrappling: 0
   rb2D: {fileID: 50305996315540128}
+  MaxBounceCD: 1
 --- !u!212 &212599522044366592
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -2269,7 +2274,7 @@ SpriteRenderer:
   m_Size: {x: 1.5, y: 2.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!232 &232997459581255610
 DistanceJoint2D:
