@@ -16,6 +16,10 @@ public class GameData : MonoBehaviour
     [HideInInspector]
     public Transform m_tfPlayerPosiion;
 
+    //
+    [HideInInspector]
+    public Transform m_tfLastCheckPoint;
+
     public struct controls
     //Stores the controls
     {
@@ -59,11 +63,12 @@ public class GameData : MonoBehaviour
         }
     };
 
-    public GameData(Settings a_setSettigs, float a_fSpeedRunTimer, Transform a_tfPlayerPosition)
+    public GameData(Settings a_setSettigs, float a_fSpeedRunTimer, Transform a_tfPlayerPosition, Transform a_tfLastCheckPoint)
     //Constructor for the GameData
     {
         m_setSettigs = a_setSettigs;
         m_fSpeedRunTimer = a_fSpeedRunTimer;
         m_tfPlayerPosiion = a_tfPlayerPosition;
+        m_tfLastCheckPoint = a_tfLastCheckPoint;
     }
 }

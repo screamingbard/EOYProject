@@ -15,9 +15,18 @@ public class SaveLoadGame : MonoBehaviour
 
     //The current game data
     GameData.Settings m_setCurrentSettings;
-    float m_fSpeedRunTimer;
-    
 
+    //
+    [HideInInspector]
+    public Transform m_tfLastCheckPoint;
+
+
+    float m_fSpeedRunTimer;
+
+    void Update()
+    {
+        m_fSpeedRunTimer += Time.deltaTime;
+    }
     public void SaveFile()
     //Save the data from the game
     {
@@ -32,7 +41,7 @@ public class SaveLoadGame : MonoBehaviour
 
         //Create the variable to store the current game data
         GameData m_sdData = 
-            new GameData(m_setCurrentSettings, m_fSpeedRunTimer, m_tfPlayerPosition);
+            new GameData(m_setCurrentSettings, m_fSpeedRunTimer, m_tfPlayerPosition, m_tfLastCheckPoint);
         BinaryFormatter m_bfBinaryFormatter = new BinaryFormatter();
 
         //Save the data in a binary format
@@ -68,6 +77,6 @@ public class SaveLoadGame : MonoBehaviour
         m_setCurrentSettings = m_sdData.m_setSettigs;
         m_fSpeedRunTimer = m_sdData.m_fSpeedRunTimer;
         m_tfPlayerPosition = m_sdData.m_tfPlayerPosiion;
+        m_tfLastCheckPoint = m_sdData.m_tfLastCheckPoint;
     }
-
 }
