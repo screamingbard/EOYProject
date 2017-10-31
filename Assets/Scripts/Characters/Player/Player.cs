@@ -125,7 +125,7 @@ public class Player : MonoBehaviour {
         //--------------------
         //In air Max Speed
         //--------------------
-        if (controller.collisions.below || controller.collisions.above)
+        if (!controller.collisions.below || !controller.collisions.above)
         {
             if (velocity.x > MaxInAirSpeed)
                 velocity.x = MaxInAirSpeed;
@@ -138,10 +138,25 @@ public class Player : MonoBehaviour {
                 velocity.y = -MaxInAirSpeed;
         }
 
+
+
         //--------------------
         //On Land Max Speed
         //--------------------
         if (controller.collisions.below == false || controller.collisions.above == false)
+        {
+            if (velocity.x > fPlayerMaxSpeed)
+                velocity.x = fPlayerMaxSpeed;
+            if (velocity.y > fPlayerMaxSpeed)
+                velocity.y = fPlayerMaxSpeed;
+
+            if (velocity.x < -fPlayerMaxSpeed)
+                velocity.x = -fPlayerMaxSpeed;
+            if (velocity.y < -fPlayerMaxSpeed)
+                velocity.y = -fPlayerMaxSpeed;
+        }
+
+        if(bGrappling && controller.collisions.below)
         {
             if (velocity.x > fPlayerMaxSpeed)
                 velocity.x = fPlayerMaxSpeed;

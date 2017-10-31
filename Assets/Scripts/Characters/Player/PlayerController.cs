@@ -95,15 +95,18 @@ public class PlayerController : MonoBehaviour {
         if((collision2D.gameObject.layer == 9 && gameObject.GetComponentInChildren<ShootOBJ>().cBall) && gameObject.GetComponentInChildren<ShootOBJ>().cBall.GetComponent<Grapple>().GrapConnected == true && gameObject.GetComponent<Controller2D>().collisions.right ||
             (collision2D.gameObject.layer == 9 && gameObject.GetComponentInChildren<ShootOBJ>().cBall) && gameObject.GetComponentInChildren<ShootOBJ>().cBall.GetComponent<Grapple>().GrapConnected == true && gameObject.GetComponent<Controller2D>().collisions.right)
         {
-            gameObject.GetComponent<Player>().velocity.x = -gameObject.GetComponent<Player>().velocity.x;
-            gameObject.GetComponent<PlayerInput>().canInput = false;
-
-            //if(bouncecd >= MaxBounceCD)
-            //{
-            //    bouncecd = 0.0f;
-            //    gameObject.GetComponent<PlayerInput>().canInput = true;
-            //}
-            //bouncecd += Time.deltaTime;
+            if (Mathf.Sign(gameObject.GetComponent<Player>().velocity.x) * 1 > 0)
+            {
+                gameObject.GetComponent<Player>().velocity.x = 0;
+                gameObject.GetComponent<Player>().velocity.x = -gameObject.GetComponent<Player>().MaxInAirSpeed / 2;
+            }
+            if (Mathf.Sign(gameObject.GetComponent<Player>().velocity.x) * 1 < 0)
+            {
+                gameObject.GetComponent<Player>().velocity.x = 0;
+                gameObject.GetComponent<Player>().velocity.x = gameObject.GetComponent<Player>().MaxInAirSpeed / 2;
+            }
+            //gameObject.GetComponent<Player>().velocity.x = -gameObject.GetComponent<Player>().velocity.x;
+            //gameObject.GetComponent<PlayerInput>().canInput = false;
         }
     }
 }
