@@ -10,7 +10,7 @@ public class Controller2D : MonoBehaviour
     public LayerMask collisionMask;
     public LayerMask deathTrap;
 
-    const float skinwidth = 0.015f;
+    public const float skinwidth = 0.015f;
     public int horizontalRayCount = 4;
     public int verticalRayCount = 4;
 

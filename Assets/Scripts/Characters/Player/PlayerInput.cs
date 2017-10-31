@@ -5,6 +5,8 @@ using XboxCtrlrInput;
 
 public class PlayerInput : MonoBehaviour {
 
+    public bool riggedcontrolsXbox = false;
+
     bool KeyboardInput = true;
 
     public bool isMoving = false;
@@ -83,14 +85,22 @@ public class PlayerInput : MonoBehaviour {
                 //PlayerMovement
                 goPlayer.GetComponent<Player>().input = new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX), XCI.GetAxisRaw(XboxAxis.LeftStickY));
 
-                if (XCI.GetButton(XboxButton.RightBumper) || XCI.GetButton(XboxButton.A))
+                if (XCI.GetButton(XboxButton.LeftBumper) || XCI.GetButton(XboxButton.A))
                     goPlayer.GetComponent<Player>().CanJump = true;
-                if (XCI.GetButtonUp(XboxButton.RightBumper) || XCI.GetButtonUp(XboxButton.A))
+                if (XCI.GetButtonUp(XboxButton.LeftBumper) || XCI.GetButtonUp(XboxButton.A))
                     goPlayer.GetComponent<Player>().CanJump = false;
-            //Shooting
-            goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.x = XCI.GetAxis(XboxAxis.LeftStickX);
-            goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.y = XCI.GetAxis(XboxAxis.LeftStickY);
+            if (riggedcontrolsXbox)
+            {
+                goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.x = XCI.GetAxis(XboxAxis.RightStickX);
+                goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.y = XCI.GetAxis(XboxAxis.RightStickY);
+            }
 
+            else
+            {
+                //Shooting
+                goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.x = XCI.GetAxis(XboxAxis.LeftStickX);
+                goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.y = XCI.GetAxis(XboxAxis.LeftStickY);
+            }
             if (!canInput)
             {
                 goPlayer.GetComponent<Player>().input.x = 0;

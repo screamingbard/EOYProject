@@ -8,29 +8,26 @@ public class FollowArrow : MonoBehaviour {
     public GameObject Parent;
     public Quaternion store;
 
-    public bool Riggedcontrols = false;
-
     [HideInInspector]
     public Vector3 JoystickStore = new Vector3();
 	
 	// Update is called once per frame
 	void Update ()
     {
-        //if(Riggedcontrols == true)
-        //{
-        //    JoystickStore.x = XCI.GetAxis(XboxAxis.RightStickX);
-        //    JoystickStore.y = XCI.GetAxis(XboxAxis.RightStickY);
-        //}
-        //else
-        //{
-        //    JoystickStore.x = XCI.GetAxis(XboxAxis.LeftStickX);
-        //    JoystickStore.y = XCI.GetAxis(XboxAxis.LeftStickY);
-        //}
-
-        //Shoots the grapple in the last given direction if no direction is given
         if (JoystickStore.x != 0 || JoystickStore.y != 0)
-            transform.position = Parent.transform.position + JoystickStore;
-        //else if(JoystickStore.x == 0 && JoystickStore.y == 0)
-        //    transform.position = Parent.transform.position + Vector3.up;
+            transform.position = Parent.transform.position + JoystickStore * 3;
+
+        Vector3 holdPos = Parent.transform.position - transform.position;
+        holdPos.Normalize();
+
+        Quaternion pos = new Quaternion();
+        transform.LookAt(transform.position + JoystickStore);
+        
+
+        //float rot = Quaternion.EulerAngles();
+        //pos.x = holdPos.x;
+        //pos.y = holdPos.y;
+        //pos.z = holdPos.z;
+        //transform.rotation = pos;
     }
 }

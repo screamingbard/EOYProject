@@ -98,12 +98,12 @@ public class PlayerController : MonoBehaviour {
             gameObject.GetComponent<Player>().velocity.x = -gameObject.GetComponent<Player>().velocity.x;
             gameObject.GetComponent<PlayerInput>().canInput = false;
 
-            if(bouncecd >= MaxBounceCD)
-            {
-                bouncecd = 0.0f;
-                gameObject.GetComponent<PlayerInput>().canInput = true;
-            }
-            bouncecd += Time.deltaTime;
+            //if(bouncecd >= MaxBounceCD)
+            //{
+            //    bouncecd = 0.0f;
+            //    gameObject.GetComponent<PlayerInput>().canInput = true;
+            //}
+            //bouncecd += Time.deltaTime;
         }
     }
 }
