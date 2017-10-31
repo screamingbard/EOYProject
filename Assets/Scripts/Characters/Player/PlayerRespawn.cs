@@ -37,6 +37,7 @@ public class PlayerRespawn : MonoBehaviour {
 
         //Set the players velocity to zero
         m_goPlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        m_goPlayer.GetComponent<Player>().velocity = Vector3.zero;
 
         //start the timer to disallow movement for a split second
         m_fMovementTimer = m_fSetMovementTimer;
