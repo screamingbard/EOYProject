@@ -41,6 +41,9 @@ public class ShootOBJ : MonoBehaviour {
     [HideInInspector]
     public Vector2 StorePos;
 
+    [Tooltip("Adjusts how quickly the player accelerates as it exits the grapple cycle")]
+    public float ReelSpeed = 3.0f;
+
     int bstart = 0;
     int grapCount = 0;
 
@@ -69,7 +72,7 @@ public class ShootOBJ : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(rotObject);
+       // transform.LookAt(rotObject);
 
 
 
@@ -78,15 +81,15 @@ public class ShootOBJ : MonoBehaviour {
             if (IsShooting)
             {
                 Shoot();
-
-                grappleObj.GetComponent<Grapple>().holdGrapple = true;
+                //if(cBall != null)
+                cBall.GetComponent<Grapple>().holdGrapple = true;
 
                 IsGrappling = true;
 
                 if (cBall.GetComponent<Grapple>().GrapConnected && initialHit)
                 {
-                    goPlayer.GetComponent<Player>().velocity += mDir * grapImpulse;
-                    fHoldDistance -= 1 * Time.deltaTime;
+                    goPlayer.GetComponent<Player>().velocity += goPlayer.GetComponent<Player>().input.y * mDir * grapImpulse;
+                    fHoldDistance -= goPlayer.GetComponent<Player>().input.y * ReelSpeed * Time.deltaTime;
                     initialHit = false;
                 }
                 cooldowncheck = true;
@@ -95,7 +98,7 @@ public class ShootOBJ : MonoBehaviour {
             }
         }
         //else
-        if(cooldowncheck)
+        if(cooldowncheck) //&& !cBall.GetComponent<Grapple>().GrapConnected)
         {
             cd += Time.deltaTime;
             if(cd >= GrapCooldown)

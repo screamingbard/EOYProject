@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
 
     float jumpVelocity;
     float gravity;
-    [HideInInspector]
+    //[HideInInspector]
     public Vector3 velocity;
     float XSmoothing;
 
@@ -100,8 +100,8 @@ public class Player : MonoBehaviour {
 
         
         velocity.y += gravity * Time.deltaTime;
-        if (velocity.y < -50)
-            velocity.y = -50;
+        if (velocity.y < -20)
+            velocity.y = -20;
 
         if (controller.collisions.below && !bGrappling)
         {
@@ -111,7 +111,8 @@ public class Player : MonoBehaviour {
         }
         else if(bGrappling)
         {
-            targetVelocityX += (input.x + grapAngle) * moveSpeed * Time.deltaTime * inAirModifier;
+            targetVelocityX += (input.x + (grapAngle)) * moveSpeed * Time.deltaTime * inAirModifier;
+            velocity.y = 0;
         }
         else if (bGrappling && controller.collisions.below)
         {
@@ -171,7 +172,7 @@ public class Player : MonoBehaviour {
 
         if (bGrappling && !gameObject.GetComponent<PlayerInput>().isMoving)
         {
-            if (Mathf.Sign(targetVelocityX) < 0)
+            if (Mathf.Sign(targetVelocityX) < 0 && transform.position.x != shootOBJ.GetComponent<ShootOBJ>().cBall.transform.position.x)
             {
                 targetVelocityX += (moveSpeed + grapAngle) * Time.deltaTime * 10.0f;
                 goingback = true;
@@ -185,7 +186,7 @@ public class Player : MonoBehaviour {
 
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref XSmoothing, (controller.collisions.below) ? acceleratinTimeGrounded : accelerationTimeAirbourne);
 
-        Debug.Log(velocity.x);
+        //Debug.Log(velocity.x);
         if (!bGrappling)
         {
             if (velocity.x > MaxInAirSpeed)

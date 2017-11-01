@@ -25,10 +25,10 @@ public class FollowArrow : MonoBehaviour {
             storepos = transform.position;
             Dir = (Parent.transform.position + JoystickStore);
         }
-        else if (JoystickStore.x == 0 || JoystickStore.y == 0)
-            transform.position = storepos;
+        //else if (JoystickStore.x == 0 || JoystickStore.y == 0)
+        //    transform.position = storepos;
 
-        Vector3 holdPos = Parent.transform.position;// + JoystickStore;// - transform.position;
+        Vector3 holdPos = Parent.transform.position + JoystickStore;// - transform.position;
                                                     //holdPos.Normalize();
 
         //Vector3 store = Parent.transform.position + (JoystickStore * 3);

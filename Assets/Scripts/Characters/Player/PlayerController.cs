@@ -88,23 +88,17 @@ public class PlayerController : MonoBehaviour {
     {
         //Only allows the player to be grounded when colliding with another gameobject
         if (collision2D.gameObject.tag == "Wall" || collision2D.gameObject.tag == "Wall" && IsGrappling || collision2D.gameObject.layer == 9 || collision2D.gameObject.layer == 9 && IsGrappling)
+        {
             IsGrounded = true;
+            gameObject.GetComponentInChildren<ShootOBJ>().StopShoot();
+        }
         else
             IsGrounded = false;
 
         if((collision2D.gameObject.layer == 9 && gameObject.GetComponentInChildren<ShootOBJ>().cBall) && gameObject.GetComponentInChildren<ShootOBJ>().cBall.GetComponent<Grapple>().GrapConnected == true && gameObject.GetComponent<Controller2D>().collisions.right ||
             (collision2D.gameObject.layer == 9 && gameObject.GetComponentInChildren<ShootOBJ>().cBall) && gameObject.GetComponentInChildren<ShootOBJ>().cBall.GetComponent<Grapple>().GrapConnected == true && gameObject.GetComponent<Controller2D>().collisions.right)
         {
-            if (Mathf.Sign(gameObject.GetComponent<Player>().velocity.x) * 1 > 0)
-            {
-                gameObject.GetComponent<Player>().velocity.x = 0;
-                gameObject.GetComponent<Player>().velocity.x = -gameObject.GetComponent<Player>().MaxInAirSpeed / 2;
-            }
-            if (Mathf.Sign(gameObject.GetComponent<Player>().velocity.x) * 1 < 0)
-            {
-                gameObject.GetComponent<Player>().velocity.x = 0;
-                gameObject.GetComponent<Player>().velocity.x = gameObject.GetComponent<Player>().MaxInAirSpeed / 2;
-            }
+            //gameObject.GetComponentInChildren<ShootOBJ>().StopShoot();
             //gameObject.GetComponent<Player>().velocity.x = -gameObject.GetComponent<Player>().velocity.x;
             //gameObject.GetComponent<PlayerInput>().canInput = false;
         }
