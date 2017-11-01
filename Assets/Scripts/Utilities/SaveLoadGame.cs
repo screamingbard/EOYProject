@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using XboxCtrlrInput;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -20,12 +21,29 @@ public class SaveLoadGame : MonoBehaviour
     [HideInInspector]
     public Transform m_tfLastCheckPoint;
 
+    //
+    public bool m_bTimerIsVisible;
 
-    float m_fSpeedRunTimer;
+    //
+    public GameObject m_goTimerTextUI;
 
+    //Ingame timer for current run
+    public float m_fSpeedRunTimer;
+
+    //The highscores
+    float m_fFastestTime;
+    float m_fSecondFastestTime;
+    float m_fThirdFastestTime;
+    float m_fFourthFastestTime;
+    float m_fFifthFastestTime;
     void Update()
     {
         m_fSpeedRunTimer += Time.deltaTime;
+        //Control over whether or not the timer is visible ingame
+        if (m_bTimerIsVisible)
+            m_goTimerTextUI.SetActive(true);
+        else
+            m_goTimerTextUI.SetActive(false);
     }
     public void SaveFile()
     //Save the data from the game
@@ -41,7 +59,8 @@ public class SaveLoadGame : MonoBehaviour
 
         //Create the variable to store the current game data
         GameData m_sdData = 
-            new GameData(m_setCurrentSettings, m_fSpeedRunTimer, m_tfPlayerPosition, m_tfLastCheckPoint);
+            new GameData(m_setCurrentSettings, m_fSpeedRunTimer, m_tfPlayerPosition, m_tfLastCheckPoint, 
+            m_fFastestTime, m_fSecondFastestTime, m_fThirdFastestTime, m_fFourthFastestTime, m_fFifthFastestTime);
         BinaryFormatter m_bfBinaryFormatter = new BinaryFormatter();
 
         //Save the data in a binary format
@@ -66,7 +85,6 @@ public class SaveLoadGame : MonoBehaviour
             Debug.LogError("File not found");
             return;
         }
-
         BinaryFormatter m_bfBinaryFormatter = new BinaryFormatter();
         //Grap the game data from the file
         GameData m_sdData = (GameData)m_bfBinaryFormatter.Deserialize(m_fsFile);
@@ -78,5 +96,44 @@ public class SaveLoadGame : MonoBehaviour
         m_fSpeedRunTimer = m_sdData.m_fSpeedRunTimer;
         m_tfPlayerPosition = m_sdData.m_tfPlayerPosiion;
         m_tfLastCheckPoint = m_sdData.m_tfLastCheckPoint;
+        m_fFastestTime = m_sdData.m_fFastestTime;
+        m_fSecondFastestTime = m_sdData.m_fSecondFastestTime;
+        m_fThirdFastestTime = m_sdData.m_fThirdFastestTime;
+        m_fFourthFastestTime = m_sdData.m_fFourthFastestTime;
+        m_fFifthFastestTime = m_sdData.m_fFifthFastestTime;
+    }
+
+    void HighScores()
+    {
+        if (m_fFastestTime < m_fSpeedRunTimer)
+        {
+            m_fFifthFastestTime = m_fFourthFastestTime;
+            m_fFourthFastestTime = m_fThirdFastestTime;
+            m_fThirdFastestTime = m_fSecondFastestTime;
+            m_fSecondFastestTime = m_fFastestTime;
+            m_fFastestTime = m_fSpeedRunTimer;
+        }
+        else if (m_fSecondFastestTime < m_fSpeedRunTimer)
+        {
+            m_fFifthFastestTime = m_fFourthFastestTime;
+            m_fFourthFastestTime = m_fThirdFastestTime;
+            m_fThirdFastestTime = m_fSecondFastestTime;
+            m_fSecondFastestTime = m_fSpeedRunTimer;
+        }
+        else if (m_fThirdFastestTime < m_fSpeedRunTimer)
+        {
+            m_fFifthFastestTime = m_fFourthFastestTime;
+            m_fFourthFastestTime = m_fThirdFastestTime;
+            m_fThirdFastestTime = m_fSpeedRunTimer;
+        }
+        else if (m_fFourthFastestTime < m_fSpeedRunTimer)
+        {
+            m_fFifthFastestTime = m_fFourthFastestTime;
+            m_fFourthFastestTime = m_fSpeedRunTimer;
+        }
+        else if (m_fFifthFastestTime < m_fSpeedRunTimer)
+        {
+            m_fFifthFastestTime = m_fSpeedRunTimer;
+        }
     }
 }

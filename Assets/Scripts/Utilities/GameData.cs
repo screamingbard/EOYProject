@@ -14,13 +14,28 @@ public class GameData : MonoBehaviour
     public float m_fSpeedRunTimer;
 
     [HideInInspector]
+    public float m_fFastestTime;
+    
+    [HideInInspector]
+    public float m_fSecondFastestTime;
+
+    [HideInInspector]
+    public float m_fThirdFastestTime;
+
+    [HideInInspector]
+    public float m_fFourthFastestTime;
+
+    [HideInInspector]
+    public float m_fFifthFastestTime;
+
+    [HideInInspector]
     public Transform m_tfPlayerPosiion;
 
     //
     [HideInInspector]
     public Transform m_tfLastCheckPoint;
 
-    public struct controls
+    public struct Controls
     //Stores the controls
     {
         bool m_bSeperateAimAndMove;
@@ -30,7 +45,7 @@ public class GameData : MonoBehaviour
         XboxAxis m_xaAiming;
         XboxAxis m_xaReeling;
 
-        controls(XboxButton a_inJump, XboxButton a_inShootGrapple, bool a_bSeperateAimAndMove, XboxAxis a_xaMovement, XboxAxis a_xaAiming, XboxAxis a_xaReeling)
+        Controls(XboxButton a_inJump, XboxButton a_inShootGrapple, bool a_bSeperateAimAndMove, XboxAxis a_xaMovement, XboxAxis a_xaAiming, XboxAxis a_xaReeling)
         {
             m_inJump = a_inJump;
             m_inShootGrapple = a_inShootGrapple;
@@ -51,9 +66,9 @@ public class GameData : MonoBehaviour
         float m_fSFXVolume;
         float m_fAmbienceVolume;
         //Control settings
-        controls m_conControls;
+        Controls m_conControls;
 
-        Settings(float a_fMasterVolume, float a_fMusicVolume, float a_fSFXVolume, float a_AmbienceVolume, controls a_conControls)
+        Settings(float a_fMasterVolume, float a_fMusicVolume, float a_fSFXVolume, float a_AmbienceVolume, Controls a_conControls)
         {
             m_fMasterVolume = a_fMasterVolume;
             m_fMusicVolume = a_fMusicVolume;
@@ -63,12 +78,18 @@ public class GameData : MonoBehaviour
         }
     };
 
-    public GameData(Settings a_setSettigs, float a_fSpeedRunTimer, Transform a_tfPlayerPosition, Transform a_tfLastCheckPoint)
+    public GameData(Settings a_setSettigs, float a_fSpeedRunTimer, Transform a_tfPlayerPosition, Transform a_tfLastCheckPoint, 
+        float a_fFastestTime, float a_fSecondFastestTime, float a_fThirdFastestTime, float a_fFourthFastestTime, float a_fFifthFastestTime)
     //Constructor for the GameData
     {
         m_setSettigs = a_setSettigs;
         m_fSpeedRunTimer = a_fSpeedRunTimer;
         m_tfPlayerPosiion = a_tfPlayerPosition;
         m_tfLastCheckPoint = a_tfLastCheckPoint;
+        m_fFastestTime = a_fFastestTime;
+        m_fSecondFastestTime = a_fSecondFastestTime;
+        m_fThirdFastestTime = a_fThirdFastestTime;
+        m_fFourthFastestTime = a_fFourthFastestTime;
+        m_fFifthFastestTime = a_fFifthFastestTime;
     }
 }
