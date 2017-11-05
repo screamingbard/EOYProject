@@ -58,6 +58,12 @@ public class VisionCone : MonoBehaviour {
     //The animation that will play once the player has been seen;
     public Animation m_aAlertAnimation;
 
+    //The sound that will play when the player is seen
+    public AudioClip m_acAlertSound;
+
+    //Sound pleyererer
+    AudioSource m_asAudioSource;
+
     //A boolean to restrict the animation to play only when the player is initially spotted
     bool m_bCanPlayAnimation;
    
@@ -103,6 +109,11 @@ public class VisionCone : MonoBehaviour {
                         m_aAlertAnimation.Play();
                         m_bCanPlayAnimation = false;
                     }
+                }
+                if (m_acAlertSound != null)
+                {
+                    //Play the alert sound when the player is finaly seen
+                    m_asAudioSource.PlayOneShot(m_acAlertSound);
                 }
             }
             else
