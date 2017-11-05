@@ -51,6 +51,9 @@ public class Player : MonoBehaviour {
 
     int CurrentDir = 0;
 
+    //Checks if the player has started grappling
+    float CountCheck = 0;
+
     Controller2D controller;
 
     ShootOBJ shootOBJ;
@@ -100,26 +103,39 @@ public class Player : MonoBehaviour {
 
         
         velocity.y += gravity * Time.deltaTime;
-        if (velocity.y < -20)
-            velocity.y = -20;
+        //if (velocity.y < -20)
+            //velocity.y = -20;
 
         if (controller.collisions.below && !bGrappling)
         {
             moveSpeed = defaultSpeed;
-
+            targetVelocityX = 0.0f;
             targetVelocityX = input.x * moveSpeed;
         }
         else if(bGrappling)
         {
-            targetVelocityX += (input.x + (grapAngle)) * moveSpeed * Time.deltaTime * inAirModifier;
+            //if (CountCheck > 1)
+            //{
+            gameObject.GetComponentInChildren<FollowArrow>().JoystickStore.x = input.x;
+            targetVelocityX += (input.x) * moveSpeed * Time.deltaTime * inAirModifier;
+            //}
+            //else
+            //{
+            //    targetVelocityX = 0;
+            //}
+            //CountCheck += Time.deltaTime;
+
             velocity.y = 0;
+
         }
         else if (bGrappling && controller.collisions.below)
         {
+            targetVelocityX = 0.0f;
             targetVelocityX = input.x * moveSpeed;
         }
         else
         {
+            targetVelocityX = 0.0f;
             targetVelocityX = input.x * moveSpeed;
         }
 
@@ -187,7 +203,7 @@ public class Player : MonoBehaviour {
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref XSmoothing, (controller.collisions.below) ? acceleratinTimeGrounded : accelerationTimeAirbourne);
 
         //Debug.Log(velocity.x);
-        if (!bGrappling)
+        if (!bGrappling || gameObject.GetComponentInChildren<ShootOBJ>().IsShooting)
         {
             if (velocity.x > MaxInAirSpeed)
                 velocity.x = MaxInAirSpeed;
@@ -204,11 +220,11 @@ public class Player : MonoBehaviour {
         {
             if (velocity.x > fPlayerMaxSpeed)
             {
-                velocity.x = calcSpeedOutOfJump();
+                velocity.x = fPlayerMaxSpeed;//calcSpeedOutOfJump();
             }
             if (velocity.x < -fPlayerMaxSpeed)
             {
-                velocity.x = -calcSpeedOutOfJump();
+                velocity.x = -fPlayerMaxSpeed; //-calcSpeedOutOfJump();
             }
         }
 
@@ -247,7 +263,7 @@ public class Player : MonoBehaviour {
     float calcSpeedOutOfJump()
     {
         float speed = 0;
-        speed = -(velocity.x / velocity.y) * 10;
+        speed = -(velocity.x / velocity.y);
 
 
         return speed;

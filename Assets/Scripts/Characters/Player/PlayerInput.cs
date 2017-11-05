@@ -18,6 +18,9 @@ public class PlayerInput : MonoBehaviour {
     //Checks if the button was just released
     public bool justReleased = false;
 
+    [HideInInspector]
+    public float reeling = 0;
+
     GameObject goPlayer;
 
 	// Use this for initialization
@@ -42,13 +45,13 @@ public class PlayerInput : MonoBehaviour {
         //-------------------------------
         if (KeyboardInput == true)
         {
-                //PlayerMovement
-                goPlayer.GetComponent<Player>().input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            //PlayerMovement
+            goPlayer.GetComponent<Player>().input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-                if (Input.GetKeyDown(KeyCode.W))
-                    goPlayer.GetComponent<Player>().CanJump = true;
-                if (Input.GetKeyUp(KeyCode.W))
-                    goPlayer.GetComponent<Player>().CanJump = false;
+            if (Input.GetKeyDown(KeyCode.W))
+                goPlayer.GetComponent<Player>().CanJump = true;
+            if (Input.GetKeyUp(KeyCode.W))
+                goPlayer.GetComponent<Player>().CanJump = false;
             //Shooting
             goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.x = Input.GetAxis("Horizontal");
             goPlayer.GetComponentInChildren<FollowArrow>().JoystickStore.y = Input.GetAxis("Vertical");
@@ -67,9 +70,25 @@ public class PlayerInput : MonoBehaviour {
                 goPlayer.GetComponent<Player>().input.x = 0;
                 goPlayer.GetComponent<Player>().input.y = 0;
             }
-                if (Input.GetKey(KeyCode.Space))
+
+            //Assigns whether the player can reel or not
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+                reeling = 1;
+            else
+                reeling = 0;
+
+            if (Input.GetKey(KeyCode.Space))
             {
                 goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting = true;
+
+                if (Input.GetKeyDown(KeyCode.LeftShift) && goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting)
+                {
+                    goPlayer.GetComponentInChildren<ShootOBJ>().IsReeling = true;
+                }
+                else
+                {
+                    goPlayer.GetComponentInChildren<ShootOBJ>().IsReeling = false;
+                }
             }
             else
             {
@@ -107,10 +126,21 @@ public class PlayerInput : MonoBehaviour {
                 goPlayer.GetComponent<Player>().input.y = 0;
             }
 
+            //Assigns whether the player can reel or not
+            reeling = XCI.GetAxis(XboxAxis.LeftTrigger);
+
             if (XCI.GetAxis(XboxAxis.RightTrigger) > 0)
             {
                 goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting = true;
                 hasPressed = 0;
+                if (XCI.GetAxis(XboxAxis.LeftTrigger) > 0 && goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting)
+                {
+                    goPlayer.GetComponentInChildren<ShootOBJ>().IsReeling = true;
+                }
+                else
+                {
+                    goPlayer.GetComponentInChildren<ShootOBJ>().IsReeling = false;
+                }
             }
             else
             {
