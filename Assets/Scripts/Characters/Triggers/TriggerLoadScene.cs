@@ -23,8 +23,6 @@ public class TriggerLoadScene : MonoBehaviour {
             m_gSaveLoadController.GetComponent<SaveLoadGame>().HighScores();
             m_gSaveLoadController.GetComponent<SaveLoadGame>().SaveFile();
             SceneManager.LoadScene(m_iSceneIndex);
-
-            Debug.Log(Application.persistentDataPath);
         }
     }
 }
