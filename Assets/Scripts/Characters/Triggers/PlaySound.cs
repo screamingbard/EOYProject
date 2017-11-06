@@ -22,6 +22,8 @@ public class PlaySound : MonoBehaviour {
     //
     bool m_bPlayMoreThanOncePrivate = true;
 
+    //
+    public GameData m_gdGameData;
     void start()
     {
         //
@@ -54,7 +56,7 @@ public class PlaySound : MonoBehaviour {
                 if (m_fTimerBetweenSounds >= m_fTimeBetweenSounds)
                 {
                     m_fTimerBetweenSounds = 0;
-                    AudioSource.PlayClipAtPoint(m_acAudioClip, transform.position);
+                    AudioSource.PlayClipAtPoint(m_acAudioClip, transform.position, 0.5f/*m_gdGameData.m_setSettigs.m_fMasterVolume * m_gdGameData.m_setSettigs.m_fSFXVolume*/);
                     m_bPlayMoreThanOncePrivate = m_bPlayMoreThanOnce;
                 }
             }
