@@ -25,9 +25,37 @@ public class CameraFollow : MonoBehaviour {
     //
     public float m_fVerticalSmoothTime;
 
+    //
+    public float m_fMinCamHeight
+    {
+        get
+        {
+            return m_fMinimumCameraHeight;
+        }
+        set
+        {
+            m_fMinimumCameraHeight = m_fMinCamHeight;
+        }
+    }
+
+    //
+    public float m_fMaxCamHeight
+    {
+        get
+        {
+            return m_fMinimumCameraHeight;
+        }
+        set
+        {
+            m_fMinimumCameraHeight = m_fMaxCamHeight;
+        }
+    }
 
     //The minimum height the camera will follow the character
-    public float m_fMinimumCameraHeight = -5;
+    float m_fMinimumCameraHeight = -5;
+
+    //The minimum height the camera will follow the character
+    float m_fMaximumCameraHeight = 30;
 
     //
     float m_fCurrentLookAheadX;
@@ -43,11 +71,13 @@ public class CameraFollow : MonoBehaviour {
 
     //
     float m_fSmoothVelocityY;
+
     //
     FocusArea m_faFocusArea;
 
     //
     bool m_bLookAheadStopped;
+    
     void Start()
     {
         //Generate the bounding box
@@ -58,6 +88,7 @@ public class CameraFollow : MonoBehaviour {
         playerInput.x = XCI.GetAxis(XboxAxis.LeftStickX);
         playerInput.y = XCI.GetAxis(XboxAxis.LeftStickY);
     }
+    
     void LateUpdate()
     {
         //Call the FocusArea Update method
@@ -92,13 +123,19 @@ public class CameraFollow : MonoBehaviour {
 
         //The position of the camera
         transform.position = (Vector3) focusPosition + Vector3.forward * -10;
+        
 
-        //This if check keeps the camera from falling below what the player should be seeing
+        //This if check keeps the camera from existing near what the player shouldn't be seeing
         if (transform.position.y < m_fMinimumCameraHeight)
         {
             transform.position = new Vector3(transform.position.x, m_fMinimumCameraHeight, transform.position.z);
         }
-    }   
+
+        if (transform.position.y > m_fMaximumCameraHeight)
+        {
+            transform.position = new Vector3(transform.position.x, m_fMinimumCameraHeight, transform.position.z);
+        }
+    }
 
     void OnDrawGizmos()
     //An in editor visual aid for building the bounding box
@@ -187,5 +224,11 @@ public class CameraFollow : MonoBehaviour {
     //Resets the camera position to the centre of the player when called
     {
         m_faFocusArea = new FocusArea(m_tfTarget.GetComponent<Collider2D>().bounds, m_v2FocusAreaSize);
+    }
+
+    struct RaycastOrigins
+    {
+        public Vector2 m_v2TopLeft, m_v2TopRight;
+        public Vector2 m_v2BottomLeft, m_v2BottomRight;
     }
 }
