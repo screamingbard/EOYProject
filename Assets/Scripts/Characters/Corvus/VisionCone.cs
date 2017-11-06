@@ -61,6 +61,9 @@ public class VisionCone : MonoBehaviour {
     //The sound that will play when the player is seen
     public AudioClip m_acAlertSound;
 
+    //
+    public GameData m_gdGameData;
+
     //Sound pleyererer
     AudioSource m_asAudioSource;
 
@@ -113,7 +116,7 @@ public class VisionCone : MonoBehaviour {
                 if (m_acAlertSound != null)
                 {
                     //Play the alert sound when the player is finaly seen
-                    m_asAudioSource.PlayOneShot(m_acAlertSound);
+                    m_asAudioSource.PlayOneShot(m_acAlertSound, 0.5f/* m_gdGameData.m_setSettigs.m_fSFXVolume * m_gdGameData.m_setSettigs.m_fMasterVolume*/);
                 }
             }
             else
@@ -172,7 +175,7 @@ public class VisionCone : MonoBehaviour {
                         if (m_fUseDeathTimer <= 0)
                             m_fUseDeathTimer = 0;
                         else
-                            m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
+                            m_fUseDeathTimer = 0;
                    }
                    else
                     {
