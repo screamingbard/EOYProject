@@ -89,7 +89,7 @@ public class ShootOBJ : MonoBehaviour {
 
                 if (cBall.GetComponent<Grapple>().GrapConnected && initialHit && IsReeling)
                 {
-                    goPlayer.GetComponent<Player>().velocity += goPlayer.GetComponent<Player>().input.y * mDir * grapImpulse;
+                    //goPlayer.GetComponent<Player>().velocity += goPlayer.GetComponent<Player>().input.y * mDir * grapImpulse;
                     //fHoldDistance -= goPlayer.GetComponent<PlayerInput>().reeling * ReelSpeed * Time.deltaTime;
                     initialHit = false;
                 }

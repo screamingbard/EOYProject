@@ -21,6 +21,8 @@ public class PlayerInput : MonoBehaviour {
     [HideInInspector]
     public float reeling = 0;
 
+    bool SingleShoot = false;
+
     GameObject goPlayer;
 
 	// Use this for initialization
@@ -77,9 +79,19 @@ public class PlayerInput : MonoBehaviour {
             else
                 reeling = 0;
 
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !SingleShoot)
             {
                 goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting = true;
+
+                SingleShoot = true;
+            }
+            else if(Input.GetKeyUp(KeyCode.Space))
+            {
+                SingleShoot = false;
+                goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting = false;
+            }
+            else if (Input.GetKey(KeyCode.Space))
+            {
 
                 if (Input.GetKeyDown(KeyCode.LeftShift) && goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting)
                 {
@@ -89,10 +101,8 @@ public class PlayerInput : MonoBehaviour {
                 {
                     goPlayer.GetComponentInChildren<ShootOBJ>().IsReeling = false;
                 }
-            }
-            else
-            {
-                goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting = false;
+
+                SingleShoot = true;
             }
         }
         
@@ -132,6 +142,7 @@ public class PlayerInput : MonoBehaviour {
             if (XCI.GetAxis(XboxAxis.RightTrigger) > 0)
             {
                 goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting = true;
+                SingleShoot = true;
                 hasPressed = 0;
                 if (XCI.GetAxis(XboxAxis.LeftTrigger) > 0 && goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting)
                 {
@@ -147,7 +158,11 @@ public class PlayerInput : MonoBehaviour {
                 goPlayer.GetComponentInChildren<ShootOBJ>().IsShooting = false;
                 hasPressed++;
             }
-            if(hasPressed == 1)
+
+            if (XCI.GetAxis(XboxAxis.RightTrigger) == 0)
+                SingleShoot = false;
+
+            if (hasPressed == 1)
             {
                 justReleased = true;
             }

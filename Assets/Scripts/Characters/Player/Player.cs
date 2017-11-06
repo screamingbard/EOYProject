@@ -232,19 +232,19 @@ public class Player : MonoBehaviour {
 
         //playerdirection = Mathf.Sign(velocity.x);
 
-        //if (gameObject.GetComponentInChildren<FollowArrow>().JoystickStore.x > 0 && !isturned)
-        //{
-        //    transform.Rotate(0, 180, 0);
-        //    isturned = true;
-        //    CurrentDir = -1;
-        //}
+        if (gameObject.GetComponentInChildren<FollowArrow>().JoystickStore.x > 0 && !isturned)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            isturned = true;
+            //CurrentDir = -1;
+        }
 
-        //if (gameObject.GetComponentInChildren<FollowArrow>().JoystickStore.x < 0 && isturned)
-        //{
-        //    transform.Rotate(0, 180, 0);
-        //    isturned = false;
-        //    CurrentDir = 1;
-        //}
+        if (gameObject.GetComponentInChildren<FollowArrow>().JoystickStore.x < 0 && isturned)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            isturned = false;
+            //CurrentDir = 1;
+        }
 
         //transform.right = new Vector3(CurrentDir, 0, 0);
 

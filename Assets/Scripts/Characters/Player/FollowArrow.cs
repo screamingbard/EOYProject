@@ -19,14 +19,14 @@ public class FollowArrow : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (JoystickStore.x != 0 || JoystickStore.y != 0)
+        if (JoystickStore.x != 0 || JoystickStore.y != 0) 
         {
             transform.position = Parent.transform.position + (JoystickStore * DistFromPlayer);
-            storepos = transform.position;
+            //storepos = transform.position;
             Dir = (Parent.transform.position + JoystickStore);
         }
-        //else if (JoystickStore.x == 0 || JoystickStore.y == 0)
-        //    transform.position = storepos;
+        //if (JoystickStore.x == 0 || JoystickStore.y == 0)
+        //    transform.position = new Vector3(0, 1, 0);
 
         Vector3 holdPos = Parent.transform.position + JoystickStore;// - transform.position;
                                                     //holdPos.Normalize();

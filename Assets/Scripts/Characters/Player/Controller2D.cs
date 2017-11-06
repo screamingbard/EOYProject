@@ -63,7 +63,7 @@ public class Controller2D : MonoBehaviour
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
             //***Remove***
-            Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
+            //Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
 
             if (hit)
             {
@@ -117,7 +117,7 @@ public class Controller2D : MonoBehaviour
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
             //***Remove***
-            Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+            //Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
 
             if (hit)
             {
