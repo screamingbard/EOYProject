@@ -49,7 +49,7 @@ public class Player : MonoBehaviour {
 
     bool goingback = false;
 
-    int CurrentDir = 0;
+    int CurrentDir = 1;
 
     //Checks if the player has started grappling
     float CountCheck = 0;
@@ -232,18 +232,18 @@ public class Player : MonoBehaviour {
 
         //playerdirection = Mathf.Sign(velocity.x);
 
-        //if (XCI.GetAxisRaw(XboxAxis.LeftStickX) > 0) //&& !isturned)
+        //if (gameObject.GetComponentInChildren<FollowArrow>().JoystickStore.x > 0 && !isturned)
         //{
         //    transform.Rotate(0, 180, 0);
         //    isturned = true;
-        //    CurrentDir = (int)input.x;
+        //    CurrentDir = -1;
         //}
 
-        //if (XCI.GetAxisRaw(XboxAxis.LeftStickX) < 0 && isturned)
+        //if (gameObject.GetComponentInChildren<FollowArrow>().JoystickStore.x < 0 && isturned)
         //{
         //    transform.Rotate(0, 180, 0);
         //    isturned = false;
-        //    CurrentDir = (int)input.x;
+        //    CurrentDir = 1;
         //}
 
         //transform.right = new Vector3(CurrentDir, 0, 0);
