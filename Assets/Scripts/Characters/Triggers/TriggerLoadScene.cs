@@ -9,6 +9,9 @@ public class TriggerLoadScene : MonoBehaviour {
     //Tag that designates the player
     public string m_stPlayerTag;
 
+    //
+    public GameObject m_gSaveLoadController;
+
     //The variable controlling which scene is loaded in the scene load method
     public int m_iSceneIndex;
 
@@ -17,7 +20,14 @@ public class TriggerLoadScene : MonoBehaviour {
     {
         if (a_col2dCollider.gameObject.tag == m_stPlayerTag)
         {
+            m_gSaveLoadController.GetComponent<SaveLoadGame>().HighScores();
+            Debug.Log("HighScores");
+            m_gSaveLoadController.GetComponent<SaveLoadGame>().SaveFile();
+            Debug.Log("SaveFile");
             SceneManager.LoadScene(m_iSceneIndex);
+            Debug.Log("LoadScene");
+
+            Debug.Log(Application.persistentDataPath);
         }
     }
 }
