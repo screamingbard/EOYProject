@@ -21,11 +21,8 @@ public class TriggerLoadScene : MonoBehaviour {
         if (a_col2dCollider.gameObject.tag == m_stPlayerTag)
         {
             m_gSaveLoadController.GetComponent<SaveLoadGame>().HighScores();
-            Debug.Log("HighScores");
             m_gSaveLoadController.GetComponent<SaveLoadGame>().SaveFile();
-            Debug.Log("SaveFile");
             SceneManager.LoadScene(m_iSceneIndex);
-            Debug.Log("LoadScene");
 
             Debug.Log(Application.persistentDataPath);
         }
