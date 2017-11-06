@@ -52,7 +52,7 @@ public class CameraFollow : MonoBehaviour {
     }
 
     //The minimum height the camera will follow the character
-    float m_fMinimumCameraHeight = -5;
+    public float m_fMinimumCameraHeight = -50;
 
     //The minimum height the camera will follow the character
     float m_fMaximumCameraHeight = 30;
