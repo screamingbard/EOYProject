@@ -19,7 +19,7 @@ public class CameraBoundsSetter : MonoBehaviour {
         m_goCameras = GameObject.FindGameObjectWithTag("Cameras");
     }
 
-    void OnTriggerStay(Collider2D a_colCollider)
+    void OnTriggerStay2D(Collider2D a_colCollider)
     {
         if (a_colCollider.gameObject.tag == m_stPlayerTag)
         {
