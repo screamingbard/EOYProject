@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
 
-[System.Serializable]
 public class GameData : MonoBehaviour
 {
+    //Players last checkpoint
+    public Transform m_tfLastCheckPoint;
+
+    [System.Serializable]
     public struct Controls
     //Stores the controls
     {
@@ -27,6 +30,7 @@ public class GameData : MonoBehaviour
         }
     };
 
+    [System.Serializable]
     public struct Settings
     //Stores only the controls
     {
@@ -53,6 +57,7 @@ public class GameData : MonoBehaviour
         }
     };
 
+[System.Serializable]
     public struct GameDataS
     {
 
@@ -77,16 +82,20 @@ public class GameData : MonoBehaviour
         //The current fifth fastest time to complete a level
         public float m_fFifthFastestTime;
 
-        //Players last checkpoint
-        public Transform m_tfLastCheckPoint;
+        //Players last checkpoint x
+        public float m_fLastCheckPointX;
 
-        public GameDataS(Settings a_setSettigs, float a_fSpeedRunTimer, Transform a_tfLastCheckPoint, float a_fFastestTime,
-        float a_fSecondFastestTime, float a_fThirdFastestTime, float a_fFourthFastestTime, float a_fFifthFastestTime)
+        //Players last checkpoint y
+        public float m_fLastCheckPointY;
+
+        public GameDataS(Settings a_setSettigs, float a_fSpeedRunTimer, float a_fLastCheckPointX, float a_fLastCheckPointY
+            , float a_fFastestTime,float a_fSecondFastestTime, float a_fThirdFastestTime, float a_fFourthFastestTime, float a_fFifthFastestTime)
         //Constructor for the GameData
         {
             m_setSettigs = a_setSettigs;
             m_fSpeedRunTimer = a_fSpeedRunTimer;
-            m_tfLastCheckPoint = a_tfLastCheckPoint;
+            m_fLastCheckPointX = a_fLastCheckPointX;
+            m_fLastCheckPointY = a_fLastCheckPointY;
             m_fFastestTime = a_fFastestTime;
             m_fSecondFastestTime = a_fSecondFastestTime;
             m_fThirdFastestTime = a_fThirdFastestTime;

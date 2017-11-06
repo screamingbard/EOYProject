@@ -36,6 +36,12 @@ public class SaveLoadGame : MonoBehaviour
     float m_fThirdFastestTime;
     float m_fFourthFastestTime;
     float m_fFifthFastestTime;
+
+    void Start()
+    {
+        m_tfLastCheckPoint = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     void Update()
     {
         m_fSpeedRunTimer += Time.deltaTime;
@@ -59,7 +65,7 @@ public class SaveLoadGame : MonoBehaviour
 
         //Create the variable to store the current game data
         GameData.GameDataS m_sdData = 
-            new GameData.GameDataS(m_setCurrentSettings, m_fSpeedRunTimer, m_tfLastCheckPoint, 
+            new GameData.GameDataS(m_setCurrentSettings, m_fSpeedRunTimer, m_tfLastCheckPoint.position.x, m_tfLastCheckPoint.position.y, 
             m_fFastestTime, m_fSecondFastestTime, m_fThirdFastestTime, m_fFourthFastestTime, m_fFifthFastestTime);
         BinaryFormatter m_bfBinaryFormatter = new BinaryFormatter();
 
@@ -91,11 +97,11 @@ public class SaveLoadGame : MonoBehaviour
         GameData.GameDataS m_sdData = (GameData.GameDataS)m_bfBinaryFormatter.Deserialize(m_fsFile);
         //Close the file stream
         m_fsFile.Close();
-
+        
         //Set the loaded game data into the current data
         m_setCurrentSettings = m_sdData.m_setSettigs;
         m_fSpeedRunTimer = m_sdData.m_fSpeedRunTimer;
-        m_tfLastCheckPoint = m_sdData.m_tfLastCheckPoint;
+        m_tfLastCheckPoint.position = new Vector2(m_sdData.m_fLastCheckPointX, m_sdData.m_fLastCheckPointY);
         m_fFastestTime = m_sdData.m_fFastestTime;
         m_fSecondFastestTime = m_sdData.m_fSecondFastestTime;
         m_fThirdFastestTime = m_sdData.m_fThirdFastestTime;
