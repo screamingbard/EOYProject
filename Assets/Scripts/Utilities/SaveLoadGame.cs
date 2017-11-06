@@ -58,8 +58,8 @@ public class SaveLoadGame : MonoBehaviour
         else m_fsFile = File.Create(m_stDestination);
 
         //Create the variable to store the current game data
-        GameData m_sdData = 
-            new GameData(m_setCurrentSettings, m_fSpeedRunTimer, m_tfPlayerPosition, m_tfLastCheckPoint, 
+        GameData.GameDataS m_sdData = 
+            new GameData.GameDataS(m_setCurrentSettings, m_fSpeedRunTimer, m_tfLastCheckPoint, 
             m_fFastestTime, m_fSecondFastestTime, m_fThirdFastestTime, m_fFourthFastestTime, m_fFifthFastestTime);
         BinaryFormatter m_bfBinaryFormatter = new BinaryFormatter();
 
@@ -68,6 +68,7 @@ public class SaveLoadGame : MonoBehaviour
 
         //Close the file stream
         m_fsFile.Close();
+
     }
 
     public void LoadFile()
@@ -87,14 +88,13 @@ public class SaveLoadGame : MonoBehaviour
         }
         BinaryFormatter m_bfBinaryFormatter = new BinaryFormatter();
         //Grap the game data from the file
-        GameData m_sdData = (GameData)m_bfBinaryFormatter.Deserialize(m_fsFile);
+        GameData.GameDataS m_sdData = (GameData.GameDataS)m_bfBinaryFormatter.Deserialize(m_fsFile);
         //Close the file stream
         m_fsFile.Close();
 
         //Set the loaded game data into the current data
         m_setCurrentSettings = m_sdData.m_setSettigs;
         m_fSpeedRunTimer = m_sdData.m_fSpeedRunTimer;
-        m_tfPlayerPosition = m_sdData.m_tfPlayerPosiion;
         m_tfLastCheckPoint = m_sdData.m_tfLastCheckPoint;
         m_fFastestTime = m_sdData.m_fFastestTime;
         m_fSecondFastestTime = m_sdData.m_fSecondFastestTime;
@@ -103,7 +103,7 @@ public class SaveLoadGame : MonoBehaviour
         m_fFifthFastestTime = m_sdData.m_fFifthFastestTime;
     }
 
-    void HighScores()
+    public void HighScores()
     {
         if (m_fFastestTime < m_fSpeedRunTimer)
         {

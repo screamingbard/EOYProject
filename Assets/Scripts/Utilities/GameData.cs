@@ -3,38 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
 
+[System.Serializable]
 public class GameData : MonoBehaviour
 {
-    //GameSettings
-    [HideInInspector]
-    public Settings m_setSettigs;
-
-    //Player info
-    [HideInInspector]
-    public float m_fSpeedRunTimer;
-
-    [HideInInspector]
-    public float m_fFastestTime;
-    
-    [HideInInspector]
-    public float m_fSecondFastestTime;
-
-    [HideInInspector]
-    public float m_fThirdFastestTime;
-
-    [HideInInspector]
-    public float m_fFourthFastestTime;
-
-    [HideInInspector]
-    public float m_fFifthFastestTime;
-
-    [HideInInspector]
-    public Transform m_tfPlayerPosiion;
-
-    //
-    [HideInInspector]
-    public Transform m_tfLastCheckPoint;
-
     public struct Controls
     //Stores the controls
     {
@@ -61,14 +32,18 @@ public class GameData : MonoBehaviour
     {
 
         //Sound settings
-        float m_fMasterVolume;
-        float m_fMusicVolume;
-        float m_fSFXVolume;
-        float m_fAmbienceVolume;
+        [Range(0,1)]
+        public float m_fMasterVolume;
+        [Range(0, 1)]
+        public float m_fMusicVolume;
+        [Range(0, 1)]
+        public float m_fSFXVolume;
+        [Range(0, 1)]
+        public float m_fAmbienceVolume;
         //Control settings
-        Controls m_conControls;
+        public Controls m_conControls;
 
-        Settings(float a_fMasterVolume, float a_fMusicVolume, float a_fSFXVolume, float a_AmbienceVolume, Controls a_conControls)
+        public Settings(float a_fMasterVolume, float a_fMusicVolume, float a_fSFXVolume, float a_AmbienceVolume, Controls a_conControls)
         {
             m_fMasterVolume = a_fMasterVolume;
             m_fMusicVolume = a_fMusicVolume;
@@ -78,18 +53,45 @@ public class GameData : MonoBehaviour
         }
     };
 
-    public GameData(Settings a_setSettigs, float a_fSpeedRunTimer, Transform a_tfPlayerPosition, Transform a_tfLastCheckPoint, 
-        float a_fFastestTime, float a_fSecondFastestTime, float a_fThirdFastestTime, float a_fFourthFastestTime, float a_fFifthFastestTime)
-    //Constructor for the GameData
+    public struct GameDataS
     {
-        m_setSettigs = a_setSettigs;
-        m_fSpeedRunTimer = a_fSpeedRunTimer;
-        m_tfPlayerPosiion = a_tfPlayerPosition;
-        m_tfLastCheckPoint = a_tfLastCheckPoint;
-        m_fFastestTime = a_fFastestTime;
-        m_fSecondFastestTime = a_fSecondFastestTime;
-        m_fThirdFastestTime = a_fThirdFastestTime;
-        m_fFourthFastestTime = a_fFourthFastestTime;
-        m_fFifthFastestTime = a_fFifthFastestTime;
+
+        //GameSettings
+        public Settings m_setSettigs;
+
+        //Current time taken to get through the level
+        public float m_fSpeedRunTimer;
+
+        //The current fastest time to complete a level
+        public float m_fFastestTime;
+
+        //The current second fastest time to complete a level
+        public float m_fSecondFastestTime;
+
+        //The current third fastest time to complete a level
+        public float m_fThirdFastestTime;
+
+        //The current fourth fastest time to complete a level
+        public float m_fFourthFastestTime;
+
+        //The current fifth fastest time to complete a level
+        public float m_fFifthFastestTime;
+
+        //Players last checkpoint
+        public Transform m_tfLastCheckPoint;
+
+        public GameDataS(Settings a_setSettigs, float a_fSpeedRunTimer, Transform a_tfLastCheckPoint, float a_fFastestTime,
+        float a_fSecondFastestTime, float a_fThirdFastestTime, float a_fFourthFastestTime, float a_fFifthFastestTime)
+        //Constructor for the GameData
+        {
+            m_setSettigs = a_setSettigs;
+            m_fSpeedRunTimer = a_fSpeedRunTimer;
+            m_tfLastCheckPoint = a_tfLastCheckPoint;
+            m_fFastestTime = a_fFastestTime;
+            m_fSecondFastestTime = a_fSecondFastestTime;
+            m_fThirdFastestTime = a_fThirdFastestTime;
+            m_fFourthFastestTime = a_fFourthFastestTime;
+            m_fFifthFastestTime = a_fFifthFastestTime;
+        }
     }
 }
