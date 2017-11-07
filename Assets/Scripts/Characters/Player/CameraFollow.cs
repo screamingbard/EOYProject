@@ -55,7 +55,7 @@ public class CameraFollow : MonoBehaviour {
     public float m_fMinimumCameraHeight = -50;
 
     //The minimum height the camera will follow the character
-    float m_fMaximumCameraHeight = 30;
+    public float m_fMaximumCameraHeight = 30;
 
     //
     float m_fCurrentLookAheadX;
@@ -133,7 +133,7 @@ public class CameraFollow : MonoBehaviour {
 
         if (transform.position.y > m_fMaximumCameraHeight)
         {
-            transform.position = new Vector3(transform.position.x, m_fMinimumCameraHeight, transform.position.z);
+            transform.position = new Vector3(transform.position.x, m_fMaximumCameraHeight, transform.position.z);
         }
     }
 
@@ -197,14 +197,14 @@ public class CameraFollow : MonoBehaviour {
             //If the player touches an edge along the y axis
             if (a_bnTargetsBounds.min.y < m_fBottom)
             {
-                //Shift the camera along the x
+                //Shift the camera along the Y
                 m_fShiftY = a_bnTargetsBounds.min.y - m_fBottom;
             }
 
             //If the player touches an edge along the y axis
             else if (a_bnTargetsBounds.max.y > m_fTop)
             {
-                //Shift the camera along the x
+                //Shift the camera along the Y
                 m_fShiftY = a_bnTargetsBounds.max.y - m_fTop;
             }
 
@@ -219,16 +219,10 @@ public class CameraFollow : MonoBehaviour {
         }
     }
 
-    
+
     public void ResetCamera()
     //Resets the camera position to the centre of the player when called
     {
         m_faFocusArea = new FocusArea(m_tfTarget.GetComponent<Collider2D>().bounds, m_v2FocusAreaSize);
-    }
-
-    struct RaycastOrigins
-    {
-        public Vector2 m_v2TopLeft, m_v2TopRight;
-        public Vector2 m_v2BottomLeft, m_v2BottomRight;
     }
 }
