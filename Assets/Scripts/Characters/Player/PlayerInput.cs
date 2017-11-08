@@ -114,7 +114,7 @@ public class PlayerInput : MonoBehaviour {
                 //PlayerMovement
                 goPlayer.GetComponent<Player>().input = new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX), XCI.GetAxisRaw(XboxAxis.LeftStickY));
 
-                if (XCI.GetButton(XboxButton.LeftBumper) || XCI.GetButton(XboxButton.A))
+                if (XCI.GetButtonDown(XboxButton.LeftBumper) || XCI.GetButtonDown(XboxButton.A))
                     goPlayer.GetComponent<Player>().CanJump = true;
                 if (XCI.GetButtonUp(XboxButton.LeftBumper) || XCI.GetButtonUp(XboxButton.A))
                     goPlayer.GetComponent<Player>().CanJump = false;

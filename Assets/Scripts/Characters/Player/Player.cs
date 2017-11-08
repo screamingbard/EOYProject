@@ -43,7 +43,6 @@ public class Player : MonoBehaviour {
 
 
     float percentagedecrease = 1.0f;
-    float decreaseSpeedCount = 0.0f;
 
     float colcd = 0;
 
@@ -53,10 +52,8 @@ public class Player : MonoBehaviour {
 
     bool goingback = false;
 
-    int CurrentDir = 1;
 
     //Checks if the player has started grappling
-    float CountCheck = 0;
 
     Controller2D controller;
 
@@ -81,13 +78,6 @@ public class Player : MonoBehaviour {
             return;
 
         bool bGrappling = shootOBJ.cBall && shootOBJ.cBall.GetComponent<Grapple>().GrapConnected == true;
-
-        //if (controller.collisions.left && bGrappling && colcd == 0|| controller.collisions.right && bGrappling && colcd == 0)
-        //{
-        //    float storevel = velocity.x;
-        //    velocity.x = -storevel;
-        //    colcd += Time.deltaTime;
-        //}
 
         if (colcd >= 1)
         {
@@ -115,23 +105,15 @@ public class Player : MonoBehaviour {
 
         if (controller.collisions.below && !bGrappling)
         {
-            moveSpeed = defaultSpeed;
+           // moveSpeed = defaultSpeed;
             targetVelocityX = 0.0f;
             targetVelocityX = input.x * moveSpeed;
         }
         else if(bGrappling)
         {
-            //if (CountCheck > 1)
-            //{
             gameObject.GetComponentInChildren<FollowArrow>().JoystickStore.x = input.x;
             //***RETURN TO THIS!!***
             targetVelocityX += input.x * moveSpeed * Time.deltaTime * inAirModifier;
-            //}
-            //else
-            //{
-            //    targetVelocityX = 0;
-            //}
-            //CountCheck += Time.deltaTime;
 
             velocity.y = 0;
 
@@ -157,7 +139,7 @@ public class Player : MonoBehaviour {
             if (velocity.y > MaxInAirSpeed)
                 velocity.y = MaxInAirSpeed;
 
-            if (velocity.x < -MaxInAirSpeed/2)
+            if (velocity.x < -MaxInAirSpeed)
                 velocity.x = -MaxInAirSpeed;
             if (velocity.y < -MaxInAirSpeed)
                 velocity.y = -MaxInAirSpeed;
@@ -168,7 +150,7 @@ public class Player : MonoBehaviour {
         //--------------------
         //On Land Max Speed
         //--------------------
-        if (controller.collisions.below == false || controller.collisions.above == false)
+        if (controller.collisions.below == true || controller.collisions.above == true)
         {
             if (velocity.x > fPlayerMaxSpeed)
                 velocity.x = fPlayerMaxSpeed;
@@ -181,6 +163,9 @@ public class Player : MonoBehaviour {
                 velocity.y = -fPlayerMaxSpeed;
         }
 
+        //-----------------------------------------------
+        //if the player is grappling and is on the ground
+        //-----------------------------------------------
         if(bGrappling && controller.collisions.below)
         {
             if (velocity.x > fPlayerMaxSpeed)
@@ -221,27 +206,13 @@ public class Player : MonoBehaviour {
             targetVelocityX = Mathf.Sign(velocity.x) * moveSpeed * Time.deltaTime;
         }
 
-        if(!gameObject.GetComponent<PlayerInput>().isMoving && gameObject.GetComponent<Controller2D>().collisions.below)
+        if (!gameObject.GetComponent<PlayerInput>().isMoving && gameObject.GetComponent<Controller2D>().collisions.IsDying)
         {
             velocity.x = 0;
         }
 
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref XSmoothing, (controller.collisions.below) ? acceleratinTimeGrounded : accelerationTimeAirbourne);
 
-        //***RETURN TO THIS!!***
-        //Debug.Log(velocity.x);
-        //if (!bGrappling || gameObject.GetComponentInChildren<ShootOBJ>().IsShooting)
-        //{
-        //    if (velocity.x > MaxInAirSpeed)
-        //        velocity.x = MaxInAirSpeed;
-        //    if (velocity.y > MaxInAirSpeed)
-        //        velocity.y = MaxInAirSpeed;
-
-        //    if (velocity.x < -MaxInAirSpeed)
-        //        velocity.x = -MaxInAirSpeed;
-        //    if (velocity.y < -MaxInAirSpeed)
-        //        velocity.y = -MaxInAirSpeed;
-        //}
         if (gameObject.GetComponentInChildren<ShootOBJ>().cBall != null)
         {
             if (gameObject.GetComponentInChildren<ShootOBJ>().cBall.GetComponent<Grapple>().GrapConnected)
@@ -270,29 +241,23 @@ public class Player : MonoBehaviour {
             }
         }
 
-        controller.Move(velocity * Time.deltaTime);
-
-        //playerdirection = Mathf.Sign(velocity.x);
-
         if (velocity.x > 0 && !isturned)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             isturned = true;
-            //CurrentDir = -1;
         }
 
         if (velocity.x < 0 && isturned)
         {
             transform.localScale = new Vector3(1, 1, 1);
             isturned = false;
-            //CurrentDir = 1;
         }
 
-        //transform.right = new Vector3(CurrentDir, 0, 0);
+        controller.Move(velocity * Time.deltaTime);
 
         controller.HorizontalDeathCollision(ref velocity);
         controller.VerticalDeathCollision(ref velocity);
-        //DEBUGGING
+
         isDead = controller.collisions.IsDying;
     }
     float calcmaxspeed()
