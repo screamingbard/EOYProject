@@ -37,15 +37,16 @@ public class UIController : MonoBehaviour {
 
     float m_fTimer;
 
-    void awake()
+    void Awake()
     {
         if (Time.timeScale != 1)
         {
             Time.timeScale = 1;
         }
-        if (m_bMenuActive)
+        if (m_bMenuActive || m_goPauseMenu.activeInHierarchy)
         {
             m_bMenuActive = false;
+            m_goPauseMenu.SetActive(false);
         }
     }
     public void Quit()
