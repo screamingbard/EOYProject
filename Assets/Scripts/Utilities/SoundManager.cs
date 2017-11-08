@@ -17,7 +17,8 @@ public class SoundManager : MonoBehaviour {
     public List<AudioClip> m_lacBGM;
 
     //
-    public List<AudioClip> m_lacAmbiantSounds;
+    public List<AudioClip> m_lacAmbientSounds;
+
 
 	// Use this for initialization
 	void Start () {
@@ -26,6 +27,10 @@ public class SoundManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (!m_asAudioSource.isPlaying)
+        {
+            m_asAudioSource.clip = m_lacAmbientSounds[Random.Range(0, m_lacAmbientSounds.Count)];
+            m_asAudioSource.Play();
+        }
 	}
 }
