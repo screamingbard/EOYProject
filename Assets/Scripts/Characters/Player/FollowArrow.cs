@@ -15,10 +15,13 @@ public class FollowArrow : MonoBehaviour {
 
     [HideInInspector]
     public Vector3 JoystickStore = new Vector3();
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
+        if (Time.timeScale == 0)
+            return;
+
         if (JoystickStore.x != 0 || JoystickStore.y != 0) 
         {
             transform.position = Parent.transform.position + (JoystickStore * DistFromPlayer);
@@ -28,9 +31,13 @@ public class FollowArrow : MonoBehaviour {
         //if (JoystickStore.x == 0 || JoystickStore.y == 0)
         //    transform.position = new Vector3(0, 1, 0);
 
-        Vector3 holdPos = Parent.transform.position + JoystickStore;// - transform.position;
-                                                    //holdPos.Normalize();
+        if (JoystickStore.x != 0 || JoystickStore.y != 0)
+        {
+            storepos = JoystickStore;
+        }
 
+        Vector3 holdPos = Parent.transform.position + storepos;// - transform.position;
+                                                    //holdPos.Normalize();
         //Vector3 store = Parent.transform.position + (JoystickStore * 3);
 
         //Dir.Normalize();
@@ -42,6 +49,6 @@ public class FollowArrow : MonoBehaviour {
         //else
             //transform.LookAt();
 
-        transform.SetPositionAndRotation((Parent.transform.position + (JoystickStore * DistFromPlayer)), store);
+        transform.SetPositionAndRotation((Parent.transform.position + (storepos * DistFromPlayer)), store);
     }
 }

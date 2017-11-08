@@ -41,6 +41,10 @@ public class Player : MonoBehaviour {
     [Tooltip("This effects the distance the player can swing")]
     public float MaxInAirSpeed = 100.0f;
 
+
+    float percentagedecrease = 1.0f;
+    float decreaseSpeedCount = 0.0f;
+
     float colcd = 0;
 
     float grapAngle = 1;
@@ -73,6 +77,9 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
+        if (Time.timeScale == 0)
+            return;
+
         bool bGrappling = shootOBJ.cBall && shootOBJ.cBall.GetComponent<Grapple>().GrapConnected == true;
 
         //if (controller.collisions.left && bGrappling && colcd == 0|| controller.collisions.right && bGrappling && colcd == 0)
@@ -103,8 +110,8 @@ public class Player : MonoBehaviour {
 
         
         velocity.y += gravity * Time.deltaTime;
-        //if (velocity.y < -20)
-            //velocity.y = -20;
+        if (velocity.y < -20)
+            velocity.y = -20;
 
         if (controller.collisions.below && !bGrappling)
         {
@@ -117,7 +124,8 @@ public class Player : MonoBehaviour {
             //if (CountCheck > 1)
             //{
             gameObject.GetComponentInChildren<FollowArrow>().JoystickStore.x = input.x;
-            targetVelocityX += (input.x) * moveSpeed * Time.deltaTime * inAirModifier;
+            //***RETURN TO THIS!!***
+            targetVelocityX += input.x * moveSpeed * Time.deltaTime * inAirModifier;
             //}
             //else
             //{
@@ -149,7 +157,7 @@ public class Player : MonoBehaviour {
             if (velocity.y > MaxInAirSpeed)
                 velocity.y = MaxInAirSpeed;
 
-            if (velocity.x < -MaxInAirSpeed)
+            if (velocity.x < -MaxInAirSpeed/2)
                 velocity.x = -MaxInAirSpeed;
             if (velocity.y < -MaxInAirSpeed)
                 velocity.y = -MaxInAirSpeed;
@@ -186,45 +194,79 @@ public class Player : MonoBehaviour {
                 velocity.y = -fPlayerMaxSpeed;
         }
 
+        //***LOOK OVER THIS!!!***
+        //-----------------------------------
+        //This makes the character swing when 
+        //the character is idling.
+        //------------------------------------
         if (bGrappling && !gameObject.GetComponent<PlayerInput>().isMoving)
         {
             if (Mathf.Sign(targetVelocityX) < 0 && transform.position.x != shootOBJ.GetComponent<ShootOBJ>().cBall.transform.position.x)
             {
-                targetVelocityX += (moveSpeed + grapAngle) * Time.deltaTime * 10.0f;
+                targetVelocityX += (moveSpeed + grapAngle) * Time.deltaTime * 10.0f * percentagedecrease;
                 goingback = true;
+            }
+            else if (velocity.x == 0)
+            {
+                velocity.y = 0.0f;
             }
             else
             {
-                targetVelocityX -= (moveSpeed + grapAngle) * Time.deltaTime * 10.0f;
+                targetVelocityX -= (moveSpeed + grapAngle) * Time.deltaTime * 10.0f * percentagedecrease;
                 goingback = false;
             }
+        }
+        else if (bGrappling && gameObject.GetComponent<PlayerInput>().isMoving)
+        {
+            targetVelocityX = Mathf.Sign(velocity.x) * moveSpeed * Time.deltaTime;
+        }
+
+        if(!gameObject.GetComponent<PlayerInput>().isMoving && gameObject.GetComponent<Controller2D>().collisions.below)
+        {
+            velocity.x = 0;
         }
 
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref XSmoothing, (controller.collisions.below) ? acceleratinTimeGrounded : accelerationTimeAirbourne);
 
+        //***RETURN TO THIS!!***
         //Debug.Log(velocity.x);
-        if (!bGrappling || gameObject.GetComponentInChildren<ShootOBJ>().IsShooting)
-        {
-            if (velocity.x > MaxInAirSpeed)
-                velocity.x = MaxInAirSpeed;
-            if (velocity.y > MaxInAirSpeed)
-                velocity.y = MaxInAirSpeed;
+        //if (!bGrappling || gameObject.GetComponentInChildren<ShootOBJ>().IsShooting)
+        //{
+        //    if (velocity.x > MaxInAirSpeed)
+        //        velocity.x = MaxInAirSpeed;
+        //    if (velocity.y > MaxInAirSpeed)
+        //        velocity.y = MaxInAirSpeed;
 
-            if (velocity.x < -MaxInAirSpeed)
-                velocity.x = -MaxInAirSpeed;
-            if (velocity.y < -MaxInAirSpeed)
-                velocity.y = -MaxInAirSpeed;
+        //    if (velocity.x < -MaxInAirSpeed)
+        //        velocity.x = -MaxInAirSpeed;
+        //    if (velocity.y < -MaxInAirSpeed)
+        //        velocity.y = -MaxInAirSpeed;
+        //}
+        if (gameObject.GetComponentInChildren<ShootOBJ>().cBall != null)
+        {
+            if (gameObject.GetComponentInChildren<ShootOBJ>().cBall.GetComponent<Grapple>().GrapConnected)
+            {
+                if (velocity.x > MaxInAirSpeed)
+                    velocity.x = MaxInAirSpeed;
+                if (velocity.y > MaxInAirSpeed)
+                    velocity.y = MaxInAirSpeed;
+
+                if (velocity.x < -MaxInAirSpeed)
+                    velocity.x = -MaxInAirSpeed;
+                if (velocity.y < -MaxInAirSpeed)
+                    velocity.y = -MaxInAirSpeed;
+            }
         }
 
         if (gameObject.GetComponent<PlayerInput>().justReleased)
         {
             if (velocity.x > fPlayerMaxSpeed)
             {
-                velocity.x = fPlayerMaxSpeed;//calcSpeedOutOfJump();
+                velocity.x = fPlayerMaxSpeed;
             }
             if (velocity.x < -fPlayerMaxSpeed)
             {
-                velocity.x = -fPlayerMaxSpeed; //-calcSpeedOutOfJump();
+                velocity.x = -fPlayerMaxSpeed;
             }
         }
 

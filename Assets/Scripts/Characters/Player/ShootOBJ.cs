@@ -47,11 +47,7 @@ public class ShootOBJ : MonoBehaviour {
     [Tooltip("Adjusts how quickly the player accelerates as it exits the grapple cycle")]
     public float ReelSpeed = 3.0f;
 
-    int bstart = 0;
-    int grapCount = 0;
-
     public Transform rotObject;
-    Quaternion storeAngle;
 
     bool initialHit = true;
     uint countReleased = 0;
@@ -74,9 +70,11 @@ public class ShootOBJ : MonoBehaviour {
 
     // Update is called once per frame
     void Update()
-    {
-       // transform.LookAt(rotObject);
-
+    {   
+        //Makes sure that the shoot object actually pauses
+        if (Time.timeScale == 0)
+            return;
+        
         //Places down the pivot point for the grapple
         if (cooldowncheck == false) {
             if (IsShooting)
@@ -146,12 +144,16 @@ public class ShootOBJ : MonoBehaviour {
 
                // if (bstart < 1)
                // {
-                    rbPlayer.velocity = goPlayer.GetComponent<Player>().velocity;
+                    rbPlayer.velocity += (Vector2)goPlayer.GetComponent<Player>().velocity * Time.deltaTime * goPlayer.GetComponent<Player>().MaxInAirSpeed;
                     //bstart++;
                 //}
                // grapCount++;
 
                 rbPlayer.freezeRotation = true;
+            }
+            else if (!goPlayer.GetComponent<PlayerController>().IsGrounded && cBall.GetComponent<Grapple>().GrapConnected == true)
+            {
+                goPlayer.GetComponent<Player>().velocity += goPlayer.GetComponent<Player>().velocity * goPlayer.GetComponent<Player>().MaxInAirSpeed * goPlayer.GetComponent<Player>().inAirModifier * Time.deltaTime;
             }
             else
             {
@@ -167,7 +169,6 @@ public class ShootOBJ : MonoBehaviour {
             if (goPlayer.GetComponent<PlayerController>().IsGrounded)
             {
                 ScriptNormSet();
-                grapCount = 0;
             }
         }
 
@@ -226,11 +227,18 @@ public class ShootOBJ : MonoBehaviour {
         
     }
 
+    //makes sure that the custom velocity is added ontp the rigidbody 
     void ScriptNormSet()
     {
         rbPlayer.velocity = goPlayer.GetComponent<Player>().velocity;
-        //bstart = 0;
     }
+
+    //----------------------------------------------------
+    //Shoot1 is a secondary script called by the initial 
+    //Shoot script.
+    //This script is responsible for attatching the player 
+    //to the grapple.
+    //----------------------------------------------------
     public void Shoot1()
     {
         rc2dRaycast = Physics2D.Raycast(transform.position, mDir, fHoldDistance, lmLayerMask);
