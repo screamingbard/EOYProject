@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: fd31b76a9fdb00045875537509cfa1c5
-timeCreated: 1510143272
+timeCreated: 1510144336
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,7 +16,7 @@ TextureImporter:
     21300018: UI_003_ButtonCredits_001_Pressed_009
     21300020: UI_003_ButtonCredits_001_Pressed_010
     21300022: UI_003_ButtonCredits_001_Pressed_011
-    21300024: UI_003_ButtonCredits_001_Hover_Highlighted
+    21300024: UI_003_ButtonCredits_001_Highlighted_001
     21300026: UI_003_ButtonCredits_001_Highlighted_002
     21300028: UI_003_ButtonCredits_001_Highlighted_003
     21300030: UI_003_ButtonCredits_001_Highlighted_004
@@ -302,10 +302,10 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_003_ButtonCredits_001_Hover_Highlighted
+      name: UI_003_ButtonCredits_001_Highlighted_001
       rect:
         serializedVersion: 2
-        x: 2102
+        x: 2104
         y: 600
         width: 420
         height: 203
