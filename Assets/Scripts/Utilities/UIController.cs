@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using XboxCtrlrInput;
 
 public class UIController : MonoBehaviour {
-
+    
     //The variable controlling which scene is loaded in the scene load method
     public int m_iSceneIndex = 0;
 
@@ -36,7 +36,18 @@ public class UIController : MonoBehaviour {
 
 
     float m_fTimer;
-    
+
+    void awake()
+    {
+        if (Time.timeScale != 1)
+        {
+            Time.timeScale = 1;
+        }
+        if (m_bMenuActive)
+        {
+            m_bMenuActive = false;
+        }
+    }
     public void Quit()
     //On call will close the game
     {
