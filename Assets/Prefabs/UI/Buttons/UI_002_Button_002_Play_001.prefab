@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114409848850644576}
   - component: {fileID: 95456951202251430}
   m_Layer: 5
-  m_Name: Play
+  m_Name: UI_002_Button_002_Play_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ Animator:
   m_GameObject: {fileID: 1333421785506882}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e0b69c0eba53c244bafe11e03ae37f83, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9472436ed72c7924c88ad7bdb46b0c35, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: dad10588a65c762409261ce76738e37a, type: 3}
+  m_Sprite: {fileID: 21300062, guid: b374dbef42ff7d14ba94046b81adee8b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -129,7 +129,7 @@ RectTransform:
   m_GameObject: {fileID: 1333421785506882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0000168, y: 1.0000168, z: 1.0000168}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 60270320382977018}
   m_Layer: 9
   m_Name: Ground_009_Island_003
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1687896917
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 02da711de751dec4eb149023b98a9acc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
