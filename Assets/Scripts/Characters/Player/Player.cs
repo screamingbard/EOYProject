@@ -4,9 +4,9 @@ using XboxCtrlrInput;
 using UnityEngine;
 
 [RequireComponent (typeof (Controller2D))]
-[RequireComponent(typeof(Rigidbody2D))]
+//[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerController))]
-[RequireComponent(typeof(DistanceJoint2D))]
+//[RequireComponent(typeof(DistanceJoint2D))]
 
 public class Player : MonoBehaviour {
 

@@ -119,7 +119,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1449296355093346}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -66.80561, y: 13.300001, z: 0}
+  m_LocalPosition: {x: 107.6, y: 3.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4731684724569446}
@@ -136,7 +136,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1354027996542066}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.9, y: -12.16, z: 0}
+  m_LocalPosition: {x: 0.98, y: -10.65, z: 0}
   m_LocalScale: {x: 0.5000002, y: 0.5000002, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4251188730297280}
@@ -162,7 +162,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1672714506792754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.77, y: 10.1, z: 0}
+  m_LocalPosition: {x: -10.78, y: -1.78, z: 0}
   m_LocalScale: {x: 0.5000002, y: 0.5000002, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4251188730297280}
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_tfInitialRotation: {fileID: 4300977766145876}
   m_tfSecondRotation: {fileID: 4379377447009236}
   m_fRotationSpeed: 0.5
-  m_fTimeBetweenRotations: 8
+  m_fTimeBetweenRotations: 4
 --- !u!114 &114754494224589630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -385,14 +385,17 @@ MonoBehaviour:
   m_lmObstacleMask:
     serializedVersion: 2
     m_Bits: 512
-  m_fMeshResolution: 10
+  m_fMeshResolution: 1.5
   m_fDeathTimer: 2
   m_fAlertCooldown: 2
-  m_tfPlayer: {fileID: 0}
   m_mfViewMeshFilter: {fileID: 33643519364327250}
   m_mViewMesh: {fileID: 0}
   m_mfOverlayViewMeshFilter: {fileID: 33753864672778370}
   m_mOverlayViewMesh: {fileID: 0}
+  m_goAlertSignal: {fileID: 0}
+  m_aAlertAnimation: {fileID: 0}
+  m_acAlertSound: {fileID: 0}
+  m_gdGameData: {fileID: 0}
 --- !u!212 &212451893708464276
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -422,8 +425,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1687896917
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: da501f3083df8a349b29c0dfdeb37ce2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
