@@ -45,10 +45,13 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background_02
+  - name: Background_Far
+    uniqueID: 2667012501
+    locked: 0
+  - name: Background_Mid
     uniqueID: 3110092775
     locked: 0
-  - name: Background_01
+  - name: Background_Front
     uniqueID: 299217885
     locked: 0
   - name: Midground
