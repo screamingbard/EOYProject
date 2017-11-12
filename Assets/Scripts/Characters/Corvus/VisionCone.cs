@@ -76,7 +76,7 @@ public class VisionCone : MonoBehaviour {
         m_tfPlayer = GameObject.FindWithTag("Player").transform;
 
         //Set the death timer of the vision cone
-        m_fUseDeathTimer = m_fDeathTimer;
+        m_fUseDeathTimer = 0;
 
         //Initialise the view mesh
         m_mViewMesh = new Mesh();
