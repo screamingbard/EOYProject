@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4724177404626962}
   - component: {fileID: 212006190444666032}
+  - component: {fileID: 95174689286539970}
   m_Layer: 0
   m_Name: CheckPoint_004_Marker_002
   m_TagString: Untagged
@@ -51,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1318258070092044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.54, y: -1.706, z: 0}
+  m_LocalPosition: {x: -0.526, y: -1.661, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4848633944478056}
@@ -64,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1961746219895624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -201.84828, y: -11.589019, z: 0}
+  m_LocalPosition: {x: 130.06819, y: 9.445431, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4724177404626962}
@@ -96,6 +97,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 50}
   m_EdgeRadius: 0
+--- !u!95 &95174689286539970
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1318258070092044}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f7f0b54fd378b744ab966bc031c0b3a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!212 &212006190444666032
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -126,8 +144,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1687896917
-  m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingLayer: 4
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 384506450810d4d46a3c8f19a2b3f49f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -168,8 +186,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1687896917
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayer: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a2344fbf8a8c4224ea5d1da8da0c049f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
