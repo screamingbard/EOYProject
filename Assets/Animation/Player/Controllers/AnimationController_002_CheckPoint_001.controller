@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: CheckPoint_004_Marker_002
+  m_Name: AnimationController_002_CheckPoint_001
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Active
