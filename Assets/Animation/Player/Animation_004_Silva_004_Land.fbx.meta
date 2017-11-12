@@ -1,0 +1,221 @@
+fileFormatVersion: 2
+guid: 8ab96a68d411e3c45941658f6e5001ea
+timeCreated: 1510456927
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: ch_Silva_THIGH_Behind
+    100002: Silva2_EAR_Behind
+    100004: Silva2_EARTIP_Behind
+    100006: Silva_1Tail
+    100008: Silva_2tail
+    100010: Silva_3tail
+    100012: Silva_4tail
+    100014: Silva_5tail
+    100016: Silva_6tail
+    100018: Silva_7tail
+    100020: Silva_BACK
+    100022: Silva_BACKLEG
+    100024: Silva_BACKLEG_Behind
+    100026: Silva_BACKPAW
+    100028: Silva_BACKPAW_Behind
+    100030: Silva_BICEP
+    100032: Silva_BICEP_Behind
+    100034: Silva_CHEST
+    100036: Silva_EAR
+    100038: Silva_EARTIP
+    100040: Silva_FOREARM
+    100042: Silva_FOREARM_Behind
+    100044: Silva_FRONTPAW
+    100046: Silva_FRONTPAW_Behind
+    100048: Silva_HEAD
+    100050: //RootNode
+    100052: Silva_TAILTIP
+    100054: Silva_THIGH
+    400000: ch_Silva_THIGH_Behind
+    400002: Silva2_EAR_Behind
+    400004: Silva2_EARTIP_Behind
+    400006: Silva_1Tail
+    400008: Silva_2tail
+    400010: Silva_3tail
+    400012: Silva_4tail
+    400014: Silva_5tail
+    400016: Silva_6tail
+    400018: Silva_7tail
+    400020: Silva_BACK
+    400022: Silva_BACKLEG
+    400024: Silva_BACKLEG_Behind
+    400026: Silva_BACKPAW
+    400028: Silva_BACKPAW_Behind
+    400030: Silva_BICEP
+    400032: Silva_BICEP_Behind
+    400034: Silva_CHEST
+    400036: Silva_EAR
+    400038: Silva_EARTIP
+    400040: Silva_FOREARM
+    400042: Silva_FOREARM_Behind
+    400044: Silva_FRONTPAW
+    400046: Silva_FRONTPAW_Behind
+    400048: Silva_HEAD
+    400050: //RootNode
+    400052: Silva_TAILTIP
+    400054: Silva_THIGH
+    2300000: ch_Silva_THIGH_Behind
+    2300002: Silva2_EAR_Behind
+    2300004: Silva2_EARTIP_Behind
+    2300006: Silva_1Tail
+    2300008: Silva_2tail
+    2300010: Silva_3tail
+    2300012: Silva_4tail
+    2300014: Silva_5tail
+    2300016: Silva_6tail
+    2300018: Silva_7tail
+    2300020: Silva_BACK
+    2300022: Silva_BACKLEG
+    2300024: Silva_BACKLEG_Behind
+    2300026: Silva_BACKPAW
+    2300028: Silva_BACKPAW_Behind
+    2300030: Silva_BICEP
+    2300032: Silva_BICEP_Behind
+    2300034: Silva_CHEST
+    2300036: Silva_EAR
+    2300038: Silva_EARTIP
+    2300040: Silva_FOREARM
+    2300042: Silva_FOREARM_Behind
+    2300044: Silva_FRONTPAW
+    2300046: Silva_FRONTPAW_Behind
+    2300048: Silva_HEAD
+    2300050: Silva_TAILTIP
+    2300052: Silva_THIGH
+    3300000: ch_Silva_THIGH_Behind
+    3300002: Silva2_EAR_Behind
+    3300004: Silva2_EARTIP_Behind
+    3300006: Silva_1Tail
+    3300008: Silva_2tail
+    3300010: Silva_3tail
+    3300012: Silva_4tail
+    3300014: Silva_5tail
+    3300016: Silva_6tail
+    3300018: Silva_7tail
+    3300020: Silva_BACK
+    3300022: Silva_BACKLEG
+    3300024: Silva_BACKLEG_Behind
+    3300026: Silva_BACKPAW
+    3300028: Silva_BACKPAW_Behind
+    3300030: Silva_BICEP
+    3300032: Silva_BICEP_Behind
+    3300034: Silva_CHEST
+    3300036: Silva_EAR
+    3300038: Silva_EARTIP
+    3300040: Silva_FOREARM
+    3300042: Silva_FOREARM_Behind
+    3300044: Silva_FRONTPAW
+    3300046: Silva_FRONTPAW_Behind
+    3300048: Silva_HEAD
+    3300050: Silva_TAILTIP
+    3300052: Silva_THIGH
+    4300000: Silva_CHEST
+    4300002: Silva_BACK
+    4300004: Silva_HEAD
+    4300006: Silva2_EAR_Behind
+    4300008: Silva2_EARTIP_Behind
+    4300010: Silva_EAR
+    4300012: Silva_EARTIP
+    4300014: Silva_BICEP
+    4300016: Silva_FOREARM
+    4300018: Silva_FRONTPAW
+    4300020: Silva_BICEP_Behind
+    4300022: Silva_FOREARM_Behind
+    4300024: Silva_FRONTPAW_Behind
+    4300026: Silva_THIGH
+    4300028: Silva_BACKLEG
+    4300030: Silva_BACKPAW
+    4300032: ch_Silva_THIGH_Behind
+    4300034: Silva_BACKLEG_Behind
+    4300036: Silva_BACKPAW_Behind
+    4300038: Silva_1Tail
+    4300040: Silva_2tail
+    4300042: Silva_3tail
+    4300044: Silva_4tail
+    4300046: Silva_5tail
+    4300048: Silva_6tail
+    4300050: Silva_7tail
+    4300052: Silva_TAILTIP
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
