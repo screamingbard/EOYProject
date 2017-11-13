@@ -376,6 +376,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &372283654 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1369313962025676, guid: b539f380f68021d438fc2915f7064766,
+    type: 2}
+  m_PrefabInternal: {fileID: 1971497969}
+--- !u!1 &522236814 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1357179976936414, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
+    type: 2}
+  m_PrefabInternal: {fileID: 873116183}
+--- !u!1 &566649325 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1745240747432614, guid: b539f380f68021d438fc2915f7064766,
+    type: 2}
+  m_PrefabInternal: {fileID: 1971497969}
 --- !u!1001 &799282496
 Prefab:
   m_ObjectHideFlags: 0
@@ -621,7 +636,12 @@ Prefab:
       objectReference: {fileID: 1390477343}
     - target: {fileID: 1241080582211104, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163841084312496, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackOutOfSettings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4, type: 2}
@@ -892,7 +912,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1088644574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -948,8 +968,12 @@ MonoBehaviour:
   m_btnSettingsButton: {fileID: 1071870557}
   m_btnQuitButton: {fileID: 259448585}
   m_esEventSysRef: {fileID: 339604960}
+  m_goFirstSelected: {fileID: 1669908329}
+  m_goFirstSelectedSettings: {fileID: 522236814}
+  m_goFirstSelectedCredits: {fileID: 566649325}
   m_goMainMenu: {fileID: 1088644573}
   m_goSettingsMenu: {fileID: 202375989}
+  m_goCreditsMenu: {fileID: 372283654}
 --- !u!4 &1390477344
 Transform:
   m_ObjectHideFlags: 0
@@ -970,6 +994,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1088644574}
     m_Modifications:
+    - target: {fileID: 114089744356390844, guid: ced5605514339f74e9fe086bc72a4477,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224165894486806704, guid: ced5605514339f74e9fe086bc72a4477,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -1075,6 +1104,31 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114089744356390844, guid: ced5605514339f74e9fe086bc72a4477,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114089744356390844, guid: ced5605514339f74e9fe086bc72a4477,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114089744356390844, guid: ced5605514339f74e9fe086bc72a4477,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1390477343}
+    - target: {fileID: 114089744356390844, guid: ced5605514339f74e9fe086bc72a4477,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToCredits
+      objectReference: {fileID: 0}
+    - target: {fileID: 114089744356390844, guid: ced5605514339f74e9fe086bc72a4477,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ced5605514339f74e9fe086bc72a4477, type: 2}
   m_IsPrefabParent: 0
@@ -1094,6 +1148,11 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224951835058903718, guid: b539f380f68021d438fc2915f7064766,
     type: 2}
   m_PrefabInternal: {fileID: 1971497969}
+--- !u!1 &1669908329 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1333421785506882, guid: 6c780ac81f43e0540ae760c53d54b70c,
+    type: 2}
+  m_PrefabInternal: {fileID: 799282496}
 --- !u!1001 &1971497969
 Prefab:
   m_ObjectHideFlags: 0
@@ -1198,11 +1257,16 @@ Prefab:
       objectReference: {fileID: 1390477343}
     - target: {fileID: 1369313962025676, guid: b539f380f68021d438fc2915f7064766, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1698408990066520, guid: b539f380f68021d438fc2915f7064766, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114509190874936144, guid: b539f380f68021d438fc2915f7064766,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackOutOfCredits
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b539f380f68021d438fc2915f7064766, type: 2}
