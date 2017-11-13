@@ -7,35 +7,48 @@ using UnityEngine.EventSystems;
 using XboxCtrlrInput;
 
 public class UIController : MonoBehaviour {
-    
+
     //The variable controlling which scene is loaded in the scene load method
     public int m_iSceneIndex = 0;
 
-    //
-    // public Button m_buRstartButton;
+    //The Resume Button
+    public Button m_btnResumeButton;
 
-    //
-    // public EventSystem m_esEventSysRef;
+    //The settings button
+    public Button m_btnSettingsButton;
 
-    //
-    public float m_fMenuXMax;
+    //The quit button
+    public Button m_btnQuitButton;
 
-    //
-    public float m_fMenuYMax;
+    //The cancel quit button
+    public Button m_btnCancelQuitButton;
 
-    //
+    //The quit game button
+    public Button m_btnQuitGameButton;
+    
+    //The quit to menu button
+    public Button m_btnQuitToMenuButton;
+
+    //An event system
+    public EventSystem m_esEventSysRef;
+
+    //The first selected gameobject
+    public GameObject m_goFirstSelected;
+
+    //The first selected gameobject within the settings menu
+    public GameObject m_goFirstSelectedSettings;
+
+    //The first selected gameobject within the quit menu
+    public GameObject m_goFirstSelectedQuit;
+
+    //The main menu game object
     public GameObject m_goPauseMenu;
 
-    Vector2 m_vMenuPosition;
+    //The settings menu game object
+    public GameObject m_goSettingsMenu;
 
-
-    bool m_bMenuActive;
-
-
-    bool m_bCanInteract = true;
-
-
-    float m_fTimer;
+    //The settings menu game object
+    public GameObject m_goQuitMenu;
 
     void Awake()
     {
@@ -43,9 +56,8 @@ public class UIController : MonoBehaviour {
         {
             Time.timeScale = 1;
         }
-        if (m_bMenuActive || m_goPauseMenu.activeInHierarchy)
+        if (m_goPauseMenu.activeInHierarchy)
         {
-            m_bMenuActive = false;
             m_goPauseMenu.SetActive(false);
         }
     }
@@ -54,7 +66,6 @@ public class UIController : MonoBehaviour {
     {
         Application.Quit();
     }
-
     public void LoadLevel()
     //On call will load a specified scene
     {
@@ -63,7 +74,11 @@ public class UIController : MonoBehaviour {
 
     void Update()
     {
-        if (XCI.GetButtonDown(XboxButton.Start))
+        if (m_esEventSysRef.currentSelectedGameObject == null)
+        {
+            m_esEventSysRef.SetSelectedGameObject(m_goFirstSelected);
+        }
+        if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (Time.timeScale == 1)
             {
@@ -74,53 +89,43 @@ public class UIController : MonoBehaviour {
                 Unpause();
             }
         }
-
-        if (m_bMenuActive)
+        if (XCI.GetButtonDown(XboxButton.B))
         {
-            if (m_bCanInteract)
-            {
-
-                if (XCI.GetAxisRaw(XboxAxis.LeftStickX) < 0)
-                {
-                    m_bCanInteract = false;
-                    //Change selected menu item
-                    m_vMenuPosition.x--;
-                }
-                else if (XCI.GetAxisRaw(XboxAxis.LeftStickX) > 0)
-                {
-                    m_bCanInteract = false;
-                    //Change selected menu item
-                    m_vMenuPosition.x++;
-                }
-                else if (XCI.GetAxisRaw(XboxAxis.LeftStickY) < 0)
-                {
-                    m_bCanInteract = false;
-                    //Change selected menu item
-                    if (m_vMenuPosition.y <= 0)
-                        m_vMenuPosition.y = m_fMenuYMax;
-                    else
-                        m_vMenuPosition.y--;
-                }
-                else if (XCI.GetAxisRaw(XboxAxis.LeftStickY) > 0)
-                {
-                    m_bCanInteract = false;
-                    //Change selected menu item
-                    m_vMenuPosition.y++;
-                }
-            }
-            else
-            {
-                if (m_fTimer <= 0)
-                {
-                    m_bCanInteract = true;
-                    m_fTimer = 1;
-                }
-                else
-                {
-                    m_fTimer -= Time.unscaledDeltaTime;
-                }
-            }
+            Unpause();
+            BackOutOfQuit();
+            BackOutOfSettings();
         }
+    }
+    //Go into the settings menu
+    public void GoToSettings()
+    {
+        m_goSettingsMenu.SetActive(true);
+        m_esEventSysRef.SetSelectedGameObject(m_goFirstSelectedSettings);
+        m_goPauseMenu.SetActive(false);
+    }
+
+    //Go back to the pause menu from the settings
+    public void BackOutOfSettings()
+    {
+        m_goSettingsMenu.SetActive(false);
+        m_esEventSysRef.SetSelectedGameObject(null);
+        m_goPauseMenu.SetActive(true);
+    }
+
+    //Go into the quit menu
+    public void GoToQuit()
+    {
+        m_goQuitMenu.SetActive(true);
+        m_esEventSysRef.SetSelectedGameObject(m_goFirstSelectedQuit);
+        m_goPauseMenu.SetActive(false);
+    }
+
+    //Go back to the pause menu from the quit
+    public void BackOutOfQuit()
+    {
+        m_goQuitMenu.SetActive(false);
+        m_esEventSysRef.SetSelectedGameObject(null);
+        m_goPauseMenu.SetActive(true);
     }
 
     void Pause()
