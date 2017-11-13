@@ -31,6 +31,9 @@ public class MainMenuController : MonoBehaviour {
 
     //The settings menu game object
     public GameObject m_goSettingsMenu;
+
+    //The settings menu game object
+    public GameObject m_goCreditsMenu;
     
     void Awake()
     {
@@ -38,10 +41,6 @@ public class MainMenuController : MonoBehaviour {
         if (Time.timeScale != 1)
         {
             Time.timeScale = 1;
-        }
-        if (m_goMainMenu.activeInHierarchy)
-        {
-            m_goMainMenu.SetActive(false);
         }
     }
     public void Quit()
@@ -69,6 +68,11 @@ public class MainMenuController : MonoBehaviour {
                 Unpause();
             }
         }
+        if (XCI.GetButtonDown(XboxButton.B))
+        {
+            BackOutOfSettings();
+            BackOutOfCredits();
+        }
     }
 
     //Go into the settings menu
@@ -82,6 +86,20 @@ public class MainMenuController : MonoBehaviour {
     public void BackOutOfSettings()
     {
         m_goSettingsMenu.SetActive(false);
+        m_goMainMenu.SetActive(true);
+    }
+
+    //Go back to the pause menu from the settings
+    public void GoToCredits()
+    {
+        m_goCreditsMenu.SetActive(false);
+        m_goMainMenu.SetActive(true);
+    }
+
+    //Go back to the pause menu from the settings
+    public void BackOutOfCredits()
+    {
+        m_goCreditsMenu.SetActive(false);
         m_goMainMenu.SetActive(true);
     }
 
