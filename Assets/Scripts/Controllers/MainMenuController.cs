@@ -29,6 +29,12 @@ public class MainMenuController : MonoBehaviour {
     //The first selected gameobject
     public GameObject m_goFirstSelected;
 
+    //The first selected gameobject within the settings menu
+    public GameObject m_goFirstSelectedSettings;
+
+    //The first selected gameobject within the credites menu
+    public GameObject m_goFirstSelectedCredits;
+
     //The main menu game object
     public GameObject m_goMainMenu;
 
@@ -94,6 +100,7 @@ public class MainMenuController : MonoBehaviour {
     public void GoToSettings()
     {
         m_goSettingsMenu.SetActive(true);
+        m_esEventSysRef.SetSelectedGameObject(m_goFirstSelectedSettings);
         m_goMainMenu.SetActive(false);
     }
 
@@ -101,6 +108,7 @@ public class MainMenuController : MonoBehaviour {
     public void BackOutOfSettings()
     {
         m_goSettingsMenu.SetActive(false);
+        m_esEventSysRef.SetSelectedGameObject(null);
         m_goMainMenu.SetActive(true);
     }
 
@@ -108,6 +116,7 @@ public class MainMenuController : MonoBehaviour {
     public void GoToCredits()
     {
         m_goCreditsMenu.SetActive(true);
+        m_esEventSysRef.SetSelectedGameObject(m_goFirstSelectedCredits);
         m_goMainMenu.SetActive(false);
     }
 
@@ -115,6 +124,7 @@ public class MainMenuController : MonoBehaviour {
     public void BackOutOfCredits()
     {
         m_goCreditsMenu.SetActive(false);
+        m_esEventSysRef.SetSelectedGameObject(null);
         m_goMainMenu.SetActive(true);
     }
 
