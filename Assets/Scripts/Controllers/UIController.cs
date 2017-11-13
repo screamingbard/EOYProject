@@ -66,7 +66,7 @@ public class UIController : MonoBehaviour {
     {
         Application.Quit();
     }
-    public void LoadLevel()
+    public void ReloadLevel()
     //On call will load a specified scene
     {
         SceneManager.LoadScene(m_iSceneIndex);
