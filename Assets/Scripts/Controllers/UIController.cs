@@ -50,6 +50,12 @@ public class UIController : MonoBehaviour {
     //The settings menu game object
     public GameObject m_goQuitMenu;
 
+    //To stop the player jumping when you unpause
+    bool m_bInputDelayingness;
+
+    //
+    float m_fInputDelayTimer;
+
     void Awake()
     {
         if (Time.timeScale != 1)
@@ -82,6 +88,17 @@ public class UIController : MonoBehaviour {
 
     void Update()
     {
+        if (m_bInputDelayingness)
+        {
+            m_fInputDelayTimer -= Time.unscaledDeltaTime;
+        }
+        if (m_fInputDelayTimer <= 0)
+        {
+            Unpause();
+            m_fInputDelayTimer = 100;
+            m_bInputDelayingness = false;
+        }
+
         if (m_esEventSysRef.currentSelectedGameObject == null)
         {
             m_esEventSysRef.SetSelectedGameObject(m_goFirstSelected);
@@ -145,12 +162,13 @@ public class UIController : MonoBehaviour {
         m_goPauseMenu.SetActive(true);
     }
 
+    public void UnpauseFromMenu()
+    {
+        m_bInputDelayingness = true;
+    }
+
     public void Pause()
     {
-        for (int i = 0; i < 100; i++)
-        {
-
-        }
         Time.timeScale = 0;
         m_goPauseMenu.SetActive(true);
     }
