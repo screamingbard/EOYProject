@@ -137,13 +137,13 @@ public class UIController : MonoBehaviour {
         m_goPauseMenu.SetActive(true);
     }
 
-    void Pause()
+    public void Pause()
     {
         Time.timeScale = 0;
         m_goPauseMenu.SetActive(true);
     }
 
-    void Unpause()
+    public void Unpause()
     {
         Time.timeScale = 1;
         m_goPauseMenu.SetActive(false);
