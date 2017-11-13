@@ -11,37 +11,23 @@ public class PlayAnimation : MonoBehaviour {
     public Animation m_animAnimation;
 
     //
+    public Animator m_animatorAnimator;
+
+    //
     public bool m_bPlayMoreThanOnce;
 
     //
-    public float m_fTimeBetweenAnimations;
-
-    //
-    float m_fTimerBetweenAnimations;
+    public string m_stAnimationBool;
 
     //
     bool m_bPlayMoreThanOncePrivate = true;
-
+    
     void start()
     {
-        //
-        m_fTimerBetweenAnimations = m_fTimeBetweenAnimations;
     }
 
     void Update()
     {
-
-        if (m_bPlayMoreThanOncePrivate)
-        {
-            if (m_fTimerBetweenAnimations >= m_fTimeBetweenAnimations)
-            {
-                m_fTimerBetweenAnimations = 0;
-            }
-            else
-            {
-                m_fTimerBetweenAnimations += Time.deltaTime;
-            }
-        }
     }
 
     void OnTriggerEnter2D(Collider2D a_colCollider)
@@ -51,14 +37,12 @@ public class PlayAnimation : MonoBehaviour {
             //If true will play the animation
             if (m_bPlayMoreThanOncePrivate)
             {
-                if (m_fTimerBetweenAnimations >= m_fTimeBetweenAnimations)
+                if (!m_animAnimation.isPlaying)
                 {
-                    m_fTimerBetweenAnimations = 0;
-                    m_animAnimation.Play();
+                    m_animatorAnimator.SetBool(m_stAnimationBool, true);
                     m_bPlayMoreThanOncePrivate = m_bPlayMoreThanOnce;
                 }
             }
         }
     }
-
 }
