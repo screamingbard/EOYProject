@@ -63,7 +63,7 @@ public class Controller2D : MonoBehaviour
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
             //***Remove***
-            Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
+            //Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
 
             if (hit)
             {
@@ -155,41 +155,41 @@ public class Controller2D : MonoBehaviour
         }
     }
 
-   public void HorizontalDeathCollision(ref Vector3 velocity)
-    {
-        float directionX = Mathf.Sign(velocity.x);
-        float rayLength = Mathf.Abs(velocity.x) + skinwidth;
+   //public void HorizontalDeathCollision(ref Vector3 velocity)
+   // {
+   //     float directionX = Mathf.Sign(velocity.x);
+   //     float rayLength = Mathf.Abs(velocity.x) + skinwidth;
 
-        for (int i = 0; i < horizontalRayCount; i++)
-        {
-            Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
-            rayOrigin += Vector2.up * (horizontalRaySpacing * i);
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, deathTrap);
+   //     for (int i = 0; i < horizontalRayCount; i++)
+   //     {
+   //         Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+   //         rayOrigin += Vector2.up * (horizontalRaySpacing * i);
+   //         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, deathTrap);
 
-            if (hit)
-            {
-                collisions.IsDying = true;
-            }
-        }
-    }
+   //         if (hit)
+   //         {
+   //             collisions.IsDying = true;
+   //         }
+   //     }
+   // }
 
-    public void VerticalDeathCollision(ref Vector3 velocity)
-    {
-        float directionY = Mathf.Sign(velocity.y);
-        float rayLength = Mathf.Abs(velocity.y) + skinwidth;
+   // public void VerticalDeathCollision(ref Vector3 velocity)
+   // {
+   //     float directionY = Mathf.Sign(velocity.y);
+   //     float rayLength = Mathf.Abs(velocity.y) + skinwidth;
 
-        for (int i = 0; i < verticalRayCount; i++)
-        {
-            Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
-            rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, deathTrap);
+   //     for (int i = 0; i < verticalRayCount; i++)
+   //     {
+   //         Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
+   //         rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
+   //         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, deathTrap);
 
-            if (hit)
-            {
-                collisions.IsDying = true;
-            }
-        }
-    }
+   //         if (hit)
+   //         {
+   //             collisions.IsDying = true;
+   //         }
+   //     }
+   // }
     void ClimbSlope(ref Vector3 velocity, float slopeAngle)
     {
         float moveDistance = Mathf.Abs(velocity.x);
@@ -274,6 +274,7 @@ public class Controller2D : MonoBehaviour
         public bool left, right;
 
         public bool IsDying;
+        public bool IsColliding;
 
         public bool climbingSlope;
         public bool descendingSlope;
@@ -288,6 +289,8 @@ public class Controller2D : MonoBehaviour
             left = right = false;
             climbingSlope = false;
             descendingSlope = false;
+
+            IsColliding = false;
 
             IsDying = false;
 
