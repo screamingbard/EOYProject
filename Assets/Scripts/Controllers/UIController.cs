@@ -91,9 +91,18 @@ public class UIController : MonoBehaviour {
         }
         if (XCI.GetButtonDown(XboxButton.B))
         {
-            Unpause();
-            BackOutOfQuit();
-            BackOutOfSettings();
+            if (m_goQuitMenu.activeInHierarchy)
+            {
+                BackOutOfQuit();
+            }
+            else if (m_goSettingsMenu.activeInHierarchy)
+            {
+                BackOutOfSettings();
+            }
+            else if (m_goPauseMenu.activeInHierarchy)
+            {
+                Unpause();
+            }
         }
     }
     //Go into the settings menu
