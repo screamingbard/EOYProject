@@ -147,6 +147,10 @@ public class UIController : MonoBehaviour {
 
     public void Pause()
     {
+        for (int i = 0; i < 100; i++)
+        {
+
+        }
         Time.timeScale = 0;
         m_goPauseMenu.SetActive(true);
     }
