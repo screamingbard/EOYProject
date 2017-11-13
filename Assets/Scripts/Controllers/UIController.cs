@@ -56,6 +56,14 @@ public class UIController : MonoBehaviour {
         {
             Time.timeScale = 1;
         }
+        if (m_goQuitMenu.activeInHierarchy)
+        {
+            BackOutOfQuit();
+        }
+        if (m_goSettingsMenu.activeInHierarchy)
+        {
+            BackOutOfSettings();
+        }
         if (m_goPauseMenu.activeInHierarchy)
         {
             m_goPauseMenu.SetActive(false);
