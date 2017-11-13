@@ -27,14 +27,14 @@ public class AnimationManager : MonoBehaviour {
     public GameObject m_goPlayer;
 
     //
-    public Controller2D m_cont2dPlayerContorller;
+    public PlayerController m_plycntPlayerContorller;
 
     void Start()
     {
     }
     // Update is called once per frame
     void Update () {
-        if (!m_cont2dPlayerContorller.collisions.IsDying)
+        if (!m_plycntPlayerContorller.IsGrounded)
         {
         }
         else
