@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour {
     public int m_iSceneIndex = 1;
 
     //The Resume Button
-    public Button m_btnResumeButton;
+    public Button m_btnPlayButton;
 
     //The settings button
     public Button m_btnSettingsButton;
@@ -23,8 +23,8 @@ public class UIController : MonoBehaviour {
     //The cancel quit button
     public Button m_btnCancelQuitButton;
 
-    //The quit game button
-    public Button m_btnQuitGameButton;
+    //The confirmation the player wishes to quit
+    public Button m_btnConfirmQuitButton;
     
     //The quit to menu button
     public Button m_btnRestartButton;
@@ -149,7 +149,7 @@ public class UIController : MonoBehaviour {
     public void BackOutOfSettings()
     {
         m_goSettingsMenu.SetActive(false);
-        m_esEventSysRef.SetSelectedGameObject(null);
+        m_esEventSysRef.SetSelectedGameObject(m_btnSettingsButton.gameObject);
         m_goPauseMenu.SetActive(true);
     }
 
@@ -165,7 +165,7 @@ public class UIController : MonoBehaviour {
     public void BackOutOfQuit()
     {
         m_goQuitMenu.SetActive(false);
-        m_esEventSysRef.SetSelectedGameObject(null);
+        m_esEventSysRef.SetSelectedGameObject(m_btnQuitButton.gameObject);
         m_goPauseMenu.SetActive(true);
     }
 
@@ -176,6 +176,7 @@ public class UIController : MonoBehaviour {
 
     public void Pause()
     {
+        m_btnPlayButton.OnSelect(null);
         Time.timeScale = 0;
         m_goPauseMenu.SetActive(true);
         m_goPauseScreenBackground.SetActive(true);

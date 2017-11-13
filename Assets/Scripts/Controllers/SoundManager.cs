@@ -11,7 +11,7 @@ public class SoundManager : MonoBehaviour {
     public AudioSource m_asMusicAudioSource;
 
     //
-    public GameData m_gdGameData;
+    public Options m_options;
 
     //
     public AudioClip m_acMenuMusic;
@@ -24,16 +24,33 @@ public class SoundManager : MonoBehaviour {
 
     
 	void Start () {
-        m_asAmbientAudioSource.PlayOneShot(m_acMenuMusic, 0.5f/*m_gdGameData.m_setSettigs.m_fMusicVolume * m_gdGameData.m_setSettigs.m_fMasterVolume*/);
+        if (m_options.m_bMusicOnOff)
+        {
+            m_asAmbientAudioSource.PlayOneShot(m_acMenuMusic, 0.5f);
+        }
+        else
+        {
+            m_asAmbientAudioSource.PlayOneShot(m_acMenuMusic, 0);
+        }
 	}
 	
 
 	void Update () {
         if (!m_asAmbientAudioSource.isPlaying)
         {
-            m_asAmbientAudioSource.clip = m_lacAmbientSounds[Random.Range(0, m_lacAmbientSounds.Count)];
-            m_asAmbientAudioSource.volume = 0.5f /*m_gdGameData.m_setSettings.m_fMusicVolume * m_gdGameData.m_setSettings.m_fMasterVolume*/;
-            m_asAmbientAudioSource.Play();
+            if (m_options.m_bMusicOnOff)
+            {
+                m_asAmbientAudioSource.clip = m_lacAmbientSounds[Random.Range(0, m_lacAmbientSounds.Count)];
+                m_asAmbientAudioSource.volume = 0.5f;
+                m_asAmbientAudioSource.Play();
+            }
+            else
+            {
+
+                m_asAmbientAudioSource.clip = m_lacAmbientSounds[Random.Range(0, m_lacAmbientSounds.Count)];
+                m_asAmbientAudioSource.volume = 0;
+                m_asAmbientAudioSource.Play();
+            }
         }
 	}
 }
