@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: AnimationController_003_UIButton_001_CreditsButton_001
+  m_Name: AnimationController_006_UIButton_004_ExitButton_001
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Normal
@@ -414,7 +414,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1722f556c0f41804fbdaf0c572e590a3, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9a6170613868adf488112738c50bdf93, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -460,7 +460,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 0}
+  m_Motion: {fileID: 7400000, guid: 29a70477f4c067849ae5094c4b6ed33d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -483,7 +483,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 33b8df3447fb67041a9d25982ec3cb30, type: 2}
+  m_Motion: {fileID: 7400000, guid: 67cee97a69cd646439ca073af57fdbf0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -498,7 +498,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102758398264686706}
-    m_Position: {x: 200, y: 0, z: 0}
+    m_Position: {x: 204, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102882917219190862}
     m_Position: {x: 235, y: 65, z: 0}

@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: UIAnimation_001_ButtonPlay_001_Highlighted
+  m_Name: UIAnimation_002_ButtonPlay_002_Highlighted
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
