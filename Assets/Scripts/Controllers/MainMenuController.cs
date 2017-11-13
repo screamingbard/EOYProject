@@ -26,6 +26,9 @@ public class MainMenuController : MonoBehaviour {
     //An event system
     public EventSystem m_esEventSysRef;
 
+    //The first selected gameobject
+    public GameObject m_goFirstSelected;
+
     //The main menu game object
     public GameObject m_goMainMenu;
 
@@ -65,6 +68,10 @@ public class MainMenuController : MonoBehaviour {
 
     void Update()
     {
+        if (m_esEventSysRef.currentSelectedGameObject == null)
+        {
+            m_esEventSysRef.SetSelectedGameObject(m_goFirstSelected);
+        }
         if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (Time.timeScale == 1)
