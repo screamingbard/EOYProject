@@ -42,6 +42,14 @@ public class MainMenuController : MonoBehaviour {
         {
             Time.timeScale = 1;
         }
+        if (m_goCreditsMenu.activeInHierarchy)
+        {
+            m_goCreditsMenu.SetActive(false);
+        }
+        if (m_goSettingsMenu.activeInHierarchy)
+        {
+            m_goSettingsMenu.SetActive(false);
+        }
     }
     public void Quit()
     //On call will close the game
@@ -89,11 +97,11 @@ public class MainMenuController : MonoBehaviour {
         m_goMainMenu.SetActive(true);
     }
 
-    //Go back to the pause menu from the settings
+    //Go back to the pause menu from the credits
     public void GoToCredits()
     {
-        m_goCreditsMenu.SetActive(false);
-        m_goMainMenu.SetActive(true);
+        m_goCreditsMenu.SetActive(true);
+        m_goMainMenu.SetActive(false);
     }
 
     //Go back to the pause menu from the settings
