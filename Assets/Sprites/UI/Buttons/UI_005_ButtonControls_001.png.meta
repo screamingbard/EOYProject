@@ -1,9 +1,39 @@
 fileFormatVersion: 2
 guid: c9c777e905997fa4f980bc5bbb7adfb8
-timeCreated: 1510541057
-licenseType: Pro
+timeCreated: 1510565816
+licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: UI_005_ButtonControls_001_0
+    21300002: UI_005_ButtonControls_001_1
+    21300004: UI_005_ButtonControls_001_2
+    21300006: UI_005_ButtonControls_001_3
+    21300008: UI_005_ButtonControls_001_4
+    21300010: UI_005_ButtonControls_001_5
+    21300012: UI_005_ButtonControls_001_6
+    21300014: UI_005_ButtonControls_001_7
+    21300016: UI_005_ButtonControls_001_8
+    21300018: UI_005_ButtonControls_001_9
+    21300020: UI_005_ButtonControls_001_10
+    21300022: UI_005_ButtonControls_001_11
+    21300024: UI_005_ButtonControls_001_12
+    21300026: UI_005_ButtonControls_001_13
+    21300028: UI_005_ButtonControls_001_14
+    21300030: UI_005_ButtonControls_001_15
+    21300032: UI_005_ButtonControls_001_16
+    21300034: UI_005_ButtonControls_001_17
+    21300036: UI_005_ButtonControls_001_18
+    21300038: UI_005_ButtonControls_001_19
+    21300040: UI_005_ButtonControls_001_20
+    21300042: UI_005_ButtonControls_001_21
+    21300044: UI_005_ButtonControls_001_22
+    21300046: UI_005_ButtonControls_001_23
+    21300048: UI_005_ButtonControls_001_24
+    21300050: UI_005_ButtonControls_001_25
+    21300052: UI_005_ButtonControls_001_26
+    21300054: UI_005_ButtonControls_001_27
+    21300056: UI_005_ButtonControls_001_28
+    21300058: UI_005_ButtonControls_001_29
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -39,13 +69,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -63,9 +93,461 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1724
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_1
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 1724
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_2
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 1724
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_3
+      rect:
+        serializedVersion: 2
+        x: 2715
+        y: 1724
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_4
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 1724
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_5
+      rect:
+        serializedVersion: 2
+        x: 4525
+        y: 1724
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1293
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_7
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 1293
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_8
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 1293
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_9
+      rect:
+        serializedVersion: 2
+        x: 2715
+        y: 1293
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_10
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 1293
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_11
+      rect:
+        serializedVersion: 2
+        x: 4525
+        y: 1293
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 862
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_13
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 862
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_14
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 862
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_15
+      rect:
+        serializedVersion: 2
+        x: 2715
+        y: 862
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_16
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 862
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_17
+      rect:
+        serializedVersion: 2
+        x: 4525
+        y: 862
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 431
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_19
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 431
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_20
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 431
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_21
+      rect:
+        serializedVersion: 2
+        x: 2715
+        y: 431
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_22
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 431
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_23
+      rect:
+        serializedVersion: 2
+        x: 4525
+        y: 431
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_25
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 0
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_26
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 0
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_27
+      rect:
+        serializedVersion: 2
+        x: 2715
+        y: 0
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_28
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 0
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_005_ButtonControls_001_29
+      rect:
+        serializedVersion: 2
+        x: 4525
+        y: 0
+        width: 905
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

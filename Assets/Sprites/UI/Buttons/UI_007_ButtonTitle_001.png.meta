@@ -1,0 +1,446 @@
+fileFormatVersion: 2
+guid: 57ce8024a1678bd4c87f960d4e4e206a
+timeCreated: 1510576339
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: UI_007_Title_001_0
+    21300002: UI_007_Title_001_1
+    21300004: UI_007_Title_001_2
+    21300006: UI_007_Title_001_3
+    21300008: UI_007_Title_001_4
+    21300010: UI_007_Title_001_5
+    21300012: UI_007_Title_001_6
+    21300014: UI_007_Title_001_7
+    21300016: UI_007_Title_001_8
+    21300018: UI_007_Title_001_9
+    21300020: UI_007_Title_001_10
+    21300022: UI_007_Title_001_11
+    21300024: UI_007_Title_001_12
+    21300026: UI_007_Title_001_13
+    21300028: UI_007_Title_001_14
+    21300030: UI_007_Title_001_15
+    21300032: UI_007_Title_001_16
+    21300034: UI_007_Title_001_17
+    21300036: UI_007_Title_001_18
+    21300038: UI_007_Title_001_19
+    21300040: UI_007_ButtonTitle_001_0
+    21300042: UI_007_ButtonTitle_001_1
+    21300044: UI_007_ButtonTitle_001_2
+    21300046: UI_007_ButtonTitle_001_3
+    21300048: UI_007_ButtonTitle_001_4
+    21300050: UI_007_ButtonTitle_001_5
+    21300052: UI_007_ButtonTitle_001_6
+    21300054: UI_007_ButtonTitle_001_7
+    21300056: UI_007_ButtonTitle_001_8
+    21300058: UI_007_ButtonTitle_001_9
+    21300060: UI_007_ButtonTitle_001_10
+    21300062: UI_007_ButtonTitle_001_11
+    21300064: UI_007_ButtonTitle_001_12
+    21300066: UI_007_ButtonTitle_001_13
+    21300068: UI_007_ButtonTitle_001_14
+    21300070: UI_007_ButtonTitle_001_15
+    21300072: UI_007_ButtonTitle_001_16
+    21300074: UI_007_ButtonTitle_001_17
+    21300076: UI_007_ButtonTitle_001_18
+    21300078: UI_007_ButtonTitle_001_19
+    21300080: UI_007_ButtonTitle_001_20
+    21300082: UI_007_ButtonTitle_001_21
+    21300084: UI_007_ButtonTitle_001_22
+    21300086: UI_007_ButtonTitle_001_23
+    21300088: UI_007_ButtonTitle_001_24
+    21300090: UI_007_ButtonTitle_001_25
+    21300092: UI_007_ButtonTitle_001_26
+    21300094: UI_007_ButtonTitle_001_27
+    21300096: UI_007_ButtonTitle_001_28
+    21300098: UI_007_ButtonTitle_001_29
+    21300100: UI_007_ButtonTitle_001_30
+    21300102: UI_007_ButtonTitle_001_31
+    21300104: UI_007_ButtonTitle_001_32
+    21300106: UI_007_ButtonTitle_001_33
+    21300108: UI_007_ButtonTitle_001_34
+    21300110: UI_007_ButtonTitle_001_35
+    21300112: UI_007_ButtonTitle_001_36
+    21300114: UI_007_ButtonTitle_001_37
+    21300116: UI_007_ButtonTitle_001_38
+    21300118: UI_007_ButtonTitle_001_39
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 128
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 706.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_1
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 706.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_2
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 706.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_3
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 706.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_4
+      rect:
+        serializedVersion: 2
+        x: 1660
+        y: 706.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 471.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_6
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 471.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_7
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 471.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_8
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 471.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_9
+      rect:
+        serializedVersion: 2
+        x: 1660
+        y: 471.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 236.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_11
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 236.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_12
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 236.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_13
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 236.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_14
+      rect:
+        serializedVersion: 2
+        x: 1660
+        y: 236.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_16
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 1.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_17
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 1.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_18
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 1.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_007_ButtonTitle_001_19
+      rect:
+        serializedVersion: 2
+        x: 1660
+        y: 1.5
+        width: 415
+        height: 235.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

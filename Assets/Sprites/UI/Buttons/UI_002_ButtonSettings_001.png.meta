@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6dc799938b3cadf4390be5593ee55f60
-timeCreated: 1510143174
+timeCreated: 1510571318
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -38,6 +38,36 @@ TextureImporter:
     21300062: UI_002_ButtonSettings_001_31
     21300064: UI_002_ButtonSettings_001_32
     21300066: UI_002_ButtonSettings_001_33
+    21300068: UI_002_ButtonSettings_001_0
+    21300070: UI_002_ButtonSettings_001_1
+    21300072: UI_002_ButtonSettings_001_2
+    21300074: UI_002_ButtonSettings_001_3
+    21300076: UI_002_ButtonSettings_001_4
+    21300078: UI_002_ButtonSettings_001_5
+    21300080: UI_002_ButtonSettings_001_6
+    21300082: UI_002_ButtonSettings_001_7
+    21300084: UI_002_ButtonSettings_001_8
+    21300086: UI_002_ButtonSettings_001_9
+    21300088: UI_002_ButtonSettings_001_10
+    21300090: UI_002_ButtonSettings_001_11
+    21300092: UI_002_ButtonSettings_001_12
+    21300094: UI_002_ButtonSettings_001_13
+    21300096: UI_002_ButtonSettings_001_14
+    21300098: UI_002_ButtonSettings_001_15
+    21300100: UI_002_ButtonSettings_001_16
+    21300102: UI_002_ButtonSettings_001_17
+    21300104: UI_002_ButtonSettings_001_18
+    21300106: UI_002_ButtonSettings_001_19
+    21300108: UI_002_ButtonSettings_001_20
+    21300110: UI_002_ButtonSettings_001_21
+    21300112: UI_002_ButtonSettings_001_22
+    21300114: UI_002_ButtonSettings_001_23
+    21300116: UI_002_ButtonSettings_001_24
+    21300118: UI_002_ButtonSettings_001_25
+    21300120: UI_002_ButtonSettings_001_26
+    21300122: UI_002_ButtonSettings_001_27
+    21300124: UI_002_ButtonSettings_001_28
+    21300126: UI_002_ButtonSettings_001_29
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -133,421 +163,421 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Standard_001
+      name: UI_002_ButtonSettings_001_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 866.4
-        width: 453.57144
-        height: 216.6
+        y: 1732
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Pressed_001
+      name: UI_002_ButtonSettings_001_1
       rect:
         serializedVersion: 2
-        x: 453
+        x: 907
+        y: 1732
+        width: 907
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_002_ButtonSettings_001_2
+      rect:
+        serializedVersion: 2
+        x: 1814
+        y: 1732
+        width: 907
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_002_ButtonSettings_001_3
+      rect:
+        serializedVersion: 2
+        x: 2721
+        y: 1732
+        width: 907
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_002_ButtonSettings_001_4
+      rect:
+        serializedVersion: 2
+        x: 3628
+        y: 1732
+        width: 907
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_002_ButtonSettings_001_5
+      rect:
+        serializedVersion: 2
+        x: 4535
+        y: 1732
+        width: 907
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_002_ButtonSettings_001_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1299
+        width: 907
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_002_ButtonSettings_001_7
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 1299
+        width: 907
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_002_ButtonSettings_001_8
+      rect:
+        serializedVersion: 2
+        x: 1814
+        y: 1299
+        width: 907
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_002_ButtonSettings_001_9
+      rect:
+        serializedVersion: 2
+        x: 2721
+        y: 1299
+        width: 907
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_002_ButtonSettings_001_10
+      rect:
+        serializedVersion: 2
+        x: 3628
+        y: 1299
+        width: 907
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_002_ButtonSettings_001_11
+      rect:
+        serializedVersion: 2
+        x: 4535
+        y: 1299
+        width: 907
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_002_ButtonSettings_001_12
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 866
-        width: 454
-        height: 217
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Pressed_002
+      name: UI_002_ButtonSettings_001_13
       rect:
         serializedVersion: 2
-        x: 906
-        y: 866.4
-        width: 453.57144
-        height: 216.6
+        x: 907
+        y: 866
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Pressed_003
+      name: UI_002_ButtonSettings_001_14
       rect:
         serializedVersion: 2
-        x: 1359
-        y: 866.4
-        width: 453.57144
-        height: 216.6
+        x: 1814
+        y: 866
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Pressed_004
+      name: UI_002_ButtonSettings_001_15
       rect:
         serializedVersion: 2
-        x: 1812
-        y: 866.4
-        width: 453.57144
-        height: 216.6
+        x: 2721
+        y: 866
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Pressed_005
+      name: UI_002_ButtonSettings_001_16
       rect:
         serializedVersion: 2
-        x: 2265
-        y: 866.4
-        width: 453.57144
-        height: 216.6
+        x: 3628
+        y: 866
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Pressed_006
+      name: UI_002_ButtonSettings_001_17
       rect:
         serializedVersion: 2
-        x: 2718
-        y: 866.4
-        width: 453.57144
-        height: 216.6
+        x: 4535
+        y: 866
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Pressed_007
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 650.4
-        width: 453.57144
-        height: 216.6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Pressed_008
-      rect:
-        serializedVersion: 2
-        x: 453
-        y: 650.4
-        width: 453.57144
-        height: 216.6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Pressed_009
-      rect:
-        serializedVersion: 2
-        x: 906
-        y: 650.4
-        width: 453.57144
-        height: 216.6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Pressed_010
-      rect:
-        serializedVersion: 2
-        x: 1359
-        y: 650.4
-        width: 453.57144
-        height: 216.6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Pressed_011
-      rect:
-        serializedVersion: 2
-        x: 1812
-        y: 650.4
-        width: 453.57144
-        height: 216.6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_001
-      rect:
-        serializedVersion: 2
-        x: 2265
-        y: 650.4
-        width: 453.57144
-        height: 216.6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_002
-      rect:
-        serializedVersion: 2
-        x: 2718
-        y: 650.4
-        width: 453.57144
-        height: 216.6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_003
+      name: UI_002_ButtonSettings_001_18
       rect:
         serializedVersion: 2
         x: 0
-        y: 434.4
-        width: 453.57144
-        height: 216.6
+        y: 433
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_004
+      name: UI_002_ButtonSettings_001_19
       rect:
         serializedVersion: 2
-        x: 453
-        y: 434.4
-        width: 453.57144
-        height: 216.6
+        x: 907
+        y: 433
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_005
+      name: UI_002_ButtonSettings_001_20
       rect:
         serializedVersion: 2
-        x: 906
-        y: 434.4
-        width: 453.57144
-        height: 216.6
+        x: 1814
+        y: 433
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_006
+      name: UI_002_ButtonSettings_001_21
       rect:
         serializedVersion: 2
-        x: 1359
-        y: 434.4
-        width: 453.57144
-        height: 216.6
+        x: 2721
+        y: 433
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_007
+      name: UI_002_ButtonSettings_001_22
       rect:
         serializedVersion: 2
-        x: 1812
-        y: 434.4
-        width: 453.57144
-        height: 216.6
+        x: 3628
+        y: 433
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_008
+      name: UI_002_ButtonSettings_001_23
       rect:
         serializedVersion: 2
-        x: 2265
-        y: 434.4
-        width: 453.57144
-        height: 216.6
+        x: 4535
+        y: 433
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_009
-      rect:
-        serializedVersion: 2
-        x: 2718
-        y: 434.4
-        width: 453.57144
-        height: 216.6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_010
+      name: UI_002_ButtonSettings_001_24
       rect:
         serializedVersion: 2
         x: 0
-        y: 218.4
-        width: 453.57144
-        height: 216.6
+        y: 0
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_011
+      name: UI_002_ButtonSettings_001_25
       rect:
         serializedVersion: 2
-        x: 453
-        y: 218.4
-        width: 453.57144
-        height: 216.6
+        x: 907
+        y: 0
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_012
+      name: UI_002_ButtonSettings_001_26
       rect:
         serializedVersion: 2
-        x: 906
-        y: 218.4
-        width: 453.57144
-        height: 216.6
+        x: 1814
+        y: 0
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_013
+      name: UI_002_ButtonSettings_001_27
       rect:
         serializedVersion: 2
-        x: 1359
-        y: 218.4
-        width: 453.57144
-        height: 216.6
+        x: 2721
+        y: 0
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_014
+      name: UI_002_ButtonSettings_001_28
       rect:
         serializedVersion: 2
-        x: 1812
-        y: 218.4
-        width: 453.57144
-        height: 216.6
+        x: 3628
+        y: 0
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_015
+      name: UI_002_ButtonSettings_001_29
       rect:
         serializedVersion: 2
-        x: 2265
-        y: 218.4
-        width: 453.57144
-        height: 216.6
+        x: 4535
+        y: 0
+        width: 907
+        height: 433
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_016
-      rect:
-        serializedVersion: 2
-        x: 2718
-        y: 218.4
-        width: 453.57144
-        height: 216.6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_017
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2.399994
-        width: 453.57144
-        height: 216.6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_002_ButtonSettings_001_Highlighted_018
-      rect:
-        serializedVersion: 2
-        x: 453
-        y: 2.399994
-        width: 453.57144
-        height: 216.6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
