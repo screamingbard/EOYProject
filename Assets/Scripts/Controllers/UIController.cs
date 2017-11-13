@@ -9,7 +9,7 @@ using XboxCtrlrInput;
 public class UIController : MonoBehaviour {
 
     //The variable controlling which scene is loaded in the scene load method
-    public int m_iSceneIndex = 0;
+    public int m_iSceneIndex = 1;
 
     //The Resume Button
     public Button m_btnResumeButton;
@@ -27,7 +27,7 @@ public class UIController : MonoBehaviour {
     public Button m_btnQuitGameButton;
     
     //The quit to menu button
-    public Button m_btnQuitToMenuButton;
+    public Button m_btnRestartButton;
 
     //An event system
     public EventSystem m_esEventSysRef;
