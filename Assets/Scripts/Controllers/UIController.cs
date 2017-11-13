@@ -50,6 +50,9 @@ public class UIController : MonoBehaviour {
     //The settings menu game object
     public GameObject m_goQuitMenu;
 
+    //Pause screen background
+    public GameObject m_goPauseScreenBackground;
+
     //To stop the player jumping when you unpause
     bool m_bInputDelayingness;
 
@@ -73,6 +76,10 @@ public class UIController : MonoBehaviour {
         if (m_goPauseMenu.activeInHierarchy)
         {
             m_goPauseMenu.SetActive(false);
+        }
+        if (m_goPauseScreenBackground.activeInHierarchy)
+        {
+            m_goPauseScreenBackground.SetActive(false);
         }
     }
     public void Quit()
@@ -171,11 +178,13 @@ public class UIController : MonoBehaviour {
     {
         Time.timeScale = 0;
         m_goPauseMenu.SetActive(true);
+        m_goPauseScreenBackground.SetActive(true);
     }
 
     public void Unpause()
     {
         Time.timeScale = 1;
         m_goPauseMenu.SetActive(false);
+        m_goPauseScreenBackground.SetActive(false);
     }
 }
