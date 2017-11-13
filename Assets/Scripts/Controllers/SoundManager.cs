@@ -24,6 +24,8 @@ public class SoundManager : MonoBehaviour {
 
     
 	void Start () {
+
+        DontDestroyOnLoad(m_options);
         if (m_options.m_bMusicOnOff)
         {
             m_asAmbientAudioSource.PlayOneShot(m_acMenuMusic, 0.5f);
