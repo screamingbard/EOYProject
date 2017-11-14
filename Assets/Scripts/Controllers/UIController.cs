@@ -118,15 +118,15 @@ public class UIController : MonoBehaviour {
             }
             else
             {
-                Unpause();
                 if (m_goQuitMenu.activeInHierarchy)
                 {
                     BackOutOfQuit();
                 }
-                else if (m_goSettingsMenu.activeInHierarchy)
+                if (m_goSettingsMenu.activeInHierarchy)
                 {
                     BackOutOfSettings();
                 }
+                Unpause();
             }
         }
         if (XCI.GetButtonDown(XboxButton.B))
