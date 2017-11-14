@@ -16,7 +16,7 @@ public class OptionsMenu : MonoBehaviour {
 
     public void OnEnable()
     {
-        DontDestroyOnLoad (m_options);
+        m_options.LoadSettings();
     }
 
     public void OnToggleMusic()
@@ -29,6 +29,7 @@ public class OptionsMenu : MonoBehaviour {
         {
             m_options.m_iMusicOn = 0;
         }
+        m_options.SaveSettings();
     }
 
     public void OnToggleSFX()
@@ -41,5 +42,6 @@ public class OptionsMenu : MonoBehaviour {
         {
             m_options.m_iSFXOn = 0;
         }
+        m_options.SaveSettings();
     }
 }
