@@ -17,7 +17,7 @@ public class AnimationManager : MonoBehaviour {
     //The string for use to connect and control mechanim specifically for the swinging animation
     public string m_stIsSwinging;
 
-    //
+    //Is the player grounded
     public bool m_bIsGrounded;
 
     //Check for if the grapple is out and about
@@ -28,12 +28,15 @@ public class AnimationManager : MonoBehaviour {
 
     //Reference to the player controller
     public Controller2D m_pcPlayerContorller;
+
+    //Reference to the player's player class
+    public Player m_playerPlayer;
     
     void Update () {
         if (!m_pcPlayerContorller.collisions.below)
         {
             m_animatorAnimator.SetBool(m_stIsWalking, false);
-            if (m_bGrappleIsOut)
+            if (/*m_playerPlayer.bGrappling*/m_bGrappleIsOut)
             {
                 m_animatorAnimator.SetBool(m_stIsSwinging, true);
                 m_animatorAnimator.SetBool(m_stIsJumping, false);
