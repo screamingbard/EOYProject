@@ -26,7 +26,7 @@ public class SoundManager : MonoBehaviour {
 	void Start () {
 
         DontDestroyOnLoad(m_options);
-        if (m_options.m_bMusicOnOff)
+        if (m_options.m_iMusicOn == 1)
         {
             m_asAmbientAudioSource.PlayOneShot(m_acMenuMusic, 0.5f);
         }
@@ -43,7 +43,7 @@ public class SoundManager : MonoBehaviour {
                 m_asAmbientAudioSource.clip = m_lacAmbientSounds[Random.Range(0, m_lacAmbientSounds.Count)];
                 m_asAmbientAudioSource.Play();
         }
-        if (m_options.m_bMusicOnOff)
+        if (m_options.m_iMusicOn == 1)
         {
             m_asAmbientAudioSource.volume = 0.5f;
         }
