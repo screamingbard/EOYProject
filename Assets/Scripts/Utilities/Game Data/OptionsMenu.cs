@@ -12,20 +12,34 @@ public class OptionsMenu : MonoBehaviour {
     public Toggle m_tSFXMuteToggle;
     
     //
-    public Options m_optionsOptions;
+    public Options m_options;
 
     public void OnEnable()
     {
-        DontDestroyOnLoad (m_optionsOptions);
+        DontDestroyOnLoad (m_options);
     }
 
     public void OnToggleMusic()
     {
-            m_optionsOptions.m_bMusicOnOff = m_tMusicMuteToggle;
+        if (m_tMusicMuteToggle)
+        {
+            m_options.m_iMusicOn = 1;
+        }
+        else
+        {
+            m_options.m_iMusicOn = 0;
+        }
     }
 
     public void OnToggleSFX()
     {
-            m_optionsOptions.m_bSFXOnOff = m_tSFXMuteToggle;
+        if (m_tSFXMuteToggle)
+        {
+            m_options.m_iSFXOn = 1;
+        }
+        else
+        {
+            m_options.m_iSFXOn = 0;
+        }
     }
 }
