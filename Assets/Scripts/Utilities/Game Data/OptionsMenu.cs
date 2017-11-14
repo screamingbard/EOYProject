@@ -17,11 +17,28 @@ public class OptionsMenu : MonoBehaviour {
     public void OnEnable()
     {
         m_options.LoadSettings();
+
+        if (m_options.m_iMusicOn == 1)
+        {
+            m_tMusicMuteToggle.isOn = true;
+        }
+        else
+        {
+            m_tMusicMuteToggle.isOn = false;
+        }
+        if (m_options.m_iSFXOn == 1)
+        {
+            m_tSFXMuteToggle.isOn = true;
+        }
+        else
+        {
+            m_tSFXMuteToggle.isOn = false;
+        }
     }
 
     public void OnToggleMusic()
     {
-        if (m_tMusicMuteToggle)
+        if (m_tMusicMuteToggle.isOn)
         {
             m_options.m_iMusicOn = 1;
         }
@@ -34,7 +51,7 @@ public class OptionsMenu : MonoBehaviour {
 
     public void OnToggleSFX()
     {
-        if (m_tSFXMuteToggle)
+        if (m_tSFXMuteToggle.isOn)
         {
             m_options.m_iSFXOn = 1;
         }
