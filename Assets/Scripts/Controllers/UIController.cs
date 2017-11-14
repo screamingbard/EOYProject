@@ -176,6 +176,7 @@ public class UIController : MonoBehaviour {
 
     public void Pause()
     {
+        m_esEventSysRef.SetSelectedGameObject(m_btnPlayButton.gameObject);
         m_btnPlayButton.OnSelect(null);
         Time.timeScale = 0;
         m_goPauseMenu.SetActive(true);
