@@ -150,6 +150,7 @@ public class UIController : MonoBehaviour {
     {
         m_goSettingsMenu.SetActive(false);
         m_esEventSysRef.SetSelectedGameObject(m_btnSettingsButton.gameObject);
+        m_btnSettingsButton.OnSelect(null);
         m_goPauseMenu.SetActive(true);
     }
 
@@ -166,6 +167,7 @@ public class UIController : MonoBehaviour {
     {
         m_goQuitMenu.SetActive(false);
         m_esEventSysRef.SetSelectedGameObject(m_btnQuitButton.gameObject);
+        m_btnQuitButton.OnSelect(null);
         m_goPauseMenu.SetActive(true);
     }
 
