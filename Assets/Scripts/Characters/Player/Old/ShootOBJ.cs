@@ -144,7 +144,7 @@ public class ShootOBJ : MonoBehaviour {
 
                // if (bstart < 1)
                // {
-                    rbPlayer.velocity += (Vector2)goPlayer.GetComponent<Player>().velocity * Time.deltaTime * goPlayer.GetComponent<Player>().MaxInAirSpeed;
+                    rbPlayer.velocity += (Vector2)goPlayer.GetComponent<PlayerOld>().velocity * Time.deltaTime * goPlayer.GetComponent<PlayerOld>().MaxInAirSpeed;
                     //bstart++;
                 //}
                // grapCount++;
@@ -153,7 +153,7 @@ public class ShootOBJ : MonoBehaviour {
             }
             else if (!goPlayer.GetComponent<PlayerController>().IsGrounded && cBall.GetComponent<Grapple>().GrapConnected == true)
             {
-                goPlayer.GetComponent<Player>().velocity += goPlayer.GetComponent<Player>().velocity * goPlayer.GetComponent<Player>().MaxInAirSpeed * goPlayer.GetComponent<Player>().inAirModifier * Time.deltaTime;
+                goPlayer.GetComponent<PlayerOld>().velocity += goPlayer.GetComponent<PlayerOld>().velocity * goPlayer.GetComponent<PlayerOld>().MaxInAirSpeed * goPlayer.GetComponent<PlayerOld>().inAirModifier * Time.deltaTime;
             }
             else
             {
@@ -186,8 +186,8 @@ public class ShootOBJ : MonoBehaviour {
 
                 IsGrappling = false;
 
-                goPlayer.GetComponent<Player>().velocity.y = 0;
-                goPlayer.GetComponent<Player>().velocity.z = 0;
+                goPlayer.GetComponent<PlayerOld>().velocity.y = 0;
+                goPlayer.GetComponent<PlayerOld>().velocity.z = 0;
                 //playerDOM.z = 0;
                 //playerDOM.y = 0;
 
@@ -230,7 +230,7 @@ public class ShootOBJ : MonoBehaviour {
     //makes sure that the custom velocity is added ontp the rigidbody 
     void ScriptNormSet()
     {
-        rbPlayer.velocity = goPlayer.GetComponent<Player>().velocity;
+        rbPlayer.velocity = goPlayer.GetComponent<PlayerOld>().velocity;
     }
 
     //----------------------------------------------------

@@ -37,16 +37,10 @@ public class PlayerRespawn : MonoBehaviour {
 
         //Set the players velocity to zero
         m_goPlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        m_goPlayer.GetComponent<Player>().velocity = Vector3.zero;
+       // m_goPlayer.GetComponent<Player>().velocity = Vector3.zero;
 
         //start the timer to disallow movement for a split second
         m_fMovementTimer = m_fSetMovementTimer;
-
-        //If it is connected to terain or in motion
-        if (m_goGrappleRefrence != null){
-            //Remove the grapple
-            m_goPlayer.GetComponentInChildren<ShootOBJ>().StopShoot();
-        }
 
         //Set the players position to the respawn points
         m_goPlayer.transform.SetPositionAndRotation(m_tfRespawnPoint.position, m_tfRespawnPoint.rotation);

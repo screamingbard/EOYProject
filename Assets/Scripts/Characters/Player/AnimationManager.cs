@@ -27,13 +27,13 @@ public class AnimationManager : MonoBehaviour {
     public GameObject m_goPlayer;
 
     //Reference to the player controller
-    public PlayerMovement m_pcPlayerContorller;
+    public Player m_pcPlayerContorller;
 
     //Reference to the player's player class
-    public Player m_playerPlayer;
+    public PlayerOld m_playerPlayer;
     
     void Update () {
-        if (!m_pcPlayerContorller.groundCheck)
+        if (!m_pcPlayerContorller.IsGrounded)
         {
             m_animatorAnimator.SetBool(m_stIsWalking, false);
             if (/*m_playerPlayer.bGrappling*/m_bGrappleIsOut)
