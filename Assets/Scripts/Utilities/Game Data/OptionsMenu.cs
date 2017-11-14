@@ -16,7 +16,6 @@ public class OptionsMenu : MonoBehaviour {
 
     public void OnEnable()
     {
-        m_optionsOptions = new Options();
         DontDestroyOnLoad (m_optionsOptions);
     }
 

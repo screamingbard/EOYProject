@@ -10,4 +10,9 @@ public class Options : MonoBehaviour {
     //Turn SFX on and off
     public bool m_bSFXOnOff;
     
+    void Awake()
+    {
+        m_bMusicOnOff = true;
+        m_bSFXOnOff = true;
+    }
 }
