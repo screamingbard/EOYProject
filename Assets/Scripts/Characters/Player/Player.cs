@@ -255,9 +255,6 @@ public class Player : MonoBehaviour {
 
         controller.Move(velocity * Time.deltaTime);
 
-        controller.HorizontalDeathCollision(ref velocity);
-        controller.VerticalDeathCollision(ref velocity);
-
         isDead = controller.collisions.IsDying;
     }
     float calcmaxspeed()
