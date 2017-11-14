@@ -22,6 +22,9 @@ public class SoundManager : MonoBehaviour {
     //
     public List<AudioClip> m_lacAmbientSounds;
 
+    //
+    public bool m_bAmbientSoundsOn;
+
     
 	void Start () {
 
@@ -38,18 +41,36 @@ public class SoundManager : MonoBehaviour {
 	
 
 	void Update () {
-        if (!m_asAmbientAudioSource.isPlaying)
+        //If the ambients sounds bool is true play ambient sounds is a random loop
+        if (m_bAmbientSoundsOn)
         {
+            if (!m_asAmbientAudioSource.isPlaying)
+            {
                 m_asAmbientAudioSource.clip = m_lacAmbientSounds[Random.Range(0, m_lacAmbientSounds.Count)];
                 m_asAmbientAudioSource.Play();
+            }
+            if (m_options.m_iMusicOn == 1)
+            {
+                m_asAmbientAudioSource.volume = 0.5f;
+            }
+            else
+            {
+                m_asAmbientAudioSource.volume = 0;
+            }
+        }
+        //Play music in a rondom loop
+        if (!m_asMusicAudioSource.isPlaying)
+        {
+            m_asMusicAudioSource.clip = m_lacBGM[Random.Range(0, m_lacBGM.Count)];
+            m_asMusicAudioSource.Play();
         }
         if (m_options.m_iMusicOn == 1)
         {
-            m_asAmbientAudioSource.volume = 0.5f;
+            m_asMusicAudioSource.volume = 0.5f;
         }
         else
         {
-            m_asAmbientAudioSource.volume = 0;
+            m_asMusicAudioSource.volume = 0;
         }
-	}
+    }
 }
