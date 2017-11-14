@@ -110,7 +110,7 @@ public class UIController : MonoBehaviour {
         {
             m_esEventSysRef.SetSelectedGameObject(m_goFirstSelected);
         }
-        if ((XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.Escape)) && (!m_goQuitMenu.activeInHierarchy || !m_goSettingsMenu.activeInHierarchy))
+        if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (Time.timeScale == 1)
             {
@@ -119,6 +119,14 @@ public class UIController : MonoBehaviour {
             else
             {
                 Unpause();
+                if (m_goQuitMenu.activeInHierarchy)
+                {
+                    BackOutOfQuit();
+                }
+                else if (m_goSettingsMenu.activeInHierarchy)
+                {
+                    BackOutOfSettings();
+                }
             }
         }
         if (XCI.GetButtonDown(XboxButton.B))
