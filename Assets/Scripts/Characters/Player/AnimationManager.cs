@@ -30,7 +30,7 @@ public class AnimationManager : MonoBehaviour {
     public Player m_pcPlayerContorller;
 
     //Reference to the player's player class
-    public PlayerOld m_playerPlayer;
+    //Bpublic PlayerOld m_playerPlayer;
     
     void Update () {
         if (!m_pcPlayerContorller.IsGrounded)

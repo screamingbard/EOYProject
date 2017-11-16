@@ -42,11 +42,10 @@ public class RopeSystem : MonoBehaviour
     public DistanceJoint2D ropeJoint;
     public Transform crosshair;
     public Player player;
-	public bool twoStickControls;
+
 	public float ropeMaxCastDistance = 50f;
 
 	private bool ropeAttached;
-	private bool hasReset;
     private Vector2 playerPosition;
     private List<Vector2> ropePositions = new List<Vector2>();
     private Rigidbody2D ropeHingeAnchorRb;
@@ -87,35 +86,17 @@ public class RopeSystem : MonoBehaviour
     // Update is called once per frame
     void Update ()
 	{
-
-		var facingDirection = Vector2.zero;
-		if (XCI.GetNumPluggedCtrlrs() == 0) {
-			var worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
-			facingDirection = worldMousePosition - transform.position;
-		} else {
-			if (twoStickControls)
-				facingDirection = new Vector2(XCI.GetAxis(XboxAxis.RightStickX), XCI.GetAxis(XboxAxis.RightStickY));
-			else
-				facingDirection = new Vector2(XCI.GetAxis(XboxAxis.LeftStickX), XCI.GetAxis(XboxAxis.LeftStickY));
-		}
 		
-        var aimAngle = Mathf.Atan2(facingDirection.y, facingDirection.x);
-        if (aimAngle < 0f)
-        {
-            aimAngle = Mathf.PI * 2 + aimAngle;
-        }
-
-        var aimDirection = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg) * Vector2.right;
         playerPosition = transform.position;
 
         if (!ropeAttached)
         {
-            SetCrosshairPosition(aimAngle);
-            player.SetSwinging(false);
+            //SetCrosshairPosition(aimAngle);
+            player.SetGrappling(false);
 	    }
 	    else
         {
-            player.SetSwinging(true);
+            player.SetGrappling(true);
             player.SetRopeHook(ropePositions.Last());
             crosshairSprite.enabled = false;
 
@@ -146,8 +127,6 @@ public class RopeSystem : MonoBehaviour
         }
 
 	    UpdateRopePositions();
-        HandleRopeLength();
-        HandleInput(aimDirection);
         HandleRopeUnwrap();
     }
 
@@ -155,53 +134,42 @@ public class RopeSystem : MonoBehaviour
     /// Handles input within the RopeSystem component
     /// </summary>
     /// <param name="aimDirection">The current direction for aiming based on mouse position</param>
-    private void HandleInput(Vector2 aimDirection)
+    public void OnGrappleInput(Vector2 aimDirection)
     {
-        if (Input.GetMouseButton(0) || XCI.GetAxisRaw(XboxAxis.RightTrigger) != 0f)
-        {
-			if (ropeAttached) return;
-			ropeRenderer.enabled = true;
+		if (ropeAttached) return;
+		ropeRenderer.enabled = true;
 
-			hasReset = false;
+		var hit = Physics2D.Raycast(playerPosition, aimDirection, ropeMaxCastDistance, ropeLayerMask);
+		if (hit.collider != null) {
+			ropeAttached = true;
+			if (!ropePositions.Contains(hit.point)) {
+				// Jump slightly to distance the player a little from the ground after grappling to something.
+				transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
+				ropePositions.Add(hit.point);
+				wrapPointsLookup.Add(hit.point, 0);
+				ropeJoint.distance = Vector2.Distance(playerPosition, hit.point);
+				ropeJoint.enabled = true;
+				ropeHingeAnchorSprite.enabled = true;
+			}
+		} else {
+			ropeRenderer.enabled = false;
+			ropeAttached = false;
+			ropeJoint.enabled = false;
+		}
+	}
 
-			var hit = Physics2D.Raycast(playerPosition, aimDirection, ropeMaxCastDistance, ropeLayerMask);
-            if (hit.collider != null)
-            {
-                ropeAttached = true;
-                if (!ropePositions.Contains(hit.point))
-                {
-                    // Jump slightly to distance the player a little from the ground after grappling to something.
-                    transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
-                    ropePositions.Add(hit.point);
-                    wrapPointsLookup.Add(hit.point, 0);
-                    ropeJoint.distance = Vector2.Distance(playerPosition, hit.point);
-                    ropeJoint.enabled = true;
-                    ropeHingeAnchorSprite.enabled = true;
-                }
-            }
-            else
-            {
-                ropeRenderer.enabled = false;
-                ropeAttached = false;
-                ropeJoint.enabled = false;
-            }
-        }
-
-        if (Input.GetMouseButtonUp(0) || XCI.GetNumPluggedCtrlrs() != 0 && XCI.GetAxis(XboxAxis.RightTrigger) <= 0f && hasReset == false)
-        {
-            ResetRope();
-        }
-    }
+	public void OnGrappleInputUp() {
+		ResetRope();
+	}
 
     /// <summary>
     /// Resets the rope in terms of gameplay, visual, and supporting variable values.
     /// </summary>
     private void ResetRope()
     {
-		hasReset = true;
         ropeJoint.enabled = false;
         ropeAttached = false;
-        player.SetSwinging(false);
+        player.SetGrappling(false);
         ropeRenderer.positionCount = 2;
         ropeRenderer.SetPosition(0, transform.position);
         ropeRenderer.SetPosition(1, transform.position);
@@ -234,19 +202,13 @@ public class RopeSystem : MonoBehaviour
     /// <summary>
     /// Retracts or extends the 'rope'
     /// </summary>
-    private void HandleRopeLength()
+    public void HandleRopeLength(float direction)
     {
-		if (XCI.GetNumPluggedCtrlrs() == 0) {
-			if (Input.GetAxis("Vertical") >= 1f && ropeAttached && !isColliding) {
-				ropeJoint.distance -= Time.deltaTime * climbSpeed;
-			} else if (Input.GetAxis("Vertical") < 0f && ropeAttached) {
-				ropeJoint.distance += Time.deltaTime * climbSpeed;
-			}
-		} else {
-			if(XCI.GetAxis(XboxAxis.RightStickX) >= 1f && ropeAttached && !isColliding)
-				ropeJoint.distance -= Time.deltaTime * climbSpeed;
-			else if(XCI.GetAxis(XboxAxis.RightStickY) < 0f && ropeAttached && !isColliding)
-				ropeJoint.distance += Time.deltaTime * climbSpeed;
+		if(direction > 0f && ropeAttached && isColliding == false) {
+			ropeJoint.distance -= Time.deltaTime * climbSpeed;
+		} 
+		else if(direction < 0f && ropeAttached) {
+			ropeJoint.distance += Time.deltaTime * climbSpeed;
 		}
     }
 

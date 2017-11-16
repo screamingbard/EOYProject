@@ -2,6 +2,7 @@
 using System.Collections;
 
 [RequireComponent (typeof (Controller2D))]
+[RequireComponent(typeof(RopeSystem))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class Player : MonoBehaviour {
 
@@ -16,9 +17,8 @@ public class Player : MonoBehaviour {
 	[Header("Grapple Movement")]
 	public float swingForce = 4;
 	
-	public bool IsSwinging { get; private set; }
+	public bool IsGrappling { get; private set; }
 	public bool IsGrounded { get { return controller.collisions.below; } }
-	//public bool IsJumping { get { return } }
 
 	private float gravity;
 	private float maxJumpVelocity;
@@ -32,9 +32,11 @@ public class Player : MonoBehaviour {
 
 	private Vector2 ropeHook;
 	private Rigidbody2D rBody;
+	private RopeSystem ropeSystem;
 
 	void Start() {
-		controller = GetComponent<Controller2D> ();
+		controller = GetComponent<Controller2D>();
+		ropeSystem = GetComponent<RopeSystem>();
 
 		gravity = -(2 * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -47,8 +49,11 @@ public class Player : MonoBehaviour {
 	void Update() {
 		CalculateVelocity ();
 
-		if (IsSwinging)
+		if (IsGrappling)
 			velocity.y = 0f;
+
+		if (IsGrounded && rBody.velocity != Vector2.zero)
+			rBody.velocity = Vector2.zero;
 
 		controller.Move(velocity * Time.deltaTime, directionalInput);
 
@@ -56,14 +61,29 @@ public class Player : MonoBehaviour {
 		CheckSpriteDirection();
 	}
 
-	public void SetDirectionalInput (Vector2 input) {
+	public void SetDirectionalInput(Vector2 input) {
 		//Flips the player sprite depending on input direction
-		playerSprite.flipX = input.x < 0f;
+		if(input.x != 0f) {
+			Vector3 facing = new Vector3(input.x > 0 ? 1 : -1, 1f, 1f);
+			transform.localScale = facing;
+		}
 
 		directionalInput = input;
 	}
 
-	public void OnJumpInputDown() {
+	public void OnGrappleInput(Vector2 aimDirection) {
+		ropeSystem.OnGrappleInput(aimDirection);
+	}
+
+	public void OnGrappleUp() {
+		ropeSystem.OnGrappleInputUp();
+	}
+
+	public void OnGrappleReel(float direction) {
+		ropeSystem.HandleRopeLength(direction);
+	}
+
+	public void OnJumpInput() {
 		if (controller.collisions.below) {
 			if (controller.collisions.slidingDownMaxSlope) {
 				if (directionalInput.x != -Mathf.Sign (controller.collisions.slopeNormal.x)) { // not jumping against max slope
@@ -82,8 +102,8 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public void SetSwinging(bool isSwinging) {
-		IsSwinging = isSwinging;
+	public void SetGrappling(bool isGrappling) {
+		IsGrappling = isGrappling;
 	}
 
 	public void SetRopeHook(Vector2 ropeHook) {
@@ -91,7 +111,7 @@ public class Player : MonoBehaviour {
 	}
 
 	private void CalculateVelocity() {
-		if (directionalInput.x > 0 && IsSwinging || directionalInput.x < 0 && IsSwinging) {
+		if (directionalInput.x > 0 && IsGrappling || directionalInput.x < 0 && IsGrappling) {
 			// Get normalized direction vector from player to the hook point
 			var playerToHookDirection = (ropeHook - (Vector2)transform.position).normalized;
 

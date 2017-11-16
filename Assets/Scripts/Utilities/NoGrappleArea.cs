@@ -14,7 +14,7 @@ public class NoGrappleArea : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision2d)
     {
         if(collision2d.gameObject.tag == "Grapple"){
-            goplayer.GetComponentInChildren<ShootOBJ>().StopShoot();
+            //goplayer.GetComponentInChildren<ShootOBJ>().StopShoot();
         }
     }
 
