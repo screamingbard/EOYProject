@@ -53,17 +53,12 @@ public class RopeSystem : MonoBehaviour
     private bool isColliding;
     private Dictionary<Vector2, int> wrapPointsLookup = new Dictionary<Vector2, int>();
     private SpriteRenderer ropeHingeAnchorSprite;
-	private SpriteRenderer crosshairSprite;
 
-	void Awake ()
-    {
-		crosshairSprite = crosshair.GetComponent<SpriteRenderer>();
+	void Awake (){
 		ropeJoint.enabled = false;
 	    playerPosition = transform.position;
         ropeHingeAnchorRb = ropeHingeAnchor.GetComponent<Rigidbody2D>();
         ropeHingeAnchorSprite = ropeHingeAnchor.GetComponent<SpriteRenderer>();
-		
-
 	}
 
     /// <summary>
@@ -72,8 +67,7 @@ public class RopeSystem : MonoBehaviour
     /// <param name="hit">The raycast2d hit</param>
     /// <param name="polyCollider">the reference polygon collider 2D</param>
     /// <returns></returns>
-    private Vector2 GetClosestColliderPointFromRaycastHit(RaycastHit2D hit, PolygonCollider2D polyCollider)
-    {
+    private Vector2 GetClosestColliderPointFromRaycastHit(RaycastHit2D hit, PolygonCollider2D polyCollider) {
         // Transform polygoncolliderpoints to world space (default is local)
         var distanceDictionary = polyCollider.points.ToDictionary<Vector2, float, Vector2>(
             position => Vector2.Distance(hit.point, polyCollider.transform.TransformPoint(position)), 
@@ -84,35 +78,26 @@ public class RopeSystem : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update ()
-	{
-		
+    void Update () {
         playerPosition = transform.position;
 
-        if (!ropeAttached)
-        {
-            //SetCrosshairPosition(aimAngle);
-            player.SetGrappling(false);
+        if (!ropeAttached) {
+			if(player.IsGrappling)
+				player.SetGrappling(false);
 	    }
-	    else
-        {
+	    else {
             player.SetGrappling(true);
             player.SetRopeHook(ropePositions.Last());
-            crosshairSprite.enabled = false;
 
             // Wrap rope around points of colliders if there are raycast collisions between player position and their closest current wrap around collider / angle point.
-	        if (ropePositions.Count > 0)
-	        {
+	        if (ropePositions.Count > 0) {
 	            var lastRopePoint = ropePositions.Last();
                 var playerToCurrentNextHit = Physics2D.Raycast(playerPosition, (lastRopePoint - playerPosition).normalized, Vector2.Distance(playerPosition, lastRopePoint) - 0.1f, ropeLayerMask);
-                if (playerToCurrentNextHit)
-                {
+                if (playerToCurrentNextHit) {
                     var colliderWithVertices = playerToCurrentNextHit.collider as PolygonCollider2D;
-                    if (colliderWithVertices != null)
-                    {
+                    if (colliderWithVertices != null) {
                         var closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, colliderWithVertices);
-                        if (wrapPointsLookup.ContainsKey(closestPointToHit))
-                        {
+                        if (wrapPointsLookup.ContainsKey(closestPointToHit)) {
                             // Reset the rope if it wraps around an 'already wrapped' position.
                             ResetRope();
                             return;
@@ -134,8 +119,7 @@ public class RopeSystem : MonoBehaviour
     /// Handles input within the RopeSystem component
     /// </summary>
     /// <param name="aimDirection">The current direction for aiming based on mouse position</param>
-    public void OnGrappleInput(Vector2 aimDirection)
-    {
+    public void OnGrappleInput(Vector2 aimDirection) {
 		if (ropeAttached) return;
 		ropeRenderer.enabled = true;
 
@@ -165,8 +149,7 @@ public class RopeSystem : MonoBehaviour
     /// <summary>
     /// Resets the rope in terms of gameplay, visual, and supporting variable values.
     /// </summary>
-    private void ResetRope()
-    {
+    private void ResetRope() {
         ropeJoint.enabled = false;
         ropeAttached = false;
         player.SetGrappling(false);
@@ -176,27 +159,6 @@ public class RopeSystem : MonoBehaviour
         ropePositions.Clear();
         wrapPointsLookup.Clear();
         ropeHingeAnchorSprite.enabled = false;
-    }
-
-    /// <summary>
-    /// Move the aiming crosshair based on aim angle
-    /// </summary>
-    /// <param name="aimAngle">The mouse aiming angle</param>
-    private void SetCrosshairPosition(float aimAngle)
-    {
-        if (!crosshairSprite.enabled)
-        {
-            crosshairSprite.enabled = true;
-        }
-
-		crosshair.transform.rotation = Quaternion.AngleAxis(aimAngle, Vector3.forward);
-
-		var x = transform.position.x + 1f * Mathf.Cos(aimAngle);
-        var y = transform.position.y + 1f * Mathf.Sin(aimAngle);
-
-        var crossHairPosition = new Vector3(x, y, 0);
-        crosshair.transform.position = crossHairPosition;
-		
     }
 
     /// <summary>

@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent (typeof (Controller2D))]
 [RequireComponent(typeof(RopeSystem))]
-[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(PlayerCrosshair))]
 public class Player : MonoBehaviour {
 
 	[Header("Grounded Movement")]
@@ -33,6 +33,7 @@ public class Player : MonoBehaviour {
 	private Vector2 ropeHook;
 	private Rigidbody2D rBody;
 	private RopeSystem ropeSystem;
+	private PlayerCrosshair crosshair;
 
 	void Start() {
 		controller = GetComponent<Controller2D>();
@@ -44,6 +45,8 @@ public class Player : MonoBehaviour {
 
 		playerSprite = GetComponent<SpriteRenderer>();
 		rBody = GetComponent<Rigidbody2D>();
+
+		crosshair = GetComponent<PlayerCrosshair>();
 	}
 
 	void Update() {
@@ -73,6 +76,10 @@ public class Player : MonoBehaviour {
 
 	public void OnGrappleInput(Vector2 aimDirection) {
 		ropeSystem.OnGrappleInput(aimDirection);
+	}
+
+	public void UpdateCrosshair(float aimAngle) {
+		crosshair.SetCrosshair(aimAngle);
 	}
 
 	public void OnGrappleUp() {

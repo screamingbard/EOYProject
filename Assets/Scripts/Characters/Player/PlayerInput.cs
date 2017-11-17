@@ -8,6 +8,7 @@ public class PlayerInput : MonoBehaviour {
 
 	private Player player;
 	private bool hasReset;
+	private float aimAngle;
 
 	void Start () {
 		Cursor.visible = false;
@@ -18,10 +19,34 @@ public class PlayerInput : MonoBehaviour {
 		if (Time.timeScale == 0)
 			return;
 
+		UpdateAimAngle();
+
 		if (XCI.GetNumPluggedCtrlrs() == 0)
 			OnInputKeyboard();
 		else
 			OnInputController();
+	}
+
+	private void UpdateAimAngle() {
+		Vector2 facingDirection = Vector2.zero;
+
+		if (XCI.GetNumPluggedCtrlrs() == 0) {
+			Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
+			facingDirection = worldMousePosition - transform.position;
+		} else {
+			if (twoStickControls)
+				facingDirection = new Vector2(XCI.GetAxis(XboxAxis.RightStickX), XCI.GetAxis(XboxAxis.RightStickY));
+			else
+				facingDirection = new Vector2(XCI.GetAxis(XboxAxis.LeftStickX), XCI.GetAxis(XboxAxis.LeftStickY));
+		}
+
+		aimAngle = Mathf.Atan2(facingDirection.y, facingDirection.x);
+
+		if (aimAngle < 0f) {
+			aimAngle = Mathf.PI * 2 + aimAngle;
+		}
+
+		player.UpdateCrosshair(aimAngle);
 	}
 
 	private void OnInputController() {
@@ -87,22 +112,6 @@ public class PlayerInput : MonoBehaviour {
 	private void OnGrappleInput() {
 		if (hasReset)
 			hasReset = false;
-
-		Vector2 facingDirection = Vector2.zero;
-		if (XCI.GetNumPluggedCtrlrs() == 0) {
-			var worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
-			facingDirection = worldMousePosition - transform.position;
-		} else {
-			if (twoStickControls)
-				facingDirection = new Vector2(XCI.GetAxis(XboxAxis.RightStickX), XCI.GetAxis(XboxAxis.RightStickY));
-			else
-				facingDirection = new Vector2(XCI.GetAxis(XboxAxis.LeftStickX), XCI.GetAxis(XboxAxis.LeftStickY));
-		}
-
-		float aimAngle = Mathf.Atan2(facingDirection.y, facingDirection.x);
-		if (aimAngle < 0f) {
-			aimAngle = Mathf.PI * 2 + aimAngle;
-		}
 
 		var aimDirection = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg) * Vector2.right;
 
