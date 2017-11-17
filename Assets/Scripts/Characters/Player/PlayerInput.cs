@@ -10,6 +10,7 @@ public class PlayerInput : MonoBehaviour {
 	private bool hasReset;
 
 	void Start () {
+		Cursor.visible = false;
 		player = GetComponent<Player> ();
 	}
 
