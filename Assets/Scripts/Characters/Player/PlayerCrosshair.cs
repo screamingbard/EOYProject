@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerCrosshair : MonoBehaviour {
 	public Transform crosshair;
 	public float distanceFromPlayer;
@@ -10,6 +9,7 @@ public class PlayerCrosshair : MonoBehaviour {
 	private SpriteRenderer crosshairSprite;
 
 	void Start () {
+		Cursor.visible = false;
 		crosshairSprite = GetComponent<SpriteRenderer>();
 	}
 
@@ -21,7 +21,7 @@ public class PlayerCrosshair : MonoBehaviour {
 		if (crosshairSprite == null)
 			return;
 
-		if (!crosshairSprite.enabled) {
+		if (crosshairSprite.enabled == false) {
 			crosshairSprite.enabled = true;
 		}
 

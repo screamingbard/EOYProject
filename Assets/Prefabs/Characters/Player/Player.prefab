@@ -54,16 +54,15 @@ GameObject:
   m_Component:
   - component: {fileID: 4106890437369740}
   - component: {fileID: 212297343664100126}
-  - component: {fileID: 114211477988153282}
-  - component: {fileID: 114655669701083800}
+  - component: {fileID: 114821920374593236}
+  - component: {fileID: 114788236559286138}
   - component: {fileID: 114918381190543890}
-  - component: {fileID: 114790266668955372}
-  - component: {fileID: 120600058084656896}
   - component: {fileID: 114858920990144464}
+  - component: {fileID: 120600058084656896}
   - component: {fileID: 50889728203053058}
   - component: {fileID: 232017112910467630}
   - component: {fileID: 114750239464136226}
-  - component: {fileID: 61858518644726182}
+  - component: {fileID: 70056916005876678}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -619,7 +618,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1145424958528676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.342001, y: -14.085903, z: 0}
+  m_LocalPosition: {x: -377.1, y: 37.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4901534867097502}
@@ -2061,18 +2060,18 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
+  m_UseAutoMass: 1
+  m_Mass: 1.8153982
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 2
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &61858518644726182
-BoxCollider2D:
+--- !u!70 &70056916005876678
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -2083,19 +2082,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: -0.3}
+  m_Size: {x: 2.03, y: 1}
+  m_Direction: 1
 --- !u!95 &95441282479118312
 Animator:
   serializedVersion: 3
@@ -2113,45 +2102,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114211477988153282
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1145424958528676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21ae0c3d7722a4bc0b743f08432e661a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 512
-  horizontalRayCount: 0
-  verticalRayCount: 0
-  horizontalRaySpacing: 0
-  verticalRaySpacing: 0
-  boxCollider: {fileID: 0}
-  maxSlopeAngle: 80
-  playerInput: {x: 0, y: 0}
---- !u!114 &114655669701083800
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1145424958528676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1d4b25ed59774c2dab59a88f8ad8428, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxJumpHeight: 8
-  minJumpHeight: 1
-  timeToJumpApex: 0.5
-  accelerationTimeAirborne: 0.2
-  accelerationTimeGrounded: 0.05
-  moveSpeed: 30
-  swingForce: 30
 --- !u!114 &114750239464136226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2174,7 +2124,7 @@ MonoBehaviour:
   m_psSpawnParticles: {fileID: 0}
   m_psDeathParticles: {fileID: 0}
   storeCam: {fileID: 0}
---- !u!114 &114790266668955372
+--- !u!114 &114788236559286138
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2186,6 +2136,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   twoStickControls: 0
+--- !u!114 &114821920374593236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1145424958528676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba6280e8c8bf044da5dd20b22aa52f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 28
+  pullFromGround: 2
+  groundedRayLength: 1
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 512
+  swingForce: 80
+  ropeHook: {x: 0, y: 0}
+  jumpForce: 20
+  jumpForceLoss: 28
+  fallSpeedForce: 10
+  maxVelocity: 38
+  playerSprite: {fileID: 4901534867097502}
 --- !u!114 &114858920990144464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2197,16 +2171,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6694512850f4134faa520484d869fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ropeRenderer: {fileID: 120600058084656896}
-  ropeLayerMask:
+  grappleRenderer: {fileID: 120600058084656896}
+  grappleLayerMask:
     serializedVersion: 2
     m_Bits: 49664
   climbSpeed: 10
-  ropeHingeAnchor: {fileID: 1632474874622894}
-  ropeJoint: {fileID: 232017112910467630}
+  grappleHingeAnchor: {fileID: 1632474874622894}
+  grappleJoint: {fileID: 232017112910467630}
   crosshair: {fileID: 4293612315479080}
-  player: {fileID: 114655669701083800}
-  ropeMaxCastDistance: 50
+  timeBetweenGrapples: 0.28
+  pullFromGroundTime: 0.08
+  grappleMaxCastDistance: 50
 --- !u!114 &114918381190543890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2257,7 +2232,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.2
+    widthMultiplier: 0.85
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2335,10 +2310,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 767600031
+  m_SortingLayer: 5
   m_SortingOrder: 2
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300012, guid: 5e1f0f6253088bb4587d8cfe7206668b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

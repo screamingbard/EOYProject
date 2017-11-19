@@ -69,6 +69,11 @@ public class PlayerInput : MonoBehaviour {
 		}
 
 		//Check for jump input
+		if (XCI.GetButtonDown(XboxButton.A)) {
+			player.OnJumpInputDown();
+		}
+
+		//Check for jump input being held
 		if (XCI.GetButton(XboxButton.A)) {
 			player.OnJumpInput();
 		}
@@ -100,6 +105,11 @@ public class PlayerInput : MonoBehaviour {
 
 		//Check for jump input
 		if (Input.GetKeyDown(KeyCode.Space)) {
+			player.OnJumpInputDown();
+		}
+
+		//Check for jump input being held
+		if (Input.GetKey(KeyCode.Space)) {
 			player.OnJumpInput();
 		}
 
