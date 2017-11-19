@@ -71,8 +71,7 @@ public class PlayerRespawn : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D a_trTrigger2D){
         //If the player enters the trigger zone of a new respawn point
-        if (a_trTrigger2D.gameObject.tag == m_stNewRespawn)
-        {
+        if (a_trTrigger2D.gameObject.tag == m_stNewRespawn){
 			//set the new respawn point
 			m_tfRespawnPoint = a_trTrigger2D.gameObject.transform;
         }
