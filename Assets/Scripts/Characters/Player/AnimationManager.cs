@@ -6,7 +6,7 @@ using XboxCtrlrInput;
 public class AnimationManager : MonoBehaviour {
 
     //The animator
-    public Animator m_animatorAnimator;
+    public Animator m_animator;
 
     //The string for use to connect and control mechanim specifically for the walking animation
     public string m_stIsWalking;
@@ -17,48 +17,41 @@ public class AnimationManager : MonoBehaviour {
     //The string for use to connect and control mechanim specifically for the swinging animation
     public string m_stIsSwinging;
 
-    //Is the player grounded
-    public bool m_bIsGrounded;
-
-    //Check for if the grapple is out and about
-    public bool m_bGrappleIsOut;
-
-    //Reference to the player
-    public GameObject m_goPlayer;
-
-    //Reference to the player controller
-    public Player m_pcPlayerContorller;
-
-    //Reference to the player's player class
-    //Bpublic PlayerOld m_playerPlayer;
+    //The string for use to connect and control machanim specifically for the falling animation
+    public string m_stIsFalling;
     
+    //Reference to the player controller
+    public Player m_plPlayer;
+    
+    //Check for player states and set appropriate bools to control the animations in mechanim
     void Update () {
-        if (!m_pcPlayerContorller.IsGrounded)
+        if (m_plPlayer.IsGrounded)
         {
-            m_animatorAnimator.SetBool(m_stIsWalking, false);
-            if (/*m_playerPlayer.bGrappling*/m_bGrappleIsOut)
-            {
-                m_animatorAnimator.SetBool(m_stIsSwinging, true);
-                m_animatorAnimator.SetBool(m_stIsJumping, false);
-            }
-            else
-            {
-                m_animatorAnimator.SetBool(m_stIsJumping, true);
-                m_animatorAnimator.SetBool(m_stIsSwinging, false);
-            }
+            m_animator.SetBool(m_stIsWalking, true);
+            m_animator.SetBool(m_stIsSwinging, false);
+            m_animator.SetBool(m_stIsJumping, false);
+            m_animator.SetBool(m_stIsFalling, false);
         }
-        else
+        else if (m_plPlayer.IsGrappling)
         {
-            m_animatorAnimator.SetBool(m_stIsJumping, false);
-            m_animatorAnimator.SetBool(m_stIsSwinging, false);
-            if (XCI.GetAxisRaw(XboxAxis.LeftStickX) != 0)
-            {
-                m_animatorAnimator.SetBool(m_stIsWalking, true);
-            }
-            else
-            {
-                m_animatorAnimator.SetBool(m_stIsWalking, false);
-            }
+            m_animator.SetBool(m_stIsWalking, false);
+            m_animator.SetBool(m_stIsSwinging, true);
+            m_animator.SetBool(m_stIsJumping, false);
+            m_animator.SetBool(m_stIsFalling, false);
         }
-	}
+        else if (m_plPlayer.IsJumping)
+        {
+            m_animator.SetBool(m_stIsWalking, false);
+            m_animator.SetBool(m_stIsSwinging, false);
+            m_animator.SetBool(m_stIsJumping, true);
+            m_animator.SetBool(m_stIsFalling, false);
+        }
+        else if (m_plPlayer.IsFalling)
+        {
+            m_animator.SetBool(m_stIsWalking, false);
+            m_animator.SetBool(m_stIsSwinging, false);
+            m_animator.SetBool(m_stIsJumping, false);
+            m_animator.SetBool(m_stIsFalling, true);
+        }
+    }
 }
