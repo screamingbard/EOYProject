@@ -74,8 +74,10 @@ public class Player : MonoBehaviour {
 	}
 
 	public void OnJumpInputDown() {
-		currentJumpForce = jumpForce;
-		IsJumping = true;
+        if (IsGrounded && IsJumping == false) {
+            currentJumpForce = jumpForce;
+            IsJumping = true;
+        }   
 	}
 
 	public void OnJumpInput() {
@@ -104,6 +106,7 @@ public class Player : MonoBehaviour {
 
 	private void CheckGrounded() {
 		float halfHeight = playerCollider.bounds.extents.y;
+        Debug.DrawRay(new Vector2(transform.position.x + playerCollider.offset.x, (transform.position.y + playerCollider.offset.y) - halfHeight - 0.04f), Vector2.down * groundedRayLength);
 		IsGrounded = Physics2D.Raycast(new Vector2(transform.position.x + playerCollider.offset.x, (transform.position.y + playerCollider.offset.y) - halfHeight - 0.04f), Vector2.down, groundedRayLength, groundMask);
 
 		if(IsGrappling && IsGrounded) {
@@ -144,31 +147,26 @@ public class Player : MonoBehaviour {
 
 	private void UpdateVerticalVelocity() {
 		if (IsGrappling == false) {
-			if (IsGrounded == false && IsFalling) {
-				rBody.AddForce(new Vector2(0, -fallSpeedForce));
-				rBody.velocity = new Vector2(rBody.velocity.x, rBody.velocity.y);
-			} 
-			else if (IsJumping) {
-				rBody.velocity = new Vector2(rBody.velocity.x + directionalInput.x, currentJumpForce);
-			}
-			else if (IsGrounded) {
-				rBody.AddForce(new Vector2(0, -fallSpeedForce * 10f));
-			}
+            if (IsGrounded == false && IsFalling) {
+                rBody.AddForce(new Vector2(0, -fallSpeedForce));
+                rBody.velocity = new Vector2(rBody.velocity.x, rBody.velocity.y);
+            }
+            else if (IsJumping)
+                rBody.velocity = new Vector2(rBody.velocity.x + directionalInput.x, currentJumpForce);
+            else if (IsGrounded)
+                rBody.AddForce(new Vector2(0f, fallSpeedForce * 10f * Time.deltaTime));
 		}
 	}
 
 	private void ClampVelocity() {
-		if (rBody.velocity.magnitude > maxVelocity) {
+		if (rBody.velocity.magnitude > maxVelocity)
 			rBody.velocity = Vector2.ClampMagnitude(rBody.velocity, maxVelocity);
-		}
 	}
 
 	private void UpdateSpiteFacing(float xDirection) {
-		if(xDirection < 0 && playerSprite.localScale.x < 0) {
+		if(xDirection < 0 && playerSprite.localScale.x < 0)
 			playerSprite.localScale = Vector3.one;
-		}
-		else if(xDirection > 0 && playerSprite.localScale.x > 0) {
+		else if(xDirection > 0 && playerSprite.localScale.x > 0)
 			playerSprite.localScale = new Vector3(-1, 1, 1);
-		}
 	}
 }
