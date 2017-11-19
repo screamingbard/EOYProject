@@ -10,6 +10,9 @@ public class PlayerInput : MonoBehaviour {
 	private bool hasReset;
 	private float aimAngle;
 
+	private Vector2 facingDirection;
+	private Vector2 oldFacingDirection;
+
 	void Start () {
 		Cursor.visible = false;
 		player = GetComponent<Player> ();
@@ -28,7 +31,8 @@ public class PlayerInput : MonoBehaviour {
 	}
 
 	private void UpdateAimAngle() {
-		Vector2 facingDirection = Vector2.zero;
+		oldFacingDirection = facingDirection;
+
 
 		if (XCI.GetNumPluggedCtrlrs() == 0) {
 			Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
@@ -38,6 +42,9 @@ public class PlayerInput : MonoBehaviour {
 				facingDirection = new Vector2(XCI.GetAxis(XboxAxis.RightStickX), XCI.GetAxis(XboxAxis.RightStickY));
 			else
 				facingDirection = new Vector2(XCI.GetAxis(XboxAxis.LeftStickX), XCI.GetAxis(XboxAxis.LeftStickY));
+
+			if (facingDirection == Vector2.zero)
+				facingDirection = oldFacingDirection;
 		}
 
 		aimAngle = Mathf.Atan2(facingDirection.y, facingDirection.x);

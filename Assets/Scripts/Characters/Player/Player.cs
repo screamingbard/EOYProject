@@ -152,7 +152,7 @@ public class Player : MonoBehaviour {
 				rBody.velocity = new Vector2(rBody.velocity.x + directionalInput.x, currentJumpForce);
 			}
 			else if (IsGrounded) {
-				rBody.AddForce(new Vector2(0, -fallSpeedForce));
+				rBody.AddForce(new Vector2(0, -fallSpeedForce * 10f));
 			}
 		}
 	}
