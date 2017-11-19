@@ -116,7 +116,14 @@ public class VisionCone : MonoBehaviour {
                 if (m_acAlertSound != null)
                 {
                     //Play the alert sound when the player is finaly seen
-                    m_asAudioSource.PlayOneShot(m_acAlertSound, 0.5f/* m_gdGameData.m_setSettigs.m_fSFXVolume * m_gdGameData.m_setSettigs.m_fMasterVolume*/);
+                    if (PlayerPrefs.GetInt("SFX") == 1)
+                    {
+                        AudioSource.PlayClipAtPoint(m_acAlertSound, transform.position);
+                    }
+                    else
+                    {
+                        AudioSource.PlayClipAtPoint(m_acAlertSound, transform.position, 0.0f);
+                    }
                 }
             }
             else
