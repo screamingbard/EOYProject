@@ -16,7 +16,7 @@ public class CameraFollow : MonoBehaviour {
     //The height of the camera relative to the centre of the bounding box
     public float m_fVerticalOffset;
 
-    //
+    //The distance the camera moves along the players forward from the player
     public float m_fLookAheadDistanceX;
 
     //
@@ -188,8 +188,8 @@ public class CameraFollow : MonoBehaviour {
                 //Shift the camera along the x
                 m_fShiftX = a_bnTargetsBounds.max.x - m_fRight;
             }
-            m_fLeft += m_fShiftX;
-            m_fRight += m_fShiftX;
+            m_fLeft += m_fShiftX * Time.deltaTime;
+            m_fRight += m_fShiftX * Time.deltaTime;
 
             //The amount the camera is shifted along the y axis
             float m_fShiftY = 0;
@@ -208,8 +208,8 @@ public class CameraFollow : MonoBehaviour {
                 m_fShiftY = a_bnTargetsBounds.max.y - m_fTop;
             }
 
-            m_fTop += m_fShiftY;
-            m_fBottom += m_fShiftY;
+            m_fTop += m_fShiftY * Time.deltaTime * 20;
+            m_fBottom += m_fShiftY * Time.deltaTime * 20;
 
             //Set the centre of the bounded camera
             m_v2Centre = new Vector2((m_fLeft + m_fRight) / 2, (m_fTop + m_fBottom) / 2);
