@@ -118,28 +118,28 @@ public class VisionCone : MonoBehaviour {
                         m_aAlertAnimation.Play();
                         m_bCanPlayAnimation = false;
                     }
-                    if (m_acAlertSound != null)
+                }
+                if (m_acAlertSound != null)
+                {
+                    if (m_bPlayerIsBeingSeen)
                     {
-                        if (m_bPlayerIsBeingSeen)
+                        if (!m_bAlertHasPlayedSound)
                         {
-                            if (!m_bAlertHasPlayedSound)
+                            //Play the alert sound when the player is finaly seen
+                            if (PlayerPrefs.GetInt("SFX") == 1)
                             {
-                                 //Play the alert sound when the player is finaly seen
-                                 if (PlayerPrefs.GetInt("SFX") == 1)
-                                 {
-                                     AudioSource.PlayClipAtPoint(m_acAlertSound, Camera.main.transform.position);
-                                 }
-                                 else
-                                 {
-                                     AudioSource.PlayClipAtPoint(m_acAlertSound, Camera.main.transform.position, 0.0f);
-                                 }
-                                m_bAlertHasPlayedSound = true;
+                                AudioSource.PlayClipAtPoint(m_acAlertSound, Camera.main.transform.position);
                             }
+                            else
+                            {
+                                AudioSource.PlayClipAtPoint(m_acAlertSound, Camera.main.transform.position, 0.0f);
+                            }
+                            m_bAlertHasPlayedSound = true;
                         }
-                        else
-                        {
-                            m_bAlertHasPlayedSound = false;
-                        }
+                    }
+                    else
+                    {
+                        m_bAlertHasPlayedSound = false;
                     }
                 }
             }
