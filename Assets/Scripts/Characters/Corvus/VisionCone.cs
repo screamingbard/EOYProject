@@ -69,7 +69,13 @@ public class VisionCone : MonoBehaviour {
 
     //A boolean to restrict the animation to play only when the player is initially spotted
     bool m_bCanPlayAnimation;
-   
+
+    //
+    bool m_bPlayerIsBeingSeen;
+
+    //
+    bool m_bAlertHasPlayedSound;
+
     void Start()
     {
         //Get the players transforms
@@ -112,19 +118,27 @@ public class VisionCone : MonoBehaviour {
                         m_aAlertAnimation.Play();
                         m_bCanPlayAnimation = false;
                     }
-                }
-                if (m_acAlertSound != null)
-                {
-                    if (m_fUseDeathTimer <= 1 )
+                    if (m_acAlertSound != null)
                     {
-                        //Play the alert sound when the player is finaly seen
-                        if (PlayerPrefs.GetInt("SFX") == 1)
+                        if (m_bPlayerIsBeingSeen)
                         {
-                            AudioSource.PlayClipAtPoint(m_acAlertSound, Camera.main.transform.position);
+                            if (!m_bAlertHasPlayedSound)
+                            {
+                                 //Play the alert sound when the player is finaly seen
+                                 if (PlayerPrefs.GetInt("SFX") == 1)
+                                 {
+                                     AudioSource.PlayClipAtPoint(m_acAlertSound, Camera.main.transform.position);
+                                 }
+                                 else
+                                 {
+                                     AudioSource.PlayClipAtPoint(m_acAlertSound, Camera.main.transform.position, 0.0f);
+                                 }
+                                m_bAlertHasPlayedSound = true;
+                            }
                         }
                         else
                         {
-                            AudioSource.PlayClipAtPoint(m_acAlertSound, Camera.main.transform.position, 0.0f);
+                            m_bAlertHasPlayedSound = false;
                         }
                     }
                 }
@@ -189,8 +203,9 @@ public class VisionCone : MonoBehaviour {
                    }
                    else
                     {
-                        //Reset the death timer
+                        //Count up the death timer
                         m_fUseDeathTimer += Time.deltaTime;
+                        m_bPlayerIsBeingSeen = true;
                    }
                 }
                 else
@@ -200,6 +215,7 @@ public class VisionCone : MonoBehaviour {
                         m_fUseDeathTimer = 0;
                     else
                         m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
+                    m_bPlayerIsBeingSeen = false;
                 }
             }
             else
@@ -209,6 +225,7 @@ public class VisionCone : MonoBehaviour {
                     m_fUseDeathTimer = 0;
                 else
                     m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
+                m_bPlayerIsBeingSeen = false;
             }
         }
         else
@@ -218,6 +235,7 @@ public class VisionCone : MonoBehaviour {
                 m_fUseDeathTimer = 0;
             else
                 m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
+            m_bPlayerIsBeingSeen = false;
         }
     }
 
