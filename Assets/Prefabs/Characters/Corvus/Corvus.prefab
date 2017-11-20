@@ -128,15 +128,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1019372252990012}
-  m_LocalRotation: {x: -0, y: -0, z: 0.9689003, w: -0.24745163}
-  m_LocalPosition: {x: 0.071, y: 1.463, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.92308164, w: 0.38460425}
+  m_LocalPosition: {x: -0.86, y: 0.9699993, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4913424244892148}
   - {fileID: 4559768701698924}
   m_Father: {fileID: 4411655975118376}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 208.65399}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 134.76201}
 --- !u!4 &4411655975118376
 Transform:
   m_ObjectHideFlags: 1
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a506a710ec695394ab0556fa649c1ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fRadius: 50
+  m_fRadius: 40.6
   m_fAngle: 27
   m_lmPlayerMask:
     serializedVersion: 2
@@ -290,7 +290,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   m_fMeshResolution: 1
-  m_fDeathTimer: 0.8
+  m_fDeathTimer: 1.25
   m_fAlertCooldown: 2
   m_mfViewMeshFilter: {fileID: 33215948270854608}
   m_mViewMesh: {fileID: 0}
@@ -313,7 +313,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5dc46749172b838469c1801864af6df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -355,7 +355,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5dc46749172b838469c1801864af6df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
