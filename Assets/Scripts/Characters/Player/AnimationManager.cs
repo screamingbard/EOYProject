@@ -25,13 +25,24 @@ public class AnimationManager : MonoBehaviour {
     
     //Check for player states and set appropriate bools to control the animations in mechanim
     void Update () {
+        //If the player is on the ground
         if (m_plPlayer.IsGrounded)
         {
-            m_animator.SetBool(m_stIsWalking, true);
+            if (!m_plPlayer.IsIdle)
+            {
+                //If the player is not idle play the walking animation
+                m_animator.SetBool(m_stIsWalking, true);
+            }
+            else
+            {
+                //If the player is idle play the idle animation
+                m_animator.SetBool(m_stIsWalking, false);
+            }
             m_animator.SetBool(m_stIsSwinging, false);
             m_animator.SetBool(m_stIsJumping, false);
             m_animator.SetBool(m_stIsFalling, false);
         }
+        //If the player is swinging with the grapple play the swing animation
         else if (m_plPlayer.IsGrappling)
         {
             m_animator.SetBool(m_stIsWalking, false);
@@ -39,6 +50,7 @@ public class AnimationManager : MonoBehaviour {
             m_animator.SetBool(m_stIsJumping, false);
             m_animator.SetBool(m_stIsFalling, false);
         }
+        //If the player is jumping play the jump animation
         else if (m_plPlayer.IsJumping)
         {
             m_animator.SetBool(m_stIsWalking, false);
@@ -46,6 +58,7 @@ public class AnimationManager : MonoBehaviour {
             m_animator.SetBool(m_stIsJumping, true);
             m_animator.SetBool(m_stIsFalling, false);
         }
+        //If the player is falling play the fall animation
         else if (m_plPlayer.IsFalling)
         {
             m_animator.SetBool(m_stIsWalking, false);
