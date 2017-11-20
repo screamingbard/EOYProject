@@ -2,6 +2,7 @@
 
 [RequireComponent(typeof(GrappleSystem))]
 [RequireComponent(typeof(PlayerCrosshair))]
+[RequireComponent(typeof(PlayerRespawn))]
 public class Player : MonoBehaviour {
 	[Header("Ground Movement")]
 	public float moveSpeed = 1f;
@@ -154,7 +155,7 @@ public class Player : MonoBehaviour {
             else if (IsJumping)
                 rBody.velocity = new Vector2(rBody.velocity.x + directionalInput.x, currentJumpForce);
             else if (IsGrounded)
-                rBody.AddForce(new Vector2(0f, fallSpeedForce * 10f * Time.deltaTime));
+                rBody.AddForce(new Vector2(0f, -fallSpeedForce));
 		}
 	}
 
