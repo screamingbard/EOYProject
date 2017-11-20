@@ -128,11 +128,11 @@ public class VisionCone : MonoBehaviour {
                             //Play the alert sound when the player is finaly seen
                             if (PlayerPrefs.GetInt("SFX") == 1)
                             {
-                                AudioSource.PlayClipAtPoint(m_acAlertSound, Camera.main.transform.position);
+                                PlayClipAt(m_acAlertSound, Camera.main.transform.position);
                             }
                             else
                             {
-                                AudioSource.PlayClipAtPoint(m_acAlertSound, Camera.main.transform.position, 0.0f);
+                                PlayClipAt(m_acAlertSound, Camera.main.transform.position).volume = 0.0f;
                             }
                             m_bAlertHasPlayedSound = true;
                         }
@@ -166,6 +166,16 @@ public class VisionCone : MonoBehaviour {
         DrawOverlayVisionCone();
     }
 
+    AudioSource PlayClipAt(AudioClip a_acClip, Vector2 a_v2Position)
+    {
+        GameObject m_goTempGameObject = new GameObject("TempAudio");
+        m_goTempGameObject.transform.position = a_v2Position;
+        AudioSource m_audioSource = m_goTempGameObject.AddComponent<AudioSource>();
+        m_audioSource.clip = a_acClip;
+        m_audioSource.Play();
+        Destroy(m_goTempGameObject, a_acClip.length);
+        return m_audioSource;
+    }
     void FindPlayer()
     //Method to find the player within the vision of an enemy
     {
