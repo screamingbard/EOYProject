@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
 	public bool IsGrounded { get; private set; }
 	public bool IsJumping { get; private set; }
 	public bool IsFalling { get { return rBody.velocity.y < 0 ? true : false; }}
+    public bool IsIdle { get { return directionalInput.x != 0 ? true : false; }}
 
 	private Vector2 directionalInput;
 
