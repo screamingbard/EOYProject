@@ -26,6 +26,12 @@ public class CameraFollow : MonoBehaviour {
     public float m_fVerticalSmoothTime;
 
     //
+    public float m_fSmoothMultiplierX;
+
+    //
+    public float m_fSmoothMultiplierY;
+
+    //
     public float m_fMinCamHeight
     {
         get
@@ -81,7 +87,7 @@ public class CameraFollow : MonoBehaviour {
     void Start()
     {
         //Generate the bounding box
-        m_faFocusArea = new FocusArea(m_tfTarget.GetComponent<Collider2D>().bounds, m_v2FocusAreaSize);
+        m_faFocusArea = new FocusArea(m_tfTarget.GetComponent<Collider2D>().bounds, m_v2FocusAreaSize, m_fSmoothMultiplierX, m_fSmoothMultiplierY);
     }
     void Update()
     {
@@ -151,13 +157,17 @@ public class CameraFollow : MonoBehaviour {
         //The velocity of the bounding box
         public Vector2 m_v2Velocity;
 
+        //The multipliers for the smooth times
+        float m_fSmoothMultX;
+        float m_fSmoothMultY;
+
         //The width of the bounding box
         float m_fLeft, m_fRight;
 
         //The height of the bounding box
         float m_fTop, m_fBottom;
 
-        public FocusArea(Bounds a_bnTargetsBounds, Vector2 m_v2Size)
+        public FocusArea(Bounds a_bnTargetsBounds, Vector2 m_v2Size, float a_fSmoothMultX, float a_fSmoothMultY)
         {
             //Set the bounds of the box around the player
             m_fLeft = a_bnTargetsBounds.center.x - m_v2Size.x / 2;
@@ -170,6 +180,10 @@ public class CameraFollow : MonoBehaviour {
 
             //Stores the centre for tracking
             m_v2Centre = new Vector2((m_fLeft + m_fRight) / 2, (m_fTop + m_fBottom) / 2);
+
+            //Set the multipliers
+            m_fSmoothMultX = a_fSmoothMultX;
+            m_fSmoothMultY = a_fSmoothMultY;
         }
         public void Update(Bounds a_bnTargetsBounds)
         {
@@ -188,9 +202,9 @@ public class CameraFollow : MonoBehaviour {
                 //Shift the camera along the x
                 m_fShiftX = a_bnTargetsBounds.max.x - m_fRight;
             }
-            m_fLeft += m_fShiftX * Time.deltaTime;
-            m_fRight += m_fShiftX * Time.deltaTime;
-
+            m_fLeft += m_fShiftX * Time.deltaTime * m_fSmoothMultX;
+            m_fRight += m_fShiftX * Time.deltaTime * m_fSmoothMultX;
+            
             //The amount the camera is shifted along the y axis
             float m_fShiftY = 0;
 
@@ -208,8 +222,8 @@ public class CameraFollow : MonoBehaviour {
                 m_fShiftY = a_bnTargetsBounds.max.y - m_fTop;
             }
 
-            m_fTop += m_fShiftY * Time.deltaTime * 20;
-            m_fBottom += m_fShiftY * Time.deltaTime * 20;
+            m_fTop += m_fShiftY * Time.deltaTime * m_fSmoothMultY;
+            m_fBottom += m_fShiftY * Time.deltaTime * m_fSmoothMultY;
 
             //Set the centre of the bounded camera
             m_v2Centre = new Vector2((m_fLeft + m_fRight) / 2, (m_fTop + m_fBottom) / 2);
@@ -223,6 +237,6 @@ public class CameraFollow : MonoBehaviour {
     public void ResetCamera()
     //Resets the camera position to the centre of the player when called
     {
-        m_faFocusArea = new FocusArea(m_tfTarget.GetComponent<Collider2D>().bounds, m_v2FocusAreaSize);
+       m_faFocusArea = new FocusArea(m_tfTarget.GetComponent<Collider2D>().bounds, m_v2FocusAreaSize, m_fSmoothMultiplierX, m_fSmoothMultiplierY);
     }
 }
