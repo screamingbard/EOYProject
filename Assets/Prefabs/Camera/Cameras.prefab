@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 92219519587383140}
   - component: {fileID: 124170305714143676}
   - component: {fileID: 81367100089573664}
+  - component: {fileID: 114095003352551330}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +122,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1771958743765336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 683.4369, y: -75.819145, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4727655329954130}
@@ -146,8 +147,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1959809699486512}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -382.36002, y: 92.46068, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -377.1, y: 37.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4814955342626886}
@@ -191,7 +192,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1229744765898716}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 683.4369, y: -75.819145, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4727655329954130}
@@ -493,6 +494,18 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1672960777699542}
   m_Enabled: 1
+--- !u!114 &114095003352551330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1166614250738224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 21795f099e3229c4e8f381a132c19b9d, type: 2}
 --- !u!114 &114974387163558758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -505,11 +518,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_tfTarget: {fileID: 0}
-  m_v2FocusAreaSize: {x: 15, y: 15}
+  m_v2FocusAreaSize: {x: 20, y: 15}
   m_fVerticalOffset: 5
   m_fLookAheadDistanceX: 24
-  m_fLookSmoothTimeX: 0.5
-  m_fVerticalSmoothTime: 0
+  m_fLookSmoothTimeX: 0.9
+  m_fVerticalSmoothTime: 0.1
   m_fMinimumCameraHeight: -100
   m_fMaximumCameraHeight: 100
 --- !u!124 &124147804082761696
