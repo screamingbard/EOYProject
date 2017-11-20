@@ -118,11 +118,11 @@ public class VisionCone : MonoBehaviour {
                     //Play the alert sound when the player is finaly seen
                     if (PlayerPrefs.GetInt("SFX") == 1)
                     {
-                        AudioSource.PlayClipAtPoint(m_acAlertSound, transform.position);
+                        AudioSource.PlayClipAtPoint(m_acAlertSound, Camera.main.transform.position);
                     }
                     else
                     {
-                        AudioSource.PlayClipAtPoint(m_acAlertSound, transform.position, 0.0f);
+                        AudioSource.PlayClipAtPoint(m_acAlertSound, Camera.main.transform.position, 0.0f);
                     }
                 }
             }
