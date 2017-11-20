@@ -35,7 +35,7 @@ public class PlayerRespawn : MonoBehaviour {
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
         //Stop grappling
-        gameObject.GetComponent<Player>().SetGrappling(false);
+        gameObject.GetComponent<Player>().OnGrappleUp();
 
         //start the timer to disallow movement for a split second
         m_fMovementTimer = m_fSetMovementTimer;
