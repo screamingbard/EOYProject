@@ -84,6 +84,14 @@ public class BirdbackgroundSummon : MonoBehaviour {
         AddBird();
     }
 
+    void Update()
+    {
+        foreach (GameObject go in birdsStore)
+        {
+            resetBirdLocation(go);
+        }
+    }
+
     //------------------------------------------------------------------------------------------------------
     //This Puts the created bird on a randomised layer with a randomised set distance.
     //------------------------------------------------------------------------------------------------------
@@ -112,6 +120,17 @@ public class BirdbackgroundSummon : MonoBehaviour {
                 go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, Front_Background_Dist);
                 break;
         }
+    }
+
+    void resetBirdLocation(GameObject go)
+    {
+        //This if statement makes sure that if the bird is moving towards the right it will keep looping in order to move to the right.
+        if (go.transform.position.x > End.transform.position.x)
+            go.transform.position = new Vector3(Start.transform.position.x, go.transform.position.y, go.transform.position.z);
+
+        //This if statement makes sure that if the bird is moving towards the left it will keep looping in order to move to the left.
+        if (go.transform.position.x < Start.transform.position.x)
+            go.transform.position = new Vector3(End.transform.position.x, go.transform.position.y, go.transform.position.z);
     }
 
     //------------------------------------------------------------------------------------------------------
