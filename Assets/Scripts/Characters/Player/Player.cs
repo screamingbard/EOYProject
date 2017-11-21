@@ -72,6 +72,9 @@ public class Player : MonoBehaviour {
 	}
 
 	public void OnGrappleReel(float direction) {
+		if (direction == 0f)
+			return;
+
 		grappleSystem.AdjustRopeLength(direction);
 	}
 

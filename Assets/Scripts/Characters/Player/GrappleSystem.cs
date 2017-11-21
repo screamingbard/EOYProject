@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GrappleSystem : MonoBehaviour {
     public LineRenderer grappleRenderer;
+	public SpriteRenderer bellyHarness;
     public LayerMask grappleLayerMask;
     public float climbSpeed = 3f;
     public GameObject grappleHingeAnchor;
@@ -14,6 +15,7 @@ public class GrappleSystem : MonoBehaviour {
 	public float pullFromGroundTime;
 
 	public float grappleMaxCastDistance = 50f;
+	public float grappleMaxLength = 50f;
 
 	private Player player;
 
@@ -34,6 +36,7 @@ public class GrappleSystem : MonoBehaviour {
 		player = GetComponent<Player>();
 
 		grappleJoint.enabled = false;
+		bellyHarness.enabled = false;
 	    playerPosition = transform.position;
         grappleHingeAnchorRb = grappleHingeAnchor.GetComponent<Rigidbody2D>();
         grappleHingeAnchorSprite = grappleHingeAnchor.GetComponent<SpriteRenderer>();
@@ -114,13 +117,12 @@ public class GrappleSystem : MonoBehaviour {
 			return;
 
 		grappleRenderer.enabled = true;
+		bellyHarness.enabled = true;
 
 		var hit = Physics2D.Raycast(playerPosition, aimDirection, grappleMaxCastDistance, grappleLayerMask);
 		if (hit.collider != null) {
 			grappleAttached = true;
 			if (!grapplePositions.Contains(hit.point)) {
-				// Jump slightly to distance the player a little from the ground after grappling to something.
-				transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
 				grapplePositions.Add(hit.point);
 				wrapPointsLookup.Add(hit.point, 0);
 				grappleJoint.distance = Vector2.Distance(playerPosition, hit.point);
@@ -129,6 +131,7 @@ public class GrappleSystem : MonoBehaviour {
 			}
 		} else {
 			grappleRenderer.enabled = false;
+			bellyHarness.enabled = false;
 			grappleAttached = false;
 			grappleJoint.enabled = false;
 		}
@@ -165,6 +168,8 @@ public class GrappleSystem : MonoBehaviour {
 		else if(direction < 0f && grappleAttached) {
 			grappleJoint.distance += Time.deltaTime * climbSpeed;
 		}
+
+		//ClampGrappleLength();
     }
 
 	public void RemoveRopeLength(float amount) {
@@ -172,6 +177,11 @@ public class GrappleSystem : MonoBehaviour {
 			return;
 
 		StartCoroutine(RemoveGrappleLength(amount));
+	}
+
+	private void ClampGrappleLength() {
+		if (grappleJoint.distance > grappleMaxLength)
+			grappleJoint.distance = grappleMaxLength;
 	}
 
     /// <summary>

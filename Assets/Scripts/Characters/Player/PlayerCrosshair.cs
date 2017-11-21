@@ -25,8 +25,8 @@ public class PlayerCrosshair : MonoBehaviour {
 			crosshairSprite.enabled = true;
 		}
 
-		var x = transform.position.x + distanceFromPlayer * Mathf.Cos(aimAngle);
-		var y = transform.position.y + distanceFromPlayer * Mathf.Sin(aimAngle);
+		float x = transform.position.x + distanceFromPlayer * Mathf.Cos(aimAngle);
+		float y = transform.position.y + distanceFromPlayer * Mathf.Sin(aimAngle);
 
 		Vector3 crossHairPosition = new Vector3(x, y, 0);
 		crosshair.transform.position = crossHairPosition;
