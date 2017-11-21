@@ -110,17 +110,23 @@ public class CameraFollow : MonoBehaviour {
         {
             //Set the distance of the look ahead of the camera which is how far the camera is to the left or right depending on movement
             m_fLookAheadDirectionX = Mathf.Sign(m_faFocusArea.m_v2Velocity.x);
-            //If
+            //If the player is providing horizontal movement input and the velocity of the focus are along the x axis is relative to the player input along the x
             if (Mathf.Sign(playerInput.x) == Mathf.Sign(m_faFocusArea.m_v2Velocity.x) && playerInput.x != 0)
             {
+                //Set the look ahead bool to false
                 m_bLookAheadStopped = false;
+                //Set the look ahead along the x axis to the directtion on the x and the distance also along the x of the look ahead
                 m_fTargetLookAheadX = m_fLookAheadDirectionX * m_fLookAheadDistanceX;
             }
             else
             {
+                //Otherwise if the look ahead is not stopped
                 if (!m_bLookAheadStopped)
                 {
+                    //Set the look ahead to true
                     m_bLookAheadStopped = true;
+                    //Set the look ahead target to the current look ahead plus the look ahead direction
+                    //Multiplied by the Look ahead distance minus the current look ahead direction devided by 4
                     m_fTargetLookAheadX = m_fCurrentLookAheadX + (m_fLookAheadDirectionX * m_fLookAheadDistanceX - m_fCurrentLookAheadX) / 4;
                 }
             }

@@ -55,16 +55,15 @@ public class UIController : MonoBehaviour {
 
     //To stop the player jumping when you unpause
     bool m_bInputDelayingness;
-
-    //
-    float m_fInputDelayTimer;
-
+    
     void Awake()
     {
+        //On awake make sure the game isn't paused
         if (Time.timeScale != 1)
         {
             Time.timeScale = 1;
         }
+        //Also if any menus are active deactivate them
         if (m_goQuitMenu.activeInHierarchy)
         {
             BackOutOfQuit();
@@ -95,21 +94,13 @@ public class UIController : MonoBehaviour {
 
     void Update()
     {
-        if (m_bInputDelayingness)
-        {
-            m_fInputDelayTimer -= Time.unscaledDeltaTime;
-        }
-        if (m_fInputDelayTimer <= 0)
-        {
-            Unpause();
-            m_fInputDelayTimer = 100;
-            m_bInputDelayingness = false;
-        }
-
+        //If the event system doesn't have anything selected
         if (m_esEventSysRef.currentSelectedGameObject == null)
         {
+            //Select the assigned first selected
             m_esEventSysRef.SetSelectedGameObject(m_goFirstSelected);
         }
+        //Pause the game if the game is unpaused or unpause if other wise
         if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (Time.timeScale == 1)
@@ -118,10 +109,12 @@ public class UIController : MonoBehaviour {
             }
             else
             {
+                //Deactivate the quit menu
                 if (m_goQuitMenu.activeInHierarchy)
                 {
                     BackOutOfQuit();
                 }
+                //Deactivate the settings menu
                 if (m_goSettingsMenu.activeInHierarchy)
                 {
                     BackOutOfSettings();
@@ -129,6 +122,7 @@ public class UIController : MonoBehaviour {
                 Unpause();
             }
         }
+        //Back out of the current menu to the previouse or unpause if the current active menu is the pause screen
         if (XCI.GetButtonDown(XboxButton.B))
         {
             if (m_goQuitMenu.activeInHierarchy)
@@ -145,16 +139,16 @@ public class UIController : MonoBehaviour {
             }
         }
     }
-    //Go into the settings menu
     public void GoToSettings()
+    //Go into the settings menu
     {
         m_goSettingsMenu.SetActive(true);
         m_esEventSysRef.SetSelectedGameObject(m_goFirstSelectedSettings);
         m_goPauseMenu.SetActive(false);
     }
 
-    //Go back to the pause menu from the settings
     public void BackOutOfSettings()
+    //Go back to the pause menu from the settings
     {
         m_goSettingsMenu.SetActive(false);
         m_esEventSysRef.SetSelectedGameObject(m_btnSettingsButton.gameObject);
@@ -162,40 +156,41 @@ public class UIController : MonoBehaviour {
         m_goPauseMenu.SetActive(true);
     }
 
-    //Go into the quit menu
     public void GoToQuit()
+    //Go into the quit menu
     {
         m_goQuitMenu.SetActive(true);
         m_esEventSysRef.SetSelectedGameObject(m_goFirstSelectedQuit);
         m_goPauseMenu.SetActive(false);
     }
 
-    //Go back to the pause menu from the quit
     public void BackOutOfQuit()
+    //Go back to the pause menu from the quit
     {
         m_goQuitMenu.SetActive(false);
         m_esEventSysRef.SetSelectedGameObject(m_btnQuitButton.gameObject);
         m_btnQuitButton.OnSelect(null);
         m_goPauseMenu.SetActive(true);
     }
-
-    public void UnpauseFromMenu()
-    {
-        m_bInputDelayingness = true;
-    }
-
+    
     public void Pause()
     {
+        //Set the selected button to the play button
         m_esEventSysRef.SetSelectedGameObject(m_btnPlayButton.gameObject);
         m_btnPlayButton.OnSelect(null);
+        //Pause the game by setting the time scale to zero
         Time.timeScale = 0;
+        //Set the pause menu to active
         m_goPauseMenu.SetActive(true);
+        //Also activate the pause menu background
         m_goPauseScreenBackground.SetActive(true);
     }
 
     public void Unpause()
     {
+        //Unpause the game by setting the time scale back to one
         Time.timeScale = 1;
+        //deactivate the pause menu and background screen
         m_goPauseMenu.SetActive(false);
         m_goPauseScreenBackground.SetActive(false);
     }

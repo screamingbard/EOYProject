@@ -58,6 +58,7 @@ public class InGameMenuController : MonoBehaviour {
 
     void Update()
     {
+        //Pause the game if the assigned buttons are depressed and it is not already paused. If it is paused unpause the game
         if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (Time.timeScale == 1)

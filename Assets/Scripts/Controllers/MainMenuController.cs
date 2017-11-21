@@ -51,6 +51,7 @@ public class MainMenuController : MonoBehaviour {
         {
             Time.timeScale = 1;
         }
+        //Make sure the only active menu is the main menu
         if (m_goCreditsMenu.activeInHierarchy)
         {
             m_goCreditsMenu.SetActive(false);
@@ -76,21 +77,13 @@ public class MainMenuController : MonoBehaviour {
     {
         if (m_esEventSysRef.currentSelectedGameObject == null)
         {
+            //If the event system doesn't have a current selected, set the current to the first selected
             m_esEventSysRef.SetSelectedGameObject(m_goFirstSelected);
         }
-        if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (Time.timeScale == 1)
-            {
-                Pause();
-            }
-            else
-            {
-                Unpause();
-            }
-        }
+
         if (XCI.GetButtonDown(XboxButton.B))
         {
+            //Back out to the main menu if the 'B' button is pressed
             BackOutOfSettings();
             BackOutOfCredits();
         }
@@ -99,46 +92,44 @@ public class MainMenuController : MonoBehaviour {
     //Go into the settings menu
     public void GoToSettings()
     {
+        //Set the settings menu to active
         m_goSettingsMenu.SetActive(true);
+        //Set the selected button
         m_esEventSysRef.SetSelectedGameObject(m_goFirstSelectedSettings);
+        //Set the main menu to deactive
         m_goMainMenu.SetActive(false);
     }
 
-    //Go back to the pause menu from the settings
+    //Go back to the main menu from the settings
     public void BackOutOfSettings()
     {
+        //Set the settings menu to deactive
         m_goSettingsMenu.SetActive(false);
+        //Set the selected button
         m_esEventSysRef.SetSelectedGameObject(null);
+        //Set the main menu to active
         m_goMainMenu.SetActive(true);
     }
 
-    //Go back to the pause menu from the credits
+    //Go back to the main menu from the credits
     public void GoToCredits()
     {
+        //Set the credits menu to active
         m_goCreditsMenu.SetActive(true);
+        //Set the selected button
         m_esEventSysRef.SetSelectedGameObject(m_goFirstSelectedCredits);
+        //Set the main menu to deactive
         m_goMainMenu.SetActive(false);
     }
 
-    //Go back to the pause menu from the settings
+    //Go back to the main menu from the settings
     public void BackOutOfCredits()
     {
+        //Set the credits menu to deactive
         m_goCreditsMenu.SetActive(false);
+        //Set the selected button
         m_esEventSysRef.SetSelectedGameObject(null);
+        //Set the main menu to active
         m_goMainMenu.SetActive(true);
-    }
-
-    //Pause the game
-    public void Pause()
-    {
-        Time.timeScale = 0;
-        m_goMainMenu.SetActive(true);
-    }
-
-    //Unpauses the game
-    public void Unpause()
-    {
-        Time.timeScale = 1;
-        m_goMainMenu.SetActive(false);
     }
 }
