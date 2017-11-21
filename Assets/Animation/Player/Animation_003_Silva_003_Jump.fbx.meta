@@ -142,7 +142,7 @@ ModelImporter:
     4300048: Silva_6tail
     4300050: Silva_7tail
     4300052: Silva_TAILTIP
-    7400000: Jump0012
+    7400000: Jump
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -169,7 +169,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jump0012
+      name: Jump
       takeName: Take 001
       firstFrame: 6
       lastFrame: 14
