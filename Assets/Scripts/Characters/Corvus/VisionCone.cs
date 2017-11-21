@@ -60,21 +60,21 @@ public class VisionCone : MonoBehaviour {
 
     //The sound that will play when the player is seen
     public AudioClip m_acAlertSound;
-
-    //
-    public GameData m_gdGameData;
-
+    
     //Sound pleyererer
     AudioSource m_asAudioSource;
 
     //A boolean to restrict the animation to play only when the player is initially spotted
     bool m_bCanPlayAnimation;
 
-    //
+    //A boolean to store whether or not the player is within a vision cone
     bool m_bPlayerIsBeingSeen;
 
-    //
+    //A boolean to store if the alert sound has played to stop it being played more than once per time the player enters a vision cone
     bool m_bAlertHasPlayedSound;
+
+    //A boolean to tell other scripts that the player has died to a vision cone
+    public bool m_bKilledByVisionCone;
 
     void Start()
     {
@@ -107,7 +107,7 @@ public class VisionCone : MonoBehaviour {
     {
         if (m_goAlertSignal != null)
         {
-            //Do an alert thing when the death timer starts counting
+            //Show the alert icon if the vision cone overlay exists
             if (m_fUseDeathTimer > 0)
             {
                 m_goAlertSignal.SetActive(true);
@@ -115,14 +115,17 @@ public class VisionCone : MonoBehaviour {
                 {
                     if (m_bCanPlayAnimation)
                     {
+                        //Play the Alert animation
                         m_aAlertAnimation.Play();
                         m_bCanPlayAnimation = false;
                     }
                 }
                 if (m_acAlertSound != null)
                 {
+                    //If the player is within a vision cone
                     if (m_bPlayerIsBeingSeen)
                     {
+                        //If the alert sounds has not yet played 
                         if (!m_bAlertHasPlayedSound)
                         {
                             //Play the alert sound when the player is finaly seen
@@ -132,19 +135,23 @@ public class VisionCone : MonoBehaviour {
                             }
                             else
                             {
+                                //If the SFX setting is turned off set the volume to zero
                                 PlayClipAt(m_acAlertSound, Camera.main.transform.position).volume = 0.0f;
                             }
+                            //Remember that the alert sound has played
                             m_bAlertHasPlayedSound = true;
                         }
                     }
                     else
                     {
+                        //Once the player leaves the vision cone say that the alert sound hasn't played so it will play when the player enters the vision cone again
                         m_bAlertHasPlayedSound = false;
                     }
                 }
             }
             else
             {
+                //If the corvus is no longer on alert, the death counter is zero, set the alert signal to not active and the can play animation bool to true
                 m_goAlertSignal.SetActive(false);
                 m_bCanPlayAnimation = true;
             }
@@ -167,13 +174,21 @@ public class VisionCone : MonoBehaviour {
     }
 
     AudioSource PlayClipAt(AudioClip a_acClip, Vector2 a_v2Position)
+        //Custon play clip at point method that will play a sound for as long as the file is to allow for alert sounds when the player moves through a vision cone
     {
+        //Create a temperary game object which will hold the sound and play it
         GameObject m_goTempGameObject = new GameObject("TempAudio");
+        //Set the position of the game object
         m_goTempGameObject.transform.position = a_v2Position;
+        //Add an audio source to the temperary game object
         AudioSource m_audioSource = m_goTempGameObject.AddComponent<AudioSource>();
+        //Set the audio clip to be played
         m_audioSource.clip = a_acClip;
+        //Play the stored audio clip
         m_audioSource.Play();
+        //Destroy the temp game object after the tim of the audio clip
         Destroy(m_goTempGameObject, a_acClip.length);
+        //return an audio scource
         return m_audioSource;
     }
     void FindPlayer()
@@ -203,13 +218,10 @@ public class VisionCone : MonoBehaviour {
                {
                    if (m_fUseDeathTimer >= m_fDeathTimer)
                    {
-                       //If the enemy has direct line of sight to the player kill the player
-                       m_tfPlayer.GetComponent<PlayerRespawn>().Respawn();
+                        //If the enemy has direct line of sight to the player kill the player
+                        m_bKilledByVisionCone = true;
                         //Reset the death timer
-                        if (m_fUseDeathTimer <= 0)
-                            m_fUseDeathTimer = 0;
-                        else
-                            m_fUseDeathTimer = 0;
+                        m_fUseDeathTimer = 0;
                    }
                    else
                     {
@@ -226,6 +238,7 @@ public class VisionCone : MonoBehaviour {
                     else
                         m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
                     m_bPlayerIsBeingSeen = false;
+                    m_bKilledByVisionCone = false;
                 }
             }
             else
@@ -236,6 +249,7 @@ public class VisionCone : MonoBehaviour {
                 else
                     m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
                 m_bPlayerIsBeingSeen = false;
+                m_bKilledByVisionCone = false;
             }
         }
         else
@@ -246,6 +260,7 @@ public class VisionCone : MonoBehaviour {
             else
                 m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
             m_bPlayerIsBeingSeen = false;
+            m_bKilledByVisionCone = false;
         }
     }
 
@@ -325,6 +340,7 @@ public class VisionCone : MonoBehaviour {
             return new ViewCastInfo(false, transform.position + m_v3Direction * m_fRadius, m_fRadius, a_fGlobalAngle);
         }
     }
+
     public Vector3 m_v3LookTarget(float a_fAngleInDegrees, bool a_bAngleIsGlobal){
         //Moves the cone around the circle when the object is rotated
         if (!a_bAngleIsGlobal)
@@ -446,5 +462,4 @@ public class VisionCone : MonoBehaviour {
             return new ViewCastInfo(false, transform.position + m_v3Direction * m_fOverlayRadius, m_fOverlayRadius, a_fGlobalAngle);
         }
     }
-
 }
