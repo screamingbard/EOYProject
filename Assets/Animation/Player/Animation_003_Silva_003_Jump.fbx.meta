@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: 96d679c3aa20e0944abab13c975030ea
-timeCreated: 1510456931
-licenseType: Free
+guid: 095a5dd6276dcbb43bafaeb8c3992164
+timeCreated: 1511216840
+licenseType: Pro
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
@@ -142,7 +142,7 @@ ModelImporter:
     4300048: Silva_6tail
     4300050: Silva_7tail
     4300052: Silva_TAILTIP
-    7400000: Jump
+    7400000: Jump0012
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -169,10 +169,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jump
+      name: Jump0012
       takeName: Take 001
-      firstFrame: 1
-      lastFrame: 15
+      firstFrame: 6
+      lastFrame: 14
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
