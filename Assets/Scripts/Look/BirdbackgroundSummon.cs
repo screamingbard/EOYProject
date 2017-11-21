@@ -37,12 +37,12 @@ public class BirdbackgroundSummon : MonoBehaviour {
     //------------------------------------------------------------------------------------------------------
     //This holds the current selected bird.
     //------------------------------------------------------------------------------------------------------
-    private List<birdus> birdsStore = new List<birdus>();
+    private List<GameObject> birdsStore = new List<GameObject>();
 
     //------------------------------------------------------------------------
     //This offset variable makes the next bird spawn just below the last bird.
     //------------------------------------------------------------------------
-    public float Offset;
+    public float Offset = 0;
 
     //----------------------------------------------------------------------------------
     //Privatly stores a variable that should not be modified by the user of the code.
@@ -60,19 +60,6 @@ public class BirdbackgroundSummon : MonoBehaviour {
     //recreation of the bird will not be required.
     //------------------------------------------------------------------------------------------------------
     public GameObject End;
-
-    //------------------------------------------------------------------------------------------------------
-    //This is the minimum speed of the roaming birds.
-    //------------------------------------------------------------------------------------------------------
-    [Range(0, float.MaxValue)]
-    public float minSpeed = 15;
-
-    //------------------------------------------------------------------------------------------------------
-    //This is the maximum speed of the roaming birds.
-    //------------------------------------------------------------------------------------------------------
-    [Range(0, float.MaxValue)]
-    public float maxSpeed = 16;
-
 
     //+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
     //This controls the background variables that could be changed for the most effective view.
@@ -95,15 +82,6 @@ public class BirdbackgroundSummon : MonoBehaviour {
         
         //This Creates a bird at the beginning
         AddBird();
-    }
-    
-    //------------------------------------------------------------------------------------------------------
-    //This is the update function which allows the birds to move using deltaTime.
-    //------------------------------------------------------------------------------------------------------
-    void Update()
-    {
-        //Makes the birds keep flying and resetting when required
-        CycleBird();
     }
 
     //------------------------------------------------------------------------------------------------------
@@ -137,29 +115,6 @@ public class BirdbackgroundSummon : MonoBehaviour {
     }
 
     //------------------------------------------------------------------------------------------------------
-    //This method makes the bird actually move,
-    //This cycles through all of the objects stored in the birdStore list and makes sure that they move
-    //and reset when they get too far.
-    //------------------------------------------------------------------------------------------------------
-    void CycleBird()
-    {
-            //The loop that cycles through all of the variables in birdStore
-            foreach (birdus go in birdsStore)
-            {
-            //makes the bird move based on a speed and deltaTime
-                go.Chicken.transform.position += new Vector3(go.speed * Time.deltaTime, 0, 0);
-
-                //This if statement makes sure that if the bird is moving towards the right it will keep looping in order to move to the right.
-                if (go.Chicken.transform.position.x > End.transform.position.x)
-                    go.Chicken.transform.position = new Vector3(Start.transform.position.x, go.Chicken.transform.position.y, go.Chicken.transform.position.z);
-
-                //This if statement makes sure that if the bird is moving towards the left it will keep looping in order to move to the left.
-                if (go.Chicken.transform.position.x < Start.transform.position.x)
-                    go.Chicken.transform.position = new Vector3(End.transform.position.x, go.Chicken.transform.position.y, go.Chicken.transform.position.z);
-            }
-    }
-
-    //------------------------------------------------------------------------------------------------------
     //This method creates a bird every time it is called also adding it to a list.
     //This is the key function for this script.
     //------------------------------------------------------------------------------------------------------
@@ -169,19 +124,16 @@ public class BirdbackgroundSummon : MonoBehaviour {
         if (birdsStore.Count > 0)
         {
             //creates a temp gameobject to store the bird before putting it into the list
-            birdus temp;
+            GameObject temp;
 
             //offsets the birds location by a number to make sure the birds dont spawn on eachother
             Offset = StoreOffset - (CurrentSelectedSpawnCount * objheight);
 
             //puts the instantiated bird into the variable and changes its variables for usage
-            temp.Chicken = Instantiate(birdPrefab, Start.transform.position - new Vector3(0, Start.transform.position.y - Offset, 0), Quaternion.identity);
-
-            //Adds the temporary object to the birdStore list
-            temp.speed = RandomSpeedGen();
+            temp = Instantiate(birdPrefab, Start.transform.position - new Vector3(0, Start.transform.position.y - Offset, 0), Quaternion.identity);
 
             //makes the birds apear on different layers
-            BackgroundRandomise(temp.Chicken);
+            BackgroundRandomise(temp);
 
             //adds the bird object to a list of bird gameobjects
             birdsStore.Add(temp);
@@ -194,16 +146,13 @@ public class BirdbackgroundSummon : MonoBehaviour {
         if (birdsStore.Count <= 0)
         {
             //Temporary variable that stores which 
-            birdus temp;
+            GameObject temp;
 
             //temp variable that stores the instantiated object
-            temp.Chicken = Instantiate(birdPrefab, Start.transform.position, Quaternion.identity);
-
-            //Sets the speed of the next created birds
-            temp.speed = RandomSpeedGen();
+            temp = Instantiate(birdPrefab, Start.transform.position, Quaternion.identity);
 
             //makes the birds apear on different layers
-            BackgroundRandomise(temp.Chicken);
+            BackgroundRandomise(temp);
 
             //Sets the speed of the first created bird
             birdsStore.Add(temp);
@@ -212,38 +161,4 @@ public class BirdbackgroundSummon : MonoBehaviour {
             CurrentSelectedSpawnCount++;
         }
     }
-
-    //--------------------------------------------------------------------------------------------------------------------
-    //This method controls the speed of the roaming birds by randomly generating a number between the maximum and minimum.
-    //Safety measures are put in.
-    //--------------------------------------------------------------------------------------------------------------------
-    float RandomSpeedGen()
-    {
-        //To make sure that the speed variable will not be overly broken
-        //This changes the minimum speed to be the maximum if the minimum variable is larger than the maximum
-        if (minSpeed > maxSpeed)
-        {
-            //temporarily stores the minimum speed for switching
-            float temp = minSpeed;
-        
-            //Switches the min and max to the desired values
-            minSpeed = maxSpeed;
-            maxSpeed = temp;
-        }
-        
-        //Randomly generates a number based on a range
-        float speed = Random.Range(minSpeed, maxSpeed);
-        
-        //returns the speed
-        return speed;
-    }
-}
-
-//------------------------------------------------------
-//holds the gameobject and speed of the created birds.
-//------------------------------------------------------
-struct birdus
-{
-    public GameObject Chicken;
-    public float speed;
 }
