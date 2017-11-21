@@ -75,7 +75,7 @@ public class BirdbackgroundSummon : MonoBehaviour {
 
 
     //+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
-    //
+    //This controls the background variables that could be changed for the most effective view.
     //+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
     //Far Background layer Variables
     public float Far_Background_Dist = 0;
