@@ -2,6 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//------------------------------------------------------------
+//This script makes a bird dive down and kill the player.
+//
+//this script should be attached to an emty game object that
+//sits just above the camera so that the bird spawns off map
+//and flys off.
+//Requirements:
+// - Empty Gameobject
+//
+//------------------------------------------------------------
+
 public class DiveKillPlayer : MonoBehaviour {
 
     //--------------------------------------
