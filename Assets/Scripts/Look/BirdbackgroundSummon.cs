@@ -55,6 +55,13 @@ public class BirdbackgroundSummon : MonoBehaviour {
     public GameObject Start;
 
     //------------------------------------------------------------------------------------------------------
+    //This end point limits how far the bird is able to fly,
+    //When reached the bird will teleport back to the start point so that 
+    //recreation of the bird will not be required.
+    //------------------------------------------------------------------------------------------------------
+    public GameObject End;
+
+    //------------------------------------------------------------------------------------------------------
     //This is the minimum speed of the roaming birds.
     //------------------------------------------------------------------------------------------------------
     [Range(0, float.MaxValue)]
@@ -66,12 +73,19 @@ public class BirdbackgroundSummon : MonoBehaviour {
     [Range(0, float.MaxValue)]
     public float maxSpeed = 16;
 
-    //------------------------------------------------------------------------------------------------------
-    //This end point limits how far the bird is able to fly,
-    //When reached the bird will teleport back to the start point so that 
-    //recreation of the bird will not be required.
-    //------------------------------------------------------------------------------------------------------
-    public GameObject End;
+
+    //+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+    //
+    //+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+    //Far Background layer Variables
+    public float Far_Background_Dist = 0;
+    public string Far_Background_Layer = "Background_Far";
+    //Mid Background Layer Variables
+    public float Mid_Background_Dist = 0;
+    public string Mid_Background_Layer = "Background_Mid";
+    //Front Background Layer Variables
+    public float Front_Background_Dist = 0;
+    public string Front_Background_Layer = "Background_Front";
 
     void Awake()
     {
@@ -90,6 +104,36 @@ public class BirdbackgroundSummon : MonoBehaviour {
     {
         //Makes the birds keep flying and resetting when required
         CycleBird();
+    }
+
+    //------------------------------------------------------------------------------------------------------
+    //This Puts the created bird on a randomised layer with a randomised set distance.
+    //------------------------------------------------------------------------------------------------------
+    void BackgroundRandomise(GameObject go)
+    {
+        //generates the random number
+        int RandNum = Random.Range(1, 4);
+        //This switch statement makes sure that each layer is distributed
+        switch (RandNum)
+        {
+            case 1:
+                //Far Background Layer Checking
+                go.GetComponent<SpriteRenderer>().sortingLayerName = Far_Background_Layer;
+                go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, Far_Background_Dist);
+                break;
+
+            case 2:
+                //Mid Background Layer Checking
+                go.GetComponent<SpriteRenderer>().sortingLayerName = Mid_Background_Layer;
+                go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, Mid_Background_Dist);
+                break;
+
+            case 3:
+                //Front Background Layer Checking
+                go.GetComponent<SpriteRenderer>().sortingLayerName = Front_Background_Layer;
+                go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, Front_Background_Dist);
+                break;
+        }
     }
 
     //------------------------------------------------------------------------------------------------------
@@ -136,6 +180,9 @@ public class BirdbackgroundSummon : MonoBehaviour {
             //Adds the temporary object to the birdStore list
             temp.speed = RandomSpeedGen();
 
+            //makes the birds apear on different layers
+            BackgroundRandomise(temp.Chicken);
+
             //adds the bird object to a list of bird gameobjects
             birdsStore.Add(temp);
             
@@ -154,6 +201,9 @@ public class BirdbackgroundSummon : MonoBehaviour {
 
             //Sets the speed of the next created birds
             temp.speed = RandomSpeedGen();
+
+            //makes the birds apear on different layers
+            BackgroundRandomise(temp.Chicken);
 
             //Sets the speed of the first created bird
             birdsStore.Add(temp);
