@@ -63,8 +63,6 @@ public class PlayerRespawn : MonoBehaviour {
         }
         //Or if the player enters the collider of an enemy vision cone
         else if (a_col2DCollider.gameObject.tag == m_stVisionConeTag){
-            //Play the killed by corvus animation
-
             //Call the respawn method
             Respawn();
         }

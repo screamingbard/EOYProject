@@ -11,6 +11,7 @@ public class CameraFollow : MonoBehaviour {
     //The size of the bounding box
     public Vector2 m_v2FocusAreaSize;
 
+    //Stores the players input for detection to control the desired direction of the look ahead direction
     Vector2 playerInput;
 
     //The height of the camera relative to the centre of the bounding box
@@ -19,19 +20,19 @@ public class CameraFollow : MonoBehaviour {
     //The distance the camera moves along the players forward from the player
     public float m_fLookAheadDistanceX;
 
-    //
+    //The time it takes to smooth the look ahead of the camera along the x axis
     public float m_fLookSmoothTimeX;
 
-    //
+    //The time it takes to smooth the look ahead of the camera along the y axis
     public float m_fVerticalSmoothTime;
 
-    //
+    //A speed control of the camera movement along the x axis
     public float m_fSmoothMultiplierX;
 
-    //
+    //A speed control of the camera movement along the y axis
     public float m_fSmoothMultiplierY;
 
-    //
+    //The getter and setter of the min camera height
     public float m_fMinCamHeight
     {
         get
@@ -44,7 +45,7 @@ public class CameraFollow : MonoBehaviour {
         }
     }
 
-    //
+    //The getter and setter of the max camera height
     public float m_fMaxCamHeight
     {
         get
@@ -63,25 +64,25 @@ public class CameraFollow : MonoBehaviour {
     //The minimum height the camera will follow the character
     public float m_fMaximumCameraHeight = 30;
 
-    //
+    //The current position of the position along the x axis
     float m_fCurrentLookAheadX;
 
-    //
+    //The desired position of the camera along the x axis
     float m_fTargetLookAheadX;
 
-    //
+    //The distance and direction from the player the middle of the camera along the x axis
     float m_fLookAheadDirectionX;
 
-    //
+    //The speed of the smoothing of the camera along the x axis
     float m_fSmoothLookVelocityX;
 
-    //
+    //The speed of the smoothing of the camera along the y axis
     float m_fSmoothVelocityY;
 
-    //
+    //The bounds around the player which controls the movemnt of the camera
     FocusArea m_faFocusArea;
 
-    //
+    //Is the camera moving towards the look ahead
     bool m_bLookAheadStopped;
     
     void Start()
@@ -91,6 +92,7 @@ public class CameraFollow : MonoBehaviour {
     }
     void Update()
     {
+        //Set input variables for checking other methods
         playerInput.x = XCI.GetAxis(XboxAxis.LeftStickX);
         playerInput.y = XCI.GetAxis(XboxAxis.LeftStickY);
     }
@@ -103,9 +105,12 @@ public class CameraFollow : MonoBehaviour {
         //The position of the bounding box around the player
         Vector2 focusPosition = m_faFocusArea.m_v2Centre + Vector2.up * m_fVerticalOffset;
 
+        //If the focus are is moving along the x axis
         if (m_faFocusArea.m_v2Velocity.x != 0)
         {
+            //Set the distance of the look ahead of the camera which is how far the camera is to the left or right depending on movement
             m_fLookAheadDirectionX = Mathf.Sign(m_faFocusArea.m_v2Velocity.x);
+            //If
             if (Mathf.Sign(playerInput.x) == Mathf.Sign(m_faFocusArea.m_v2Velocity.x) && playerInput.x != 0)
             {
                 m_bLookAheadStopped = false;
@@ -120,11 +125,13 @@ public class CameraFollow : MonoBehaviour {
                 }
             }
         }
-        
+        //Smooth the transition of the look ahead based of the current speed of the camera relative to the focus area and the smooth time
         m_fCurrentLookAheadX = Mathf.SmoothDamp(m_fCurrentLookAheadX, m_fTargetLookAheadX, ref m_fSmoothLookVelocityX, m_fLookSmoothTimeX);
 
+        //Smooth the focus position movement based of the movement of the focus area and the smooth time
         focusPosition.y = Mathf.SmoothDamp(transform.position.y, focusPosition.y, ref m_fSmoothVelocityY, m_fVerticalSmoothTime);
 
+        //Change the focus area based off the current look ahead
         focusPosition += Vector2.right * m_fCurrentLookAheadX;
 
         //The position of the camera
@@ -202,6 +209,7 @@ public class CameraFollow : MonoBehaviour {
                 //Shift the camera along the x
                 m_fShiftX = a_bnTargetsBounds.max.x - m_fRight;
             }
+            //Move the bounds of the focus area along the x axis
             m_fLeft += m_fShiftX * Time.deltaTime * m_fSmoothMultX;
             m_fRight += m_fShiftX * Time.deltaTime * m_fSmoothMultX;
             
@@ -222,6 +230,7 @@ public class CameraFollow : MonoBehaviour {
                 m_fShiftY = a_bnTargetsBounds.max.y - m_fTop;
             }
 
+            //Move the bounds of the focus area along the y axis
             m_fTop += m_fShiftY * Time.deltaTime * m_fSmoothMultY;
             m_fBottom += m_fShiftY * Time.deltaTime * m_fSmoothMultY;
 
