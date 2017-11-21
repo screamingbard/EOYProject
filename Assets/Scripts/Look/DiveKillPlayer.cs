@@ -55,6 +55,7 @@ public class DiveKillPlayer : MonoBehaviour {
 
     //Vision Cone death calculations
     VisionCone vCone;
+    PlayerRespawn pRespawn;
     float Counter = 0;
     float delayBeforeDeath = 1.0f;
 
@@ -66,6 +67,9 @@ public class DiveKillPlayer : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag(playerTag);
         //gets the vision cone script
         vCone = GetComponent<VisionCone>();
+        //Reference to the respawn script
+        pRespawn = GetComponent<PlayerRespawn>();
+
     }
 
     void Update()
@@ -92,7 +96,7 @@ public class DiveKillPlayer : MonoBehaviour {
                 //refreshes timer
                 Counter = 0;
                 //Calls the respawn script
-                vCone.Respawn();
+                pRespawn.Respawn();
             }
         }
     }
