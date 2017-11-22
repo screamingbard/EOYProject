@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour {
+public class SoundController : MonoBehaviour {
 
     //The audio scource for the ambient sounds
     public AudioSource m_asAmbientAudioSource;
