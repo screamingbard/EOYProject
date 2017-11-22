@@ -53,20 +53,33 @@ public class DiveKillPlayer : MonoBehaviour {
     //--------------------------------------
     public string playerTag;
 
+    //-------------------------------------------
+    //vision cones tag to find all vision cones.
+    //-------------------------------------------
+    public string visionConetag;
+
+    //--------------------------------------------------------------------------------------------
+    //Checks if the vision cone is detecting and keeps the vision cone in a loop until it is done.
+    //--------------------------------------------------------------------------------------------
+    bool IsDetected = false;
+
     //Vision Cone death calculations
-    VisionCone vCone;
-    PlayerRespawn pRespawn;
+    VisionCone[] vCone;
+    //PlayerRespawn pRespawn;
     float Counter = 0;
-    float delayBeforeDeath = 1.0f;
+    public float delayBeforeDeath = 1.0f;
 
     void Awake()
     {
         //reference to the bird summoning script
         bSummon = GetComponent<BirdbackgroundSummon>();
+        
         //finds the player based on tag
         player = GameObject.FindGameObjectWithTag(playerTag);
+        
         //gets the vision cone script
-        vCone = GetComponent<VisionCone>();
+        vCone = GameObject.FindGameObjectsWithTag(visionConetag);
+        
         //Reference to the respawn script
         pRespawn = GetComponent<PlayerRespawn>();
 
@@ -74,29 +87,39 @@ public class DiveKillPlayer : MonoBehaviour {
 
     void Update()
     {
-        //Checks if the player was killed by the chickens
-        if (vCone.m_bKilledByVisionCone)
+        //loops through all vision cones and checks if any of the are meant to have killed the player
+        for (int i = 0; i < vCone.Length; i++)
         {
-            //Allows for the bird to swoop down before killing the player
-            if (Counter < delayBeforeDeath)
+            //checks if the player was killed by a particular vision cone
+            if (vCone[i].m_bKilledByVisionCone)
             {
-                //makes the bird dive down
-                Dive();
+                //forces the while loop to activate if it is colliding
+                IsDetected = true;
+                while (IsDetected) {
+                    //Allows for the bird to swoop down before killing the player
+                    if (Counter < delayBeforeDeath)
+                    {
+                        //makes the bird dive down
+                        Dive();
 
-                //Checks if the bird is existant and if it is it shoudl move towards the player
-                if (StoreBird != null)
-                {
-                    StoreBird.transform.position += (Vector3)playerDirection * birdSpeed * Time.deltaTime;
+                        //Checks if the bird is existant and if it is it shoudl move towards the player
+                        if (StoreBird != null)
+                        {
+                            StoreBird.transform.position += (Vector3)playerDirection * birdSpeed * Time.deltaTime;
+                        }
+                        //Increments the timer
+                        Counter += Time.deltaTime;
+                    }
+                    else
+                    {
+                        //refreshes timer
+                        Counter = 0;
+                        //Calls the respawn script
+                        pRespawn.Respawn();
+                        //refreshes the IsDetected variable in order to stop infinate loops
+                        IsDetected = false;
+                    }
                 }
-                //Increments the timer
-                Counter += Time.deltaTime;
-            }
-            else
-            {
-                //refreshes timer
-                Counter = 0;
-                //Calls the respawn script
-                pRespawn.Respawn();
             }
         }
     }
