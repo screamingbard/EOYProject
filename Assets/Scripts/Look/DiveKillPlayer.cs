@@ -19,7 +19,8 @@ public class DiveKillPlayer : MonoBehaviour {
     //finds the direction towards the player
     //from the shoot point. 
     //--------------------------------------
-    Vector2 playerDirection =  new Vector2();
+    [HideInInspector]
+    public Vector2 playerDirection =  new Vector2();
 
     //--------------------------------------
     //reference to the player.
@@ -35,7 +36,6 @@ public class DiveKillPlayer : MonoBehaviour {
     //--------------------------------------
     //Stores this for future use.
     //--------------------------------------
-    [HideInInspector]
     private GameObject StoreBird;
 
     //--------------------------------------
@@ -53,79 +53,16 @@ public class DiveKillPlayer : MonoBehaviour {
     //--------------------------------------
     public string playerTag;
 
-    //-------------------------------------------
-    //vision cones tag to find all vision cones.
-    //-------------------------------------------
-    public string visionConetag;
-
-    //--------------------------------------------------------------------------------------------
-    //Checks if the vision cone is detecting and keeps the vision cone in a loop until it is done.
-    //--------------------------------------------------------------------------------------------
-    bool IsDetected = false;
-
-    //Vision Cone death calculations
-    VisionCone[] vCone;
-    //PlayerRespawn pRespawn;
-    float Counter = 0;
-    public float delayBeforeDeath = 1.0f;
-
     void Awake()
     {
-        //reference to the bird summoning script
-        bSummon = GetComponent<BirdbackgroundSummon>();
-        
         //finds the player based on tag
         player = GameObject.FindGameObjectWithTag(playerTag);
-        
-        //gets the vision cone script
-        vCone = GameObject.FindGameObjectsWithTag(visionConetag);
-        
-        //Reference to the respawn script
-        pRespawn = GetComponent<PlayerRespawn>();
-
     }
 
-    void Update()
-    {
-        //loops through all vision cones and checks if any of the are meant to have killed the player
-        for (int i = 0; i < vCone.Length; i++)
-        {
-            //checks if the player was killed by a particular vision cone
-            if (vCone[i].m_bKilledByVisionCone)
-            {
-                //forces the while loop to activate if it is colliding
-                IsDetected = true;
-                while (IsDetected) {
-                    //Allows for the bird to swoop down before killing the player
-                    if (Counter < delayBeforeDeath)
-                    {
-                        //makes the bird dive down
-                        Dive();
-
-                        //Checks if the bird is existant and if it is it shoudl move towards the player
-                        if (StoreBird != null)
-                        {
-                            StoreBird.transform.position += (Vector3)playerDirection * birdSpeed * Time.deltaTime;
-                        }
-                        //Increments the timer
-                        Counter += Time.deltaTime;
-                    }
-                    else
-                    {
-                        //refreshes timer
-                        Counter = 0;
-                        //Calls the respawn script
-                        pRespawn.Respawn();
-                        //refreshes the IsDetected variable in order to stop infinate loops
-                        IsDetected = false;
-                    }
-                }
-            }
-        }
-    }
-
-    //Bird dives down when this is called
-    public void Dive()
+    //------------------
+    //Creates the bird.
+    //------------------
+    public void CreateBird()
     {
         //This gets the plaeyrs direction and normalises it
         playerDirection = player.transform.position - gameObject.transform.position;

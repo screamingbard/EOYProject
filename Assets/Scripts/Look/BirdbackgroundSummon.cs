@@ -86,8 +86,10 @@ public class BirdbackgroundSummon : MonoBehaviour {
 
     void Update()
     {
+        //loops through all of the birds existant in the scene
         foreach (GameObject go in birdsStore)
         {
+            //resets the birds location if it goes off screen
             resetBirdLocation(go);
         }
     }
