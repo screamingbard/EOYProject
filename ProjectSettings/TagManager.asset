@@ -8,6 +8,8 @@ TagManager:
   - DeathZone
   - VisionCone
   - RespawnPoint
+  - Canvas
+  - SwoopSpawner
   layers:
   - Default
   - TransparentFX
@@ -53,6 +55,9 @@ TagManager:
     locked: 0
   - name: Background_Front
     uniqueID: 299217885
+    locked: 0
+  - name: Background_Logs
+    uniqueID: 4169471981
     locked: 0
   - name: Midground
     uniqueID: 2607070379
