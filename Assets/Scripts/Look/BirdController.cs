@@ -4,51 +4,67 @@ using UnityEngine;
 
 public class BirdController : MonoBehaviour {
 
-    public bool LinearOrSin = true;
+    //-----------------------------------------------------------------------
+    //Checks if the bird will be flying in a linear or sine wave fashion.
+    //-----------------------------------------------------------------------
+    private bool LinearOrSin = true;
 
-    //star end locations
-    public GameObject Start;
-    public GameObject End;
-
-    //Speed
+    //-------------------------------------------------------------------------------------------
+    //Speed:
+    //These variables allow the birds to fly at different speeds based on random variables.
+    //-------------------------------------------------------------------------------------------
     public float minSpeed = 15.0f;
     public float maxSpeed = 16.0f;
 
+    //---------------------------------------
+    //This holds the speed of each bird.
+    //---------------------------------------
     private float fSpeed = 0;
 
-    //graph sin
+    //--------------------------------------------------------------------------------------
+    //These allow for changes in ther envioroment for the sin graph motion of the corvus.
+    //--------------------------------------------------------------------------------------
     public float fGraphAmplitude = 2.0f;
     public float fGraphPeriod = 1.0f;
 
-    BirdbackgroundSummon bbgSummon;
-
     void Awake ()
     {
+        //Randomly sets the speed based on the maximum and minimum stated
         fSpeed = RandomSpeedGen();
-        bbgSummon = GetComponent<BirdbackgroundSummon>();
 	}
 
-    void Update() {
-            if (LinearOrSin)
-            {
-                LinearMovement();
-            }
-            else
-            {
-                SinMovement();
-            }
-        }
 
+    void Update()
+    {
+
+        //This statement makes the birds fly in different ways depending on the randomly decided variable.
+        if (LinearOrSin)    //linear movement for the corvus.
+                LinearMovement();
+            else    //Sinusoidal movement for the corvus.
+                SinMovement();
+    }
+
+    //------------------------------------------------------------
+    //sin movement for the bird to add some sort of ambience to
+    //the scene rather than just having straight line movement.
+    //------------------------------------------------------------
     void SinMovement()
     {
+        //temporarily holds the transform so that the players transform can be modified without too much breaking.
         Vector3 temp = transform.position;
 
+        //does the sin graph calculations for the corvus movements, both the x and the y of the corvus.
         temp.x += fSpeed * Time.deltaTime;
         temp.y = fGraphAmplitude * Mathf.Sin(temp.x * fGraphPeriod);
 
+        //Adds the movement back onto the corvus
         transform.position = temp;
     }
 
+    //------------------------------------------------------------
+    //The linear movement for the corvus,
+    //the corvus moves in a long line.
+    //------------------------------------------------------------
     void LinearMovement()
     {
         //makes the bird move based on a speed and deltaTime
