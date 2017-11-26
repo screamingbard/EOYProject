@@ -21,13 +21,16 @@ public class DiveBirdScript : MonoBehaviour {
     //--------------
     //Diving Speed.
     //--------------
-    float fDiveSpeed = 30.0f;
+    public float fDiveSpeed = 30.0f;
 
     //-----------------------------------------
     //Holds the tags for the divebird to use.
     //-----------------------------------------
     public string managertag = "SwooperSpawner";
 
+    //-----------------------------------
+    //Reference to the dive bird script.
+    //-----------------------------------
     GameObject dkpScript;
 
     void Awake()

@@ -39,11 +39,6 @@ public class DiveKillPlayer : MonoBehaviour {
     private GameObject StoreBird;
 
     //--------------------------------------
-    //Birds speed
-    //--------------------------------------
-    public float birdSpeed = 30.0f;
-
-    //--------------------------------------
     //references the bird creation Script.
     //--------------------------------------
     BirdbackgroundSummon bSummon;
@@ -77,7 +72,7 @@ public class DiveKillPlayer : MonoBehaviour {
         {
             //teleports the existant bird to the dive location and gives it an angle to dive down at
             StoreBird.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
-            //StoreBird.transform.rotation = direction;
+            StoreBird.transform.rotation = direction;
         }
     }
 }
