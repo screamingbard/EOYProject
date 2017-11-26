@@ -43,9 +43,17 @@ public class MainMenuController : MonoBehaviour {
 
     //The settings menu game object
     public GameObject m_goCreditsMenu;
-    
+
+    //The canvas
+    public GameObject m_goCanvas;
+
     void Awake()
     {
+        //Make sure the canvas exists in the scene
+        if (m_goCanvas != null && m_goCanvas.activeInHierarchy == false)
+        {
+            m_goCanvas.SetActive(true);
+        }
         //On awake make sure the game isn't paused
         if (Time.timeScale != 1)
         {
