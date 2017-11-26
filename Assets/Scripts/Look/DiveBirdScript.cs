@@ -34,6 +34,7 @@ public class DiveBirdScript : MonoBehaviour {
     {
         //Gets access to the manager for this object
         dkpScript = GameObject.FindGameObjectWithTag(managertag);
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
     //---------------------------------------------------------------------------------

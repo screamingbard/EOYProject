@@ -76,8 +76,8 @@ public class DiveKillPlayer : MonoBehaviour {
         else
         {
             //teleports the existant bird to the dive location and gives it an angle to dive down at
-            StoreBird.transform.position = gameObject.transform.position;
-            StoreBird.transform.rotation = direction;
+            StoreBird.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
+            //StoreBird.transform.rotation = direction;
         }
     }
 }
