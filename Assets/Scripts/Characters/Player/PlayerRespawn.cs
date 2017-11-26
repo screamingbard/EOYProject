@@ -61,17 +61,18 @@ public class PlayerRespawn : MonoBehaviour {
             //Call the respawn funtion
             Respawn();
         }
-        //Or if the player enters the collider of an enemy vision cone
-        else if (a_col2DCollider.gameObject.tag == m_stVisionConeTag){
-            //Call the respawn method
-            Respawn();
-        }
     }
     void OnTriggerEnter2D(Collider2D a_trTrigger2D){
         //If the player enters the trigger zone of a new respawn point
         if (a_trTrigger2D.gameObject.tag == m_stNewRespawn){
 			//set the new respawn point
 			m_tfRespawnPoint = a_trTrigger2D.gameObject.transform;
+        }
+        //If the player enters the collider of an object DeathTrap
+        else if (a_trTrigger2D.gameObject.tag == m_stDeathTrapTag)
+        {
+            //Call the respawn funtion
+            Respawn();
         }
     }
 }
