@@ -33,7 +33,7 @@ public class VisionCone : MonoBehaviour {
     float m_fOverlayRadius;
 
     //The max radius of the overlay vision cone
-    Vector3[] m_v3MaxOverlayRadii;
+    float m_fMaxOverlayRadius;
 
     //Time the player has before they're killed within a vision cone
     float m_fUseDeathTimer;
@@ -170,7 +170,7 @@ public class VisionCone : MonoBehaviour {
         DrawVisionCone();
 
         //Thing the thing
-        m_fOverlayRadius = m_fRadius * m_fUseDeathTimer / m_fDeathTimer;
+        m_fOverlayRadius = m_fMaxOverlayRadius * m_fUseDeathTimer / m_fDeathTimer;
 
         //Call the draw overlay method
         DrawOverlayVisionCone();
@@ -197,7 +197,6 @@ public class VisionCone : MonoBehaviour {
     void FindPlayer()
     //Method to find the player within the vision of an enemy
     {
-
         //Collider to check if the player is within the radius of an enemies vision
         bool m_bPlayerWithinView = Physics2D.OverlapCircle(transform.position, m_fRadius, m_lmPlayerMask);
 
@@ -320,8 +319,18 @@ public class VisionCone : MonoBehaviour {
         //Recalculate the normals of the view mesh
         m_mViewMesh.RecalculateNormals();
 
+        //Set the max overlay radius to zero so the for loop can find the longest
+        m_fMaxOverlayRadius = 0;
+
         //Set the max overlay radius to conform within the mesh
-        m_v3MaxOverlayRadii = m_v3Vertices;
+        for (int i = 0; i < m_v3Vertices.Length; i++)
+        {
+            if (m_fMaxOverlayRadius < m_v3Vertices[i].sqrMagnitude)
+            {
+                m_fMaxOverlayRadius = m_v3Vertices[i].sqrMagnitude;
+            }
+        }
+        m_fMaxOverlayRadius = Mathf.Sqrt(m_fMaxOverlayRadius);
     }
 
     ViewCastInfo ViewCast(float a_fGlobalAngle)
