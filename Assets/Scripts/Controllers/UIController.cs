@@ -53,11 +53,19 @@ public class UIController : MonoBehaviour {
     //Pause screen background
     public GameObject m_goPauseScreenBackground;
 
+    //The canvas
+    public GameObject m_goCanvas;
+
     //To stop the player jumping when you unpause
     bool m_bInputDelayingness;
     
     void Awake()
     {
+        //Make sure the canvas exists in the scene
+        if (m_goCanvas != null && m_goCanvas.activeInHierarchy == false)
+        {
+            m_goCanvas.SetActive(true);
+        }
         //On awake make sure the game isn't paused
         if (Time.timeScale != 1)
         {
@@ -89,6 +97,7 @@ public class UIController : MonoBehaviour {
     public void ReloadLevel()
     //On call will load a specified scene
     {
+        Awake();
         SceneManager.LoadScene(m_iSceneIndex);
     }
 
