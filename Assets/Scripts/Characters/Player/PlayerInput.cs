@@ -5,6 +5,7 @@ using XboxCtrlrInput;
 [RequireComponent (typeof (Player))]
 public class PlayerInput : MonoBehaviour {
 	public bool twoStickControls;
+    public float stopJumpTime;
 
 	private Player player;
 	private bool hasReset;
@@ -13,14 +14,30 @@ public class PlayerInput : MonoBehaviour {
 	private Vector2 facingDirection;
 	private Vector2 oldFacingDirection;
 
+    private bool recentlyPaused;
+    private float pauseCount;
+
 	void Start () {
 		Cursor.visible = false;
 		player = GetComponent<Player> ();
 	}
 
 	void Update () {
-		if (Time.timeScale == 0)
-			return;
+		if (Time.timeScale == 0) {
+            recentlyPaused = true;
+            return;
+        }
+           
+        else if (recentlyPaused) {
+            pauseCount += Time.deltaTime;
+
+            if (pauseCount >= stopJumpTime) {
+                pauseCount = 0f;
+                recentlyPaused = false;
+            }
+            else
+                return;
+        }
 
 		UpdateAimAngle();
 
