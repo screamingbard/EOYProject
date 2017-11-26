@@ -73,8 +73,8 @@ public class VisionCone : MonoBehaviour {
     //A boolean to store if the alert sound has played to stop it being played more than once per time the player enters a vision cone
     bool m_bAlertHasPlayedSound;
 
-    //A boolean to tell other scripts that the player has died to a vision cone
-    public bool m_bKilledByVisionCone;
+    //A reference to the script required to kill the player
+    DiveKillPlayer dkPlayer;
 
     void Start()
     {
@@ -219,7 +219,7 @@ public class VisionCone : MonoBehaviour {
                    if (m_fUseDeathTimer >= m_fDeathTimer)
                    {
                         //If the enemy has direct line of sight to the player kill the player
-                        m_bKilledByVisionCone = true;
+                        dkPlayer.GetComponent<DiveKillPlayer>().CreateBird();
                         //Reset the death timer
                         m_fUseDeathTimer = 0;
                    }
@@ -238,7 +238,6 @@ public class VisionCone : MonoBehaviour {
                     else
                         m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
                     m_bPlayerIsBeingSeen = false;
-                    m_bKilledByVisionCone = false;
                 }
             }
             else
@@ -249,7 +248,6 @@ public class VisionCone : MonoBehaviour {
                 else
                     m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
                 m_bPlayerIsBeingSeen = false;
-                m_bKilledByVisionCone = false;
             }
         }
         else
@@ -260,7 +258,6 @@ public class VisionCone : MonoBehaviour {
             else
                 m_fUseDeathTimer -= Time.deltaTime * m_fAlertCooldown;
             m_bPlayerIsBeingSeen = false;
-            m_bKilledByVisionCone = false;
         }
     }
 
