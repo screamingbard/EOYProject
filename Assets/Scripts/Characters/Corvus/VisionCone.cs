@@ -32,6 +32,9 @@ public class VisionCone : MonoBehaviour {
     //The radius of the overlay vision cone
     float m_fOverlayRadius;
 
+    //The max radius of the overlay vision cone
+    Vector3[] m_v3MaxOverlayRadii;
+
     //Time the player has before they're killed within a vision cone
     float m_fUseDeathTimer;
 
@@ -74,7 +77,7 @@ public class VisionCone : MonoBehaviour {
     bool m_bAlertHasPlayedSound;
 
     //A reference to the script required to kill the player
-    DiveKillPlayer dkPlayer;
+    public DiveKillPlayer dkPlayer;
 
     void Start()
     {
@@ -219,7 +222,7 @@ public class VisionCone : MonoBehaviour {
                    if (m_fUseDeathTimer >= m_fDeathTimer)
                    {
                         //If the enemy has direct line of sight to the player kill the player
-                        dkPlayer.GetComponent<DiveKillPlayer>().CreateBird();
+                        dkPlayer.CreateBird();
                         //Reset the death timer
                         m_fUseDeathTimer = 0;
                    }
@@ -316,6 +319,9 @@ public class VisionCone : MonoBehaviour {
 
         //Recalculate the normals of the view mesh
         m_mViewMesh.RecalculateNormals();
+
+        //Set the max overlay radius to conform within the mesh
+        m_v3MaxOverlayRadii = m_v3Vertices;
     }
 
     ViewCastInfo ViewCast(float a_fGlobalAngle)
