@@ -48,6 +48,11 @@ public class DiveKillPlayer : MonoBehaviour {
     //--------------------------------------
     public string playerTag;
 
+    //------------------
+    //Angle offset angles the model in order to compensate for the facing angle
+    //------------------
+    public float angleOffset = 90;
+
     void Awake()
     {
         //finds the player based on tag
@@ -64,7 +69,7 @@ public class DiveKillPlayer : MonoBehaviour {
         playerDirection.Normalize();
 
         //gets the direction as a quaternion
-        Quaternion direction = Quaternion.Euler(0, 0, Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg);
+        Quaternion direction = Quaternion.Euler(0, 0, Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg + angleOffset);
         //instantiates a bird if none exist
         if (StoreBird == null)
             StoreBird = Instantiate(birdPrefab, gameObject.transform.position, direction);
