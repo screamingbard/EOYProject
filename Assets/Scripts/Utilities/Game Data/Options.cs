@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// ------------- ///
+// Micheal Corben
+/// ------------- ///
 public class Options : MonoBehaviour {
 
     //Turn music on and off

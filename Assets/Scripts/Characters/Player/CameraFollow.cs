@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using XboxCtrlrInput;
 using UnityEngine;
 
+/// ------------- ///
+// Micheal Corben
+/// ------------- ///
 public class CameraFollow : MonoBehaviour {
 
     //What the camera is following

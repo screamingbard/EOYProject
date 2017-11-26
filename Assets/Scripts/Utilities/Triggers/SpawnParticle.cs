@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// ------------- ///
+// Micheal Corben
+/// ------------- ///
 public class SpawnParticle : MonoBehaviour {
 
     //The player tag

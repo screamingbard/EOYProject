@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// ------------- ///
+// Micheal Corben
+/// ------------- ///
 public class VisionCone : MonoBehaviour {
 
     //Length of the vision of an enemy

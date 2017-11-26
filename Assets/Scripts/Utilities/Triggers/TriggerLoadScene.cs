@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
+/// ------------- ///
+// Micheal Corben
+/// ------------- ///
 public class TriggerLoadScene : MonoBehaviour {
 
     //Tag that designates the player

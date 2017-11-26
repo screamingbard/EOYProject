@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// ------------- ///
+// Micheal Corben
+/// ------------- ///
 public class OptionsMenu : MonoBehaviour {
 
     //Toggle the music

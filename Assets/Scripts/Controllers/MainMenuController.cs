@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using XboxCtrlrInput;
 
+/// ------------- ///
+// Micheal Corben
+/// ------------- ///
 public class MainMenuController : MonoBehaviour {
 
     //The variable controlling which scene is loaded in the scene load method

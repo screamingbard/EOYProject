@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// ------------- ///
+// Micheal Corben
+/// ------------- ///
 public class DisableParticleSystem : MonoBehaviour {
 
     //A public reference particle system variable

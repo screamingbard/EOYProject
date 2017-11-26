@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// ------------- ///
+// Micheal Corben
+/// ------------- ///
 public class SoundController : MonoBehaviour {
 
     //The audio scource for the ambient sounds
