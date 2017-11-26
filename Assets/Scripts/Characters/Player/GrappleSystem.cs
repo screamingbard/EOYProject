@@ -146,6 +146,7 @@ public class GrappleSystem : MonoBehaviour {
 	/// Resets the rope in terms of gameplay, visual, and supporting variable values.
 	/// </summary>
 	private void ResetRope() {
+		bellyHarness.enabled = false;
         grappleJoint.enabled = false;
         grappleAttached = false;
         player.SetGrappling(false);
@@ -169,12 +170,14 @@ public class GrappleSystem : MonoBehaviour {
 			grappleJoint.distance += Time.deltaTime * climbSpeed;
 		}
 
-		//ClampGrappleLength();
+		ClampGrappleLength();
     }
 
 	public void RemoveRopeLength(float amount) {
 		if (pullingFromGround)
 			return;
+
+		pullingFromGround = true;
 
 		StartCoroutine(RemoveGrappleLength(amount));
 	}
@@ -312,7 +315,6 @@ public class GrappleSystem : MonoBehaviour {
     }
 
 	private IEnumerator RemoveGrappleLength(float amount) {
-		pullingFromGround = true;
 		float currentLength = grappleJoint.distance;
 		float desiredLength = currentLength - amount;
 

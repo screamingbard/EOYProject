@@ -39,6 +39,7 @@ public class Player : MonoBehaviour {
 	private GrappleSystem grappleSystem;
 
 	private float currentJumpForce;
+	private bool hasPulled;
 
 	void Awake() {
 		rBody = GetComponent<Rigidbody2D>();
@@ -107,6 +108,9 @@ public class Player : MonoBehaviour {
 
 	public void SetGrappling(bool isGrappling) {
 		IsGrappling = isGrappling;
+
+		if (IsGrappling == false)
+			hasPulled = false;
 	}
 
 	private void CheckGrounded() {
@@ -114,7 +118,8 @@ public class Player : MonoBehaviour {
         Debug.DrawRay(new Vector2(transform.position.x + playerCollider.offset.x, (transform.position.y + playerCollider.offset.y) - halfHeight - 0.04f), Vector2.down * groundedRayLength);
 		IsGrounded = Physics2D.Raycast(new Vector2(transform.position.x + playerCollider.offset.x, (transform.position.y + playerCollider.offset.y) - halfHeight - 0.04f), Vector2.down, groundedRayLength, groundMask);
 
-		if(IsGrappling && IsGrounded) {
+		if(IsGrappling && IsGrounded && hasPulled == false) {
+			hasPulled = true;
 			grappleSystem.RemoveRopeLength(pullFromGround);
 		}
 	}
@@ -140,10 +145,8 @@ public class Player : MonoBehaviour {
 				Vector2 force = perpendicularDirection * swingForce;
 				rBody.AddForce(force, ForceMode2D.Force);
 			} else {
-				if (IsGrounded) {
 					rBody.AddForce(new Vector2((directionalInput.x * moveSpeed - rBody.velocity.x) * moveSpeed, 0));
 					rBody.velocity = new Vector2(rBody.velocity.x, rBody.velocity.y);
-				}
 			}
 		} else if (directionalInput.x == 0f && IsGrappling == false && IsGrounded == true) {
 			rBody.velocity = new Vector2(0f, rBody.velocity.y);
@@ -158,8 +161,7 @@ public class Player : MonoBehaviour {
             }
             else if (IsJumping)
                 rBody.velocity = new Vector2(rBody.velocity.x + directionalInput.x, currentJumpForce);
-            else if (IsGrounded)
-                rBody.AddForce(new Vector2(0f, -fallSpeedForce * 5f));
+            
 		}
 	}
 
