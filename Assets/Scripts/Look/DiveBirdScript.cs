@@ -60,16 +60,16 @@ public class DiveBirdScript : MonoBehaviour {
     //---------------------------------------------------------------------------------
     void FixedUpdate()
     {
-        if(this.gameObject.activeInHierarchy == false && timer >= 2)
-        {
-            StartTiming = false;
-            timer = 0;
-            this.gameObject.SetActive(true);
-        }
-        if (StartTiming)
-        {
-            timer += Time.deltaTime;
-        }
+        //if(this.gameObject.activeInHierarchy == false && timer >= 2)
+        //{
+        //    StartTiming = false;
+        //    timer = 0;
+        //    this.gameObject.SetActive(true);
+        //}
+        //if (StartTiming)
+        //{
+        //    timer += Time.deltaTime;
+        //}
         //Gets the direction it should fly in
         v2PlayerDirection = dkpScript.GetComponent<DiveKillPlayer>().playerDirection;
         //Moves the player towards the desired location, preferably fast
@@ -81,7 +81,7 @@ public class DiveBirdScript : MonoBehaviour {
         if(col2d.gameObject.tag == playerTag)
         {
             this.gameObject.SetActive(false);
-            StartTiming = true;
+            //StartTiming = true;
         }
     }
 
