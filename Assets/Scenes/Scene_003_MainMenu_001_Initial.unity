@@ -14449,7 +14449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1088644574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18016,6 +18016,7 @@ MonoBehaviour:
   m_goMainMenu: {fileID: 1088644573}
   m_goSettingsMenu: {fileID: 202375989}
   m_goCreditsMenu: {fileID: 372283654}
+  m_goCanvas: {fileID: 0}
 --- !u!4 &1390477344
 Transform:
   m_ObjectHideFlags: 0
@@ -18042,7 +18043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tMusicMuteToggle: {fileID: 883016218}
   m_tSFXMuteToggle: {fileID: 1083401912}
-  m_tSplitControlsToggle: {fileID: 0}
+  m_tSplitControlsToggle: {fileID: 883016218}
   m_options: {fileID: 211907888}
 --- !u!114 &1390477346
 MonoBehaviour:

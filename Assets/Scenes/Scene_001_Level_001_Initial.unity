@@ -60274,6 +60274,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114497591211124292, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
+        type: 2}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1197909742}
     - target: {fileID: 114223381089114700, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -60284,20 +60289,11 @@ Prefab:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1197909742}
-    - target: {fileID: 114497591211124292, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
+    - target: {fileID: 114555040132311782, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
         type: 2}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1197909742}
-    - target: {fileID: 1241080582211104, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114497591211124292, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
-        type: 2}
-      propertyPath: m_IsOn
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4, type: 2}
   m_IsPrefabParent: 0
@@ -77689,7 +77685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1394555344
 RectTransform:
   m_ObjectHideFlags: 0
@@ -95458,7 +95454,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
 --- !u!114 &1824780070 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114497591211124292, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
+  m_PrefabParentObject: {fileID: 114555040132311782, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
     type: 2}
   m_PrefabInternal: {fileID: 1167510214}
   m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -106457,7 +106453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2109774255
 MonoBehaviour:
   m_ObjectHideFlags: 0
