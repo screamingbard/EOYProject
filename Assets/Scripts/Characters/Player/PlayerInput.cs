@@ -74,8 +74,19 @@ public class PlayerInput : MonoBehaviour {
 	}
 
 	private void OnInputController() {
-		//Calculate movement direction based on player input
-		player.SetDirectionalInput(new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX), XCI.GetAxisRaw(XboxAxis.LeftStickY)));
+        //Calculate movement direction based on player input
+        Vector2 inputDirection = new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX), XCI.GetAxisRaw(XboxAxis.LeftStickY));
+        if (inputDirection.x > 0)
+            inputDirection.x = 1f;
+        else if (inputDirection.x < 0)
+            inputDirection.x = -1f;
+
+        if (inputDirection.y > 0)
+            inputDirection.y = 1f;
+        else if (inputDirection.y < 0)
+            inputDirection.y = -1f;
+
+        player.SetDirectionalInput(inputDirection);
 
 		//Check for grapple input
 		if(XCI.GetAxisRaw(XboxAxis.RightTrigger) != 0f) {
@@ -109,8 +120,18 @@ public class PlayerInput : MonoBehaviour {
 	}
 
 	private void OnInputKeyboard() {
-		//Calculate movement direction based on player input
-		player.SetDirectionalInput(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+        Vector2 inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (inputDirection.x > 0)
+            inputDirection.x = 1f;
+        else if (inputDirection.x < 0)
+            inputDirection.x = -1f;
+
+        if (inputDirection.y > 0)
+            inputDirection.y = 1f;
+        else if (inputDirection.y < 0)
+            inputDirection.y = -1f;
+        //Calculate movement direction based on player input
+        player.SetDirectionalInput(inputDirection);
 
 		//Check for grapple input
 		if (Input.GetMouseButton(0)) {
