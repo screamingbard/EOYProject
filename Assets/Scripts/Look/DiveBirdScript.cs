@@ -32,6 +32,17 @@ public class DiveBirdScript : MonoBehaviour {
     //-----------------------------------------
     public string managertag = "SwooperSpawner";
 
+    //-------------------------------------------------------------------------
+    //The players tag so that the bird can stiop drawing after a cetain point.
+    //-------------------------------------------------------------------------
+    public string playerTag = "Player";
+
+    //The timer variable that is stored
+    float timer = 0;
+
+    //This checks to see if the timer should be enabled/disabled
+    bool StartTiming = false;
+
     //-----------------------------------
     //Reference to the dive bird script.
     //-----------------------------------
@@ -49,10 +60,29 @@ public class DiveBirdScript : MonoBehaviour {
     //---------------------------------------------------------------------------------
     void FixedUpdate()
     {
+        if(this.gameObject.activeInHierarchy == false && timer >= 2)
+        {
+            StartTiming = false;
+            timer = 0;
+            this.gameObject.SetActive(true);
+        }
+        if (StartTiming)
+        {
+            timer += Time.deltaTime;
+        }
         //Gets the direction it should fly in
         v2PlayerDirection = dkpScript.GetComponent<DiveKillPlayer>().playerDirection;
         //Moves the player towards the desired location, preferably fast
         transform.position += (Vector3)v2PlayerDirection * fDiveSpeed * Time.deltaTime;
+    }
+
+    void OnTriggerEnter2D(Collider2D col2d)
+    {
+        if(col2d.gameObject.tag == playerTag)
+        {
+            this.gameObject.SetActive(false);
+            StartTiming = true;
+        }
     }
 
 }
