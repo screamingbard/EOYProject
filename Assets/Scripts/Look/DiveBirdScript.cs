@@ -37,12 +37,6 @@ public class DiveBirdScript : MonoBehaviour {
     //-------------------------------------------------------------------------
     public string playerTag = "Player";
 
-    //The timer variable that is stored
-    float timer = 0;
-
-    //This checks to see if the timer should be enabled/disabled
-    bool StartTiming = false;
-
     //-----------------------------------
     //Reference to the dive bird script.
     //-----------------------------------
@@ -60,28 +54,21 @@ public class DiveBirdScript : MonoBehaviour {
     //---------------------------------------------------------------------------------
     void FixedUpdate()
     {
-        //if(this.gameObject.activeInHierarchy == false && timer >= 2)
-        //{
-        //    StartTiming = false;
-        //    timer = 0;
-        //    this.gameObject.SetActive(true);
-        //}
-        //if (StartTiming)
-        //{
-        //    timer += Time.deltaTime;
-        //}
         //Gets the direction it should fly in
         v2PlayerDirection = dkpScript.GetComponent<DiveKillPlayer>().playerDirection;
         //Moves the player towards the desired location, preferably fast
         transform.position += (Vector3)v2PlayerDirection * fDiveSpeed * Time.deltaTime;
     }
 
+    //--------------------------------------------------------------------
+    //makes sure that the bird disappears as it collides with the player.
+    //--------------------------------------------------------------------
     void OnTriggerEnter2D(Collider2D col2d)
     {
         if(col2d.gameObject.tag == playerTag)
         {
+            //deactivates the bird as soon as it colldies with the payer
             this.gameObject.SetActive(false);
-            //StartTiming = true;
         }
     }
 

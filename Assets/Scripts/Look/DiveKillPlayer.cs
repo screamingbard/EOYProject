@@ -79,8 +79,9 @@ public class DiveKillPlayer : MonoBehaviour {
             StoreBird = Instantiate(birdPrefab, gameObject.transform.position, direction);
         else
         {
-            //teleports the existant bird to the dive location and gives it an angle to dive down at
+            //reactivates the bird to make sure it is not permenantly invisbible
             StoreBird.SetActive(true);
+            //teleports the existant bird to the dive location and gives it an angle to dive down at.
             StoreBird.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
             StoreBird.transform.rotation = direction;
         }
