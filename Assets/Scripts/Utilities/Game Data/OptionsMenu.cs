@@ -26,37 +26,46 @@ public class OptionsMenu : MonoBehaviour {
         m_options.LoadSettings();
 
         //If the music option is set to one
-        if (m_options.m_iMusicOn == 1)
+        if (m_tMusicMuteToggle != null)
         {
-            //Set the music to on
-            m_tMusicMuteToggle.isOn = true;
-        }
-        else
-        {
-            //Otherwise set the music to off
-            m_tMusicMuteToggle.isOn = false;
+            if (m_options.m_iMusicOn == 1)
+            {
+                //Set the music to on
+                m_tMusicMuteToggle.isOn = true;
+            }
+            else
+            {
+                //Otherwise set the music to off
+                m_tMusicMuteToggle.isOn = false;
+            }
         }
         //If the SFX option is set to one
-        if (m_options.m_iSFXOn == 1)
+        if (m_tSFXMuteToggle != null)
         {
-            //Set the SFX to on
-            m_tSFXMuteToggle.isOn = true;
-        }
-        else
-        {
-            //Otherwise set the SFX to off
-            m_tSFXMuteToggle.isOn = false;
+            if (m_options.m_iSFXOn == 1)
+            {
+                //Set the SFX to on
+                m_tSFXMuteToggle.isOn = true;
+            }
+            else
+            {
+                //Otherwise set the SFX to off
+                m_tSFXMuteToggle.isOn = false;
+            }
         }
         //If the split controls option is set to one
-        if (m_options.m_iSplitControls == 1)
+        if (m_tSplitControlsToggle != null)
         {
-            //Set the split controls to on
-            m_tSplitControlsToggle.isOn = true;
-        }
-        else
-        {
-            //Otherwise set the split controls to off
-            m_tSplitControlsToggle.isOn = false;
+            if (m_options.m_iSplitControls == 1)
+            {
+                //Set the split controls to on
+                m_tSplitControlsToggle.isOn = true;
+            }
+            else
+            {
+                //Otherwise set the split controls to off
+                m_tSplitControlsToggle.isOn = false;
+            }
         }
     }
 
