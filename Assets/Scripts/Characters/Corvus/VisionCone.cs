@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// ------------- ///
-// Micheal Corben
+//  Micheal Corben //
 /// ------------- ///
 public class VisionCone : MonoBehaviour {
 
