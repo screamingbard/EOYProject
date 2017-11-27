@@ -32,6 +32,9 @@ public class VisionCone : MonoBehaviour {
     //Time modifyer for cooldown on enemy alert
     public float m_fAlertCooldown = 2;
 
+    //Time modifyer for cooldown on enemy alert
+    public float m_fPlayerDistanceCheck;
+
     //The radius of the overlay vision cone
     float m_fOverlayRadius;
 
@@ -166,6 +169,9 @@ public class VisionCone : MonoBehaviour {
 
     void LateUpdate()
     {
+        //Check if the player is within a certain radius of the vision cone before drawing and calculating
+        if (Vector2.Distance(m_tfPlayer.position, transform.position) > m_fPlayerDistanceCheck)
+            return;
         //Call the find player method
         FindPlayer();  
        
