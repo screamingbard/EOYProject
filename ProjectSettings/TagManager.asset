@@ -24,13 +24,13 @@ TagManager:
   - NoCollide
   - Grapple
   - Invisible
-  - Paralax
+  - ParallaxForeground
   - Rope
   - Pivot
-  - 
-  - 
-  - 
-  - 
+  - ParallaxBackgroundLog
+  - ParallaxBackgroundFront
+  - ParallaxBackgroundMid
+  - ParallaxBackgroundFar
   - 
   - 
   - 
