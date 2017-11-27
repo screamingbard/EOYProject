@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//+=+=+=+=+=+=+=+=+=+=+
+//Edward Ladyzhenskii
+//+=+=+=+=+=+=+=+=+=+=+
+
+//+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+//This script controls the bird object that flys 
+//throughout the background.
+//+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
 public class BirdController : MonoBehaviour {
 
     //-----------------------------------------------------------------------

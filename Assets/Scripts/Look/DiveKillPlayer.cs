@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//------------------------------------------------------------
+//+=+=+=+=+=+=+=+=+=+=+
+//Edward Ladyzhenskii
+//+=+=+=+=+=+=+=+=+=+=+
+
+//+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 //This script makes a bird dive down and kill the player.
 //
 //this script should be attached to an emty game object that
@@ -11,7 +15,7 @@ using UnityEngine;
 //Requirements:
 // - Empty Gameobject
 //
-//------------------------------------------------------------
+//+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 
 public class DiveKillPlayer : MonoBehaviour {
 

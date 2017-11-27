@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//----------------------------------------------------------------------------------
+//+=+=+=+=+=+=+=+=+=+=+
+//Edward Ladyzhenskii
+//+=+=+=+=+=+=+=+=+=+=+
+
+//+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 //This class makes the respawn points detect and spawn only one bird as the player 
 //gets to each point.
 //
 //This script should be put onto the "respawn points" prefab 
 //with a 2D box collider that has OnTrigger active.
-//----------------------------------------------------------------------------------
+//+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 public class RespawnDetect : MonoBehaviour {
 
     //Accesses this script in order to add more birds as the player colides

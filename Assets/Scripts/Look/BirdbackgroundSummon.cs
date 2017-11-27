@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//----------------------------------------------------------------------------------
+//+=+=+=+=+=+=+=+=+=+=+
+//Edward Ladyzhenskii
+//+=+=+=+=+=+=+=+=+=+=+
+
+//+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 //This code makes the backgroudn birds spawn and fly across the screen.
 //The more points that have been reached the more birds will be flying across the 
 //sky. 
 //
 //This script should be placed on the parent object that is the 
 //parent of all of the "respawn points". 
-//----------------------------------------------------------------------------------
+//+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 public class BirdbackgroundSummon : MonoBehaviour {
 
     //----------------------------------------------------------------------------------

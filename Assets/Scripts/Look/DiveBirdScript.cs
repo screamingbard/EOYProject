@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//+=+=+=+=+=+=+=+=+=+=+
+//Edward Ladyzhenskii
+//+=+=+=+=+=+=+=+=+=+=+
+
 //=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-//This scruip belongs on the bird that 
+//This script belongs on the bird that 
 //will dive down and kill the player.
 //
 //On the GameObject:
