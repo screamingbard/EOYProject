@@ -33108,48 +33108,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!1001 &682907008
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4754538424584510, guid: 7d182a5428d95da429fe271a83c1a628, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754538424584510, guid: 7d182a5428d95da429fe271a83c1a628, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754538424584510, guid: 7d182a5428d95da429fe271a83c1a628, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754538424584510, guid: 7d182a5428d95da429fe271a83c1a628, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754538424584510, guid: 7d182a5428d95da429fe271a83c1a628, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754538424584510, guid: 7d182a5428d95da429fe271a83c1a628, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754538424584510, guid: 7d182a5428d95da429fe271a83c1a628, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754538424584510, guid: 7d182a5428d95da429fe271a83c1a628, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 7d182a5428d95da429fe271a83c1a628, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &684422234
 GameObject:
   m_ObjectHideFlags: 0
@@ -41479,42 +41437,42 @@ Prefab:
     - target: {fileID: 224750671738863466, guid: 8da005999f439fa43b9d3581b50a631e,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000061035
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224750671738863466, guid: 8da005999f439fa43b9d3581b50a631e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0058136
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224750671738863466, guid: 8da005999f439fa43b9d3581b50a631e,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224750671738863466, guid: 8da005999f439fa43b9d3581b50a631e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 1081.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224750671738863466, guid: 8da005999f439fa43b9d3581b50a631e,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224750671738863466, guid: 8da005999f439fa43b9d3581b50a631e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224750671738863466, guid: 8da005999f439fa43b9d3581b50a631e,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224750671738863466, guid: 8da005999f439fa43b9d3581b50a631e,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224750671738863466, guid: 8da005999f439fa43b9d3581b50a631e,
         type: 2}
@@ -44666,7 +44624,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
