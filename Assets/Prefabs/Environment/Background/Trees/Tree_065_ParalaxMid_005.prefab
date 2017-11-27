@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4359329240434370}
   - component: {fileID: 212710234177399926}
-  m_Layer: 13
+  m_Layer: 18
   m_Name: Tree_065_ParalaxMid_005
   m_TagString: Untagged
   m_Icon: {fileID: 0}

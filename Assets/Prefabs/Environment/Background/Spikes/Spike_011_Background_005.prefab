@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4103103055611150}
   - component: {fileID: 212039809232837522}
-  m_Layer: 13
+  m_Layer: 17
   m_Name: Spike_011_Background_005
   m_TagString: Untagged
   m_Icon: {fileID: 0}

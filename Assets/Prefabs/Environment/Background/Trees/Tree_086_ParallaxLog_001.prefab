@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4717657305946116}
   - component: {fileID: 212624359359355170}
-  m_Layer: 13
+  m_Layer: 16
   m_Name: Tree_086_ParallaxLog_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -909158117
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c6212fc49f70416479bf5ba4f95f25e5, type: 3}
   m_Color: {r: 0.64705884, g: 0.64705884, b: 0.64705884, a: 1}

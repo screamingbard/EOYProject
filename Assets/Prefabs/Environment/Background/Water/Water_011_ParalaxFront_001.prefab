@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4505998403213542}
   - component: {fileID: 212689773368122014}
-  m_Layer: 13
+  m_Layer: 18
   m_Name: Water_011_ParalaxFront_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

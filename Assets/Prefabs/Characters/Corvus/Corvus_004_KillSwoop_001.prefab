@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61041507310536256}
   m_Layer: 13
   m_Name: Corvus_004_KillSwoop_001
-  m_TagString: Untagged
+  m_TagString: DeathZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -51,7 +51,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a82001cce0778244482daa9d56ab64f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fDiveSpeed: 125
   managertag: SwoopSpawner
 --- !u!212 &212463231020352572
 SpriteRenderer:
