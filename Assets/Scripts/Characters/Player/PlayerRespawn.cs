@@ -38,7 +38,7 @@ public class PlayerRespawn : MonoBehaviour {
 
     void Update()
     {
-        if (m_goDeathParticles.activeInHierarchy)
+        if (spawnedParticle.activeInHierarchy)
         {
             if (!spawnedParticle.GetComponent<ParticleSystem>().isPlaying)
             {
