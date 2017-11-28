@@ -69,6 +69,9 @@ public class VisionCone : MonoBehaviour {
 
     //The sound that will play when the player is seen
     public AudioClip m_acAlertSound;
+
+    //The sounds that'll play when the bird is spawned in to kill the player
+    public List<AudioClip> m_acBirdSpawnSounds;
     
     //Sound pleyererer
     AudioSource m_asAudioSource;
@@ -231,6 +234,18 @@ public class VisionCone : MonoBehaviour {
                    {
                         //If the enemy has direct line of sight to the player kill the player
                         dkPlayer.CreateBird();
+                        //Play through the sounds to be played when a bird is spawned in
+                        for (int i = 0; i < m_acBirdSpawnSounds.Count; i++)
+                        {
+                            if (PlayerPrefs.GetInt("SFX") == 1)
+                            {
+                                PlayClipAt(m_acBirdSpawnSounds[i], Camera.main.transform.position);
+                            }
+                            else
+                            {
+                                PlayClipAt(m_acBirdSpawnSounds[i], Camera.main.transform.position).volume = 0;
+                            }
+                        }
                         //Reset the death timer
                         m_fUseDeathTimer = 0;
                    }
