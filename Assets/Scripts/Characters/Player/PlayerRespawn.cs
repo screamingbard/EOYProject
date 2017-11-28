@@ -26,14 +26,32 @@ public class PlayerRespawn : MonoBehaviour {
     public ParticleSystem m_psDeathParticles;
     //Reference to the camera
     public GameObject m_goStoreCam;
+    //Reference to the gameobject controlling the death particles
+    public GameObject m_goDeathParticles;
+
+    void Start()
+    {
+        m_goDeathParticles.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (m_goDeathParticles.activeInHierarchy)
+        {
+            if (!m_psDeathParticles.isPlaying)
+            {
+                m_goDeathParticles.SetActive(false);
+            }
+        }
+    }
 
     public void Respawn(){
-        //Play death animation
-
         //Play the death particles
         if (m_psDeathParticles != null)
-            m_psDeathParticles.Play();
-
+        {
+            m_goDeathParticles.SetActive(true);
+            m_goDeathParticles.transform.position = gameObject.transform.position;
+        }
         //Set the players velocity to zero
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
@@ -57,7 +75,7 @@ public class PlayerRespawn : MonoBehaviour {
         //Camera.main.GetComponent<CameraFollow>().ResetCamera();
         m_goStoreCam.GetComponent<CameraFollow>().ResetCamera();
     }
-    
+
     void OnCollisionEnter2D(Collision2D a_col2DCollider){
         //If the player enters the collider of an object DeathTrap
         if (a_col2DCollider.gameObject.tag == m_stDeathTrapTag){
