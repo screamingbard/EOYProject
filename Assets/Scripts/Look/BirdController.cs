@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //+=+=+=+=+=+=+=+=+=+=+
-//Edward Ladyzhenskii
+//Author: Edward Ladyzhenskii
 //+=+=+=+=+=+=+=+=+=+=+
 
 //+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
