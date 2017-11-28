@@ -9,37 +9,30 @@ public class SpawnParticle : MonoBehaviour {
 
     //The player tag
     public string m_sPlayerTag;
-
-    //The particles
-    public ParticleSystem m_psParticleSystem;
-
-    //Will the particles play more than once
-    public bool m_bPlayMoreThanOnce;
     
-    //The time between spawns of the particles
-    public float m_fTimeBetweenSpawns;
+    //Play one shot?
+    public bool m_bPlayEachHit = false;
 
-    //The counter for the time between spawns
-    float m_fTimerBetweenSpawns;
+    //Reference to the gameobject controlling the particles
+    public GameObject m_goParticles;
 
-    //Controls whether or not the particles will play
-    bool m_bPlayMoreThanOncePrivate = true;
-
-    void start()
+    private GameObject spawnedParticle;
+    void Awake()
     {
-        //Set the timer to the time
-        m_fTimerBetweenSpawns = m_fTimeBetweenSpawns;
+        spawnedParticle = Instantiate(m_goParticles, transform);
+        spawnedParticle.SetActive(false);
     }
 
     void Update()
     {
-        //If the particles haven't played or they will play more than once
-        if (m_bPlayMoreThanOncePrivate)
+        if (m_bPlayEachHit)
         {
-            //If the timer is less than the time count up
-            if (m_fTimerBetweenSpawns < m_fTimeBetweenSpawns)
+            if (spawnedParticle.activeInHierarchy)
             {
-                m_fTimerBetweenSpawns += Time.deltaTime;
+                if (!spawnedParticle.GetComponent<ParticleSystem>().isPlaying)
+                {
+                    spawnedParticle.SetActive(false);
+                }
             }
         }
     }
@@ -49,17 +42,10 @@ public class SpawnParticle : MonoBehaviour {
         //If the player enters the trigger
         if (a_colCollider.gameObject.tag == m_sPlayerTag)
         {
-            //If true will play the animation
-            if (m_bPlayMoreThanOncePrivate)
+            if (spawnedParticle != null)
             {
-                //If the Timer has counted up to the time
-                if (m_fTimerBetweenSpawns >= m_fTimeBetweenSpawns)
-                {
-                    //Play them particles
-                    m_fTimerBetweenSpawns = 0;
-                    m_psParticleSystem.Play();
-                    m_bPlayMoreThanOncePrivate = m_bPlayMoreThanOnce;
-                }
+                spawnedParticle.SetActive(true);
+                spawnedParticle.transform.position = transform.position;
             }
         }
     }
