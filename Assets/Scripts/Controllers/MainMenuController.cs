@@ -72,6 +72,14 @@ public class MainMenuController : MonoBehaviour {
             m_goSettingsMenu.SetActive(false);
         }
     }
+
+    void Start()
+    {
+        if (XCI.GetNumPluggedCtrlrs() != 0)
+        {
+            Cursor.visible = false;
+        }
+    }
     public void Quit()
     //On call will close the game
     {

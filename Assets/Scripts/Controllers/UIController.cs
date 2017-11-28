@@ -187,6 +187,10 @@ public class UIController : MonoBehaviour {
     
     public void Pause()
     {
+        if (XCI.GetNumPluggedCtrlrs() != 0)
+        {
+            Cursor.visible = false;
+        }
         //Set the selected button to the play button
         m_esEventSysRef.SetSelectedGameObject(m_btnPlayButton.gameObject);
         m_btnPlayButton.OnSelect(null);
