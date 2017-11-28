@@ -29,18 +29,20 @@ public class PlayerRespawn : MonoBehaviour {
     //Reference to the gameobject controlling the death particles
     public GameObject m_goDeathParticles;
 
+    private GameObject spawnedParticle;
     void Start()
     {
-        m_goDeathParticles.SetActive(false);
+        spawnedParticle = Instantiate(m_goDeathParticles, transform);
+        spawnedParticle.SetActive(false);
     }
 
     void Update()
     {
         if (m_goDeathParticles.activeInHierarchy)
         {
-            if (!m_psDeathParticles.isPlaying)
+            if (!spawnedParticle.GetComponent<ParticleSystem>().isPlaying)
             {
-                m_goDeathParticles.SetActive(false);
+                spawnedParticle.SetActive(false);
             }
         }
     }
@@ -49,8 +51,8 @@ public class PlayerRespawn : MonoBehaviour {
         //Play the death particles
         if (m_psDeathParticles != null)
         {
-            m_goDeathParticles.SetActive(true);
-            m_goDeathParticles.transform.position = gameObject.transform.position;
+            spawnedParticle.SetActive(true);
+            spawnedParticle.transform.position = transform.position;
         }
         //Set the players velocity to zero
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
