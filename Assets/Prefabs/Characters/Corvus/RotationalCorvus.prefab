@@ -130,7 +130,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1754112335129110
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -171,7 +171,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4251188730297280}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4251188730297280
 Transform:
@@ -180,12 +180,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1449296355093346}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 316.45233, y: 6.7, z: 0}
+  m_LocalPosition: {x: 91.74236, y: 9.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4731684724569446}
   - {fileID: 4300977766145876}
   - {fileID: 4379377447009236}
+  - {fileID: 4977832551176076}
   - {fileID: 4910583280214244}
   - {fileID: 4068251661054382}
   - {fileID: 4757996838799360}
@@ -199,7 +200,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1354027996542066}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.35, y: -14.79, z: 0}
+  m_LocalPosition: {x: -12, y: -31.1, z: 0}
   m_LocalScale: {x: 0.5000002, y: 0.5000002, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4251188730297280}
@@ -225,7 +226,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1672714506792754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.14, y: -4.43, z: 0}
+  m_LocalPosition: {x: -47, y: -25.1, z: 0}
   m_LocalScale: {x: 0.5000002, y: 0.5000002, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4251188730297280}
@@ -255,7 +256,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4251188730297280}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4910583280214244
 Transform:
@@ -264,13 +265,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1532320603816588}
   m_LocalRotation: {x: -0, y: -0, z: 0.7221653, w: 0.6917206}
-  m_LocalPosition: {x: -0.65, y: 3.12, z: 0}
+  m_LocalPosition: {x: -0.753, y: 3.023, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4370484114405422}
-  - {fileID: 4977832551176076}
   m_Father: {fileID: 4251188730297280}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 92.467}
 --- !u!4 &4977832551176076
 Transform:
@@ -278,13 +278,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1754112335129110}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.54, y: -0.028, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6817665, y: 2.5373898, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
-  m_Father: {fileID: 4910583280214244}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_Father: {fileID: 4251188730297280}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23022594081512042
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a506a710ec695394ab0556fa649c1ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fRadius: 25.1
+  m_fRadius: 50
   m_fAngle: 25
   m_lmPlayerMask:
     serializedVersion: 2
@@ -508,15 +508,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   m_fMeshResolution: 5
-  m_fDeathTimer: 0.25
+  m_fDeathTimer: 0.8
   m_fAlertCooldown: 2
+  m_fPlayerDistanceCheck: 90
   m_mfViewMeshFilter: {fileID: 33643519364327250}
   m_mViewMesh: {fileID: 0}
   m_mfOverlayViewMeshFilter: {fileID: 33753864672778370}
   m_mOverlayViewMesh: {fileID: 0}
   m_goAlertSignal: {fileID: 1011929712896774}
   m_aAlertAnimation: {fileID: 0}
-  m_acAlertSound: {fileID: 8300000, guid: 56f9acc5605d2024ca460874c6709a1d, type: 3}
+  m_acAlertSound: {fileID: 8300000, guid: fe70ada941ac6e0438417db3c62dc2c0, type: 3}
+  m_acBirdSpawnSounds: []
   dkPlayer: {fileID: 0}
 --- !u!212 &212451893708464276
 SpriteRenderer:

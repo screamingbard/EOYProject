@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a82001cce0778244482daa9d56ab64f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fDiveSpeed: 125
+  fDiveSpeed: 225
   managertag: SwoopSpawner
 --- !u!212 &212463231020352572
 SpriteRenderer:
