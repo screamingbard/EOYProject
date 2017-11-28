@@ -23,8 +23,7 @@ public class DiveKillPlayer : MonoBehaviour {
     //finds the direction towards the player
     //from the shoot point. 
     //--------------------------------------
-    [HideInInspector]
-    public Vector2 playerDirection =  new Vector2();
+    private Vector2 playerDirection =  new Vector2();
 
     //--------------------------------------
     //reference to the player.
@@ -57,10 +56,25 @@ public class DiveKillPlayer : MonoBehaviour {
     //------------------
     public float angleOffset = 90;
 
+    //
+    //
+    //
+    [HideInInspector]
+    public Vector2 v2StorePlayerDirection;
+
     void Awake()
     {
         //finds the player based on tag
         player = GameObject.FindGameObjectWithTag(playerTag);
+    }
+
+    void FixedUpdate()
+    {
+        //This gets the plaeyrs direction and normalises it
+        playerDirection = player.transform.position - gameObject.transform.position;
+        playerDirection.Normalize();
+
+        v2StorePlayerDirection = playerDirection;
     }
 
     //------------------
@@ -68,9 +82,7 @@ public class DiveKillPlayer : MonoBehaviour {
     //------------------
     public void CreateBird()
     {
-        //This gets the plaeyrs direction and normalises it
-        playerDirection = player.transform.position - gameObject.transform.position;
-        playerDirection.Normalize();
+
 
         //gets the direction as a quaternion
         Quaternion direction = Quaternion.Euler(0, 0, Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg + angleOffset);

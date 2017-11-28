@@ -20,7 +20,7 @@ public class DiveBirdScript : MonoBehaviour {
     //-----------------------------
     //The Players Direction.
     //-----------------------------
-    Vector2 v2PlayerDirection = new Vector2();
+    Vector3 v3PlayerDirection = new Vector3();
 
     //--------------
     //Diving Speed.
@@ -55,9 +55,9 @@ public class DiveBirdScript : MonoBehaviour {
     void FixedUpdate()
     {
         //Gets the direction it should fly in
-        v2PlayerDirection = dkpScript.GetComponent<DiveKillPlayer>().playerDirection;
+        v3PlayerDirection = dkpScript.GetComponent<DiveKillPlayer>().v2StorePlayerDirection;
         //Moves the player towards the desired location, preferably fast
-        transform.position += (Vector3)v2PlayerDirection * fDiveSpeed * Time.deltaTime;
+        transform.position += v3PlayerDirection * fDiveSpeed * Time.deltaTime;
     }
 
     //--------------------------------------------------------------------
