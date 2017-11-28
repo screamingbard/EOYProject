@@ -28,14 +28,17 @@ public class SoundController : MonoBehaviour {
     //Check for if ambient sounds are playing
     public bool m_bAmbientSoundsOn;
 
+    //
+    private float levels;
     
 	void Start () {
+        levels = m_asMusicAudioSource.volume;
         //Make sure that the options aren't destroyed on a scene change
         DontDestroyOnLoad(m_options);
         if (m_options.m_iMusicOn == 1)
         {
             //Play menu music
-            m_asAmbientAudioSource.PlayOneShot(m_acMenuMusic, 1.0f);
+            m_asAmbientAudioSource.PlayOneShot(m_acMenuMusic, levels);
         }
         else
         {
@@ -59,7 +62,7 @@ public class SoundController : MonoBehaviour {
             if (m_options.m_iMusicOn == 1)
             {
                 //If the music is set to on in the menu make sure the volume is 1
-                m_asAmbientAudioSource.volume = 1.0f;
+                m_asAmbientAudioSource.volume = levels;
             }
             else
             {
@@ -78,7 +81,7 @@ public class SoundController : MonoBehaviour {
         if (m_options.m_iMusicOn == 1)
         {
             //If the music is set to on in the menu make sure the volume is 1
-            m_asMusicAudioSource.volume = 1.0f;
+            m_asMusicAudioSource.volume = levels;
         }
         else
         {
