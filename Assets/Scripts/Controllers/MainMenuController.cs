@@ -50,6 +50,7 @@ public class MainMenuController : MonoBehaviour {
     //The canvas
     public GameObject m_goCanvas;
 
+    public GraphicRaycaster m_GraphicRaycaster;
     void Awake()
     {
         //Make sure the canvas exists in the scene
@@ -78,6 +79,7 @@ public class MainMenuController : MonoBehaviour {
         if (XCI.GetNumPluggedCtrlrs() != 0)
         {
             Cursor.visible = false;
+            m_GraphicRaycaster.enabled = false;
         }
     }
     public void Quit()

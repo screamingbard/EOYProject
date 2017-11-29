@@ -61,7 +61,9 @@ public class UIController : MonoBehaviour {
 
     //To stop the player jumping when you unpause
     bool m_bInputDelayingness;
-    
+
+    public GraphicRaycaster m_GraphicRaycaster;
+
     void Awake()
     {
         //Make sure the canvas exists in the scene
@@ -189,7 +191,13 @@ public class UIController : MonoBehaviour {
     {
         if (XCI.GetNumPluggedCtrlrs() != 0)
         {
+            m_GraphicRaycaster.enabled = false;
             Cursor.visible = false;
+        }
+        else
+        {
+            m_GraphicRaycaster.enabled = true;
+            Cursor.visible = true;
         }
         //Set the selected button to the play button
         m_esEventSysRef.SetSelectedGameObject(m_btnPlayButton.gameObject);
