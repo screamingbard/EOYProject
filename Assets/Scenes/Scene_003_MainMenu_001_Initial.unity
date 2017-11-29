@@ -15202,7 +15202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &372304102
 GameObject:
   m_ObjectHideFlags: 0
@@ -34428,20 +34428,20 @@ Prefab:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1390477345}
-    - target: {fileID: 114497591211124292, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
+    - target: {fileID: 114555040132311782, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
         type: 2}
-      propertyPath: m_Transition
+      propertyPath: m_Navigation.m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114279329009363048, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114497591211124292, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4,
         type: 2}
-      propertyPath: m_SpriteState.m_HighlightedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 8d1a54c9e27508843a0e0f923d6ab94a,
-        type: 3}
-    - target: {fileID: 1241080582211104, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_Navigation.m_Mode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e2f0d21e4b0c7d4d95c2ab17f0c86a4, type: 2}
@@ -51068,7 +51068,8 @@ MonoBehaviour:
   m_goMainMenu: {fileID: 1088644573}
   m_goSettingsMenu: {fileID: 202375989}
   m_goCreditsMenu: {fileID: 372283654}
-  m_goCanvas: {fileID: 0}
+  m_goCanvas: {fileID: 932591685}
+  m_GraphicRaycaster: {fileID: 932591686}
 --- !u!4 &1390477344
 Transform:
   m_ObjectHideFlags: 0
@@ -51111,7 +51112,7 @@ MonoBehaviour:
   m_asAmbientAudioSource: {fileID: 1635554679}
   m_asMusicAudioSource: {fileID: 1736902503}
   m_options: {fileID: 211907888}
-  m_acMenuMusic: {fileID: 8300000, guid: fe6061fc1f6c61d4b8b9fc8435ce9d80, type: 3}
+  m_acMenuMusic: {fileID: 8300000, guid: 66bf09dea6b5b9b4a8dc14cd72fdee39, type: 3}
   m_lacBGM:
   - {fileID: 0}
   m_lacAmbientSounds:

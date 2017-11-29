@@ -10833,7 +10833,7 @@ Prefab:
     - target: {fileID: 114788236559286138, guid: 6637c930c5159d34da042186430808b5,
         type: 2}
       propertyPath: twoStickControls
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114750239464136226, guid: 6637c930c5159d34da042186430808b5,
         type: 2}
@@ -14836,7 +14836,8 @@ MonoBehaviour:
   m_goSettingsMenu: {fileID: 1070774930}
   m_goQuitMenu: {fileID: 536790322}
   m_goPauseScreenBackground: {fileID: 1861213298}
-  m_goCanvas: {fileID: 0}
+  m_goCanvas: {fileID: 2109774254}
+  m_GraphicRaycaster: {fileID: 2109774255}
 --- !u!4 &1197909740
 Transform:
   m_ObjectHideFlags: 0
